@@ -111,103 +111,194 @@
 
 // export default Navbar;
 
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+// export default function Navbar() {
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   return (
+//     <nav className="bg-light shadow-md">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="flex justify-between h-16">
+//           {/* Logo */}
+//           <div className="flex-shrink-0 flex items-center">
+//             <a href="/" className="text-xl font-bold text-gray-800">
+//               <img src="/Frame 1.svg" className=" max-w-full h-auto"></img>
+//             </a>
+//           </div>
+
+//           {/* Desktop Menu */}
+//           <div className="hidden md:flex space-x-4 items-center">
+//             <a
+//               href="/about"
+//               className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium"
+//             >
+//               About
+//             </a>
+//             <a
+//               href="/donate"
+//               className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium"
+//             >
+//               Donate
+//             </a>
+//             <a
+//               href="/contact"
+//               className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium"
+//             >
+//               Contact
+//             </a>
+//           </div>
+
+//           {/* Mobile Menu Button */}
+//           <div className="flex items-center md:hidden">
+//             <button
+//               onClick={() => setIsOpen(!isOpen)}
+//               className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-blue-500 focus:outline-none"
+//             >
+//               <svg
+//                 className="h-6 w-6"
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 fill="none"
+//                 viewBox="0 0 24 24"
+//                 stroke="currentColor"
+//               >
+//                 {isOpen ? (
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth={2}
+//                     d="M6 18L18 6M6 6l12 12"
+//                   />
+//                 ) : (
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth={2}
+//                     d="M4 6h16M4 12h16m-7 6h7"
+//                   />
+//                 )}
+//               </svg>
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Mobile Menu */}
+//       {isOpen && (
+//         <div className="md:hidden">
+//           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+//             <a
+//               href="/about"
+//               className="block text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-base font-medium"
+//             >
+//               About
+//             </a>
+//             <a
+//               href="/donate"
+//               className="block text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-base font-medium"
+//             >
+//               Donate
+//             </a>
+//             <a
+//               href="/contact"
+//               className="block text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-base font-medium"
+//             >
+//               Contact
+//             </a>
+//           </div>
+//         </div>
+//       )}
+//     </nav>
+//   );
+// }
+
+
+import React, { useState } from "react";
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-light shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="text-xl font-bold text-gray-800">
-              <img src="/Frame 1.svg" className=" max-w-full h-auto"></img>
+    <header className={`flex  w-full justify-between  items-center z-50 bg-white dark:bg-dark`}>
+      <div className="container">
+        <div className="relative -mx-4 flex items-center justify-between">
+          <div className="w-60 max-w-full px-4">
+            <a href="/#" className="block w-full py-5">
+              <img
+                src="/Frame 1.svg"
+                alt="logo"
+                className="dark:hidden"
+              />
+              <img
+                src="/Frame 1.svg"
+                alt="logo"
+                className="hidden dark:block"
+              />
             </a>
           </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4 items-center">
-            <a
-              href="/about"
-              className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium"
-            >
-              About
-            </a>
-            <a
-              href="/donate"
-              className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Donate
-            </a>
-            <a
-              href="/contact"
-              className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Contact
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-blue-500 focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+          <div className="flex w-full items-center justify-between px-4">
+            <div>
+              <button
+                onClick={() => setOpen(!open)}
+                id="navbarToggler"
+                className={` ${
+                  open && "navbarTogglerActive"
+                } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
               >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
-                )}
-              </svg>
-            </button>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+              </button>
+              <nav
+                // :className="!navbarOpen && 'hidden' "
+                id="navbarCollapse"
+                className={`absolute right-4 z-50 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-transparent ${
+                  !open && "hidden"
+                } `}
+              >
+                <ul className="block lg:flex">
+                  <ListItem NavLink="/#">Home</ListItem>
+                  <ListItem NavLink="/#">Payment</ListItem>
+                  <ListItem NavLink="/#">About</ListItem>
+                  <ListItem NavLink="/#">Blog</ListItem>
+                </ul>
+              </nav>
+            </div>
+            <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
+              <a
+                href="/#"
+                className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
+              >
+                Sign in
+              </a>
+
+              <a
+                href="/#"
+                className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+              >
+                Sign Up
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="/about"
-              className="block text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-base font-medium"
-            >
-              About
-            </a>
-            <a
-              href="/donate"
-              className="block text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Donate
-            </a>
-            <a
-              href="/contact"
-              className="block text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-base font-medium"
-            >
-              Contact
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
+    </header>
   );
-}
+};
+
+export default Navbar;
+
+const ListItem = ({ children, NavLink }) => {
+  return (
+    <>
+      <li>
+        <a
+          href={NavLink}
+          className="flex py-2 text-base font-medium text-body-color hover:text-dark dark:text-dark-6 dark:hover:text-white lg:ml-12 lg:inline-flex"
+        >
+          {children}
+        </a>
+      </li>
+    </>
+  );
+};
