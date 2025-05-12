@@ -195,8 +195,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
           />
         </a>
         <p className="mb-7 text-base text-body-color dark:text-dark-6">
-          Sed ut perspiciatis undmnis is iste natus error sit amet
-          voluptatem totam rem aperiam.
+          I'm the best in the business
         </p>
         <p
           className="flex items-center text-sm font-medium text-dark dark:text-white"
@@ -230,7 +229,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
               </defs>
             </svg>
           </span>
-          <span>+012 (345) 678 99</span>
+          <span>+254(703)666-366</span>
         </p>
       </div>
     </div>

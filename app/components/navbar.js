@@ -222,15 +222,15 @@ const Navbar = () => {
     <header className={`flex  w-full justify-between  items-center z-50 bg-white dark:bg-dark`}>
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-60 max-w-full px-4">
+          <div className="w-32 max-w-full px-4">
             <a href="/#" className="block w-full py-5">
               <img
-                src="/Frame 1.svg"
+                src="2.png"
                 alt="logo"
                 className="dark:hidden"
               />
               <img
-                src="/Frame 1.svg"
+                src="2.png"
                 alt="logo"
                 className="hidden dark:block"
               />
@@ -258,8 +258,8 @@ const Navbar = () => {
               >
                 <ul className="block lg:flex">
                   <ListItem NavLink="/#">Home</ListItem>
-                  <ListItem NavLink="/#">Payment</ListItem>
-                  <ListItem NavLink="/#">About</ListItem>
+                  <ListItem NavLink="/playground">Playground</ListItem>
+                  <ListItem NavLink="/About">About</ListItem>
                   <ListItem NavLink="/#">Blog</ListItem>
                 </ul>
               </nav>

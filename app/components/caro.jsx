@@ -23,7 +23,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto">
+    <div className="relative w-full h-screen overflow-hidden p-6 mx-auto">
       {/* Carousel Container */}
       <div className="relative overflow-hidden rounded-lg shadow-lg">
         {/* Images */}
@@ -32,11 +32,11 @@ export default function Carousel() {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((image, index) => (
-            <div key={index} className="w-full flex-shrink-0">
+            <div key={index} className="w-full  flex-shrink-0">
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="max-w-full h-auto object-cover"
               />
             </div>
           ))}
@@ -44,10 +44,10 @@ export default function Carousel() {
       </div>
 
       {/* Navigation Arrows */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 p-2 w-full flex flex-row justify-between">
+      <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 p-2 w-full flex flex-row justify-between">
         <button
           onClick={goToPrevious}
-          className="bg-primary bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition"
+          className="bg-blue bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ export default function Carousel() {
         </button>
         <button
           onClick={goToNext}
-          className="bg-primary bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition"
+          className="bg-blue bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -84,6 +84,8 @@ export default function Carousel() {
           </svg>
         </button>
       </div>
+
+     
     </div>
   );
 }
