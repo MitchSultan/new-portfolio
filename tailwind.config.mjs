@@ -22,11 +22,12 @@ export default {
       },
       colors: {
         // Custom colors
-        primary: '#e63946', // red
-        secondary: '#457b9d', // blue
-        accent: '#a8dadc', // ltblue
-        dark: '#1d3557', // dkblue
-        light: '#f1faee', // honeydew
+        black: '#262626', // void black
+        lavender: '#b287fd', // bright lavender
+        background: 'd8d9dd', // light gray
+        dark: '#212121', // raisin black
+        light: '#eae1ff', // lavender mist
+        green: '#b2f142', //lime green
       },
     },
   },

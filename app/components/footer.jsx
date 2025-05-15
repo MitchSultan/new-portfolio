@@ -184,12 +184,12 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
           className="mb-6 inline-block max-w-[160px]"
         >
           <img
-            src="../../assets/images/logo/logo.svg"
+            src="/1.png"
             alt="logo"
             className="max-w-full dark:hidden"
           />
           <img
-            src="../../assets/images/logo/logo-white.svg"
+            src="/2.png"
             alt="logo"
             className="hidden max-w-full dark:block"
           />
@@ -282,10 +282,11 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
         <ul class="space-y-3">
           <li>
             <a
-              href="javascript:void(0)"
+              href="https://pixelwebsolution.com"
+              target='_blank'
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
-              About TailGrids
+              Pixel
             </a>
           </li>
           <li>
@@ -301,7 +302,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
               href="javascript:void(0)"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
-              Success History
+               History
             </a>
           </li>
           <li>
@@ -326,7 +327,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
               href="javascript:void(0)"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
-              Premium Support
+              About
             </a>
           </li>
           <li>
@@ -334,7 +335,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
               href="javascript:void(0)"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
-              Our Services
+              Services
             </a>
           </li>
           <li>
@@ -342,7 +343,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
               href="javascript:void(0)"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
-              Know Our Team
+              Playground
             </a>
           </li>
           <li>
@@ -350,7 +351,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
               href="javascript:void(0)"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
-              Download App
+              Blog
             </a>
           </li>
         </ul>
@@ -359,7 +360,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
     <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
       <div class="mb-10 w-full">
         <h4 class="mb-9 text-lg font-semibold text-dark dark:text-white">
-          Follow Us On
+          Follow Me On
         </h4>
         <div class="mb-6 flex items-center">
           <a
@@ -424,7 +425,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
           </a>
         </div>
         <p class="text-base text-body-color dark:text-dark-6">
-          &copy; 2025 TailGrids
+          &copy; 2025 Mitch
         </p>
       </div>
     </div>

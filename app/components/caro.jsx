@@ -23,7 +23,9 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden p-6 mx-auto">
+    <div className="relative w-full h-screen overflow-hidden p-6 my-3 mx-auto">
+      
+      <h1 className=' text-right text-5xl text-black font-extrabold capitalize'>Skills I Offer</h1>
       {/* Carousel Container */}
       <div className="relative overflow-hidden rounded-lg shadow-lg">
         {/* Images */}

@@ -225,12 +225,12 @@ const Navbar = () => {
           <div className="w-32 max-w-full px-4">
             <a href="/#" className="block w-full py-5">
               <img
-                src="2.png"
+                src="1.png"
                 alt="logo"
                 className="dark:hidden"
               />
               <img
-                src="2.png"
+                src="1.png"
                 alt="logo"
                 className="hidden dark:block"
               />
@@ -243,16 +243,16 @@ const Navbar = () => {
                 id="navbarToggler"
                 className={` ${
                   open && "navbarTogglerActive"
-                } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
+                } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-lavender focus:ring-2 lg:hidden`}
               >
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-lavender "></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-lavender "></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-lavender "></span>
               </button>
               <nav
                 // :className="!navbarOpen && 'hidden' "
                 id="navbarCollapse"
-                className={`absolute right-4 z-50 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-transparent ${
+                className={`absolute right-4 z-50 top-full w-full max-w-[450px] rounded-lg bg-black text-light hover:text-light/90 px-6 py-5 shadow dark:bg-dark-2 lg:static lg:text-black lg:block lg:w-full lg:max-w-full lg:shadow-none lg:bg-white lg:dark:bg-transparent ${
                   !open && "hidden"
                 } `}
               >
@@ -269,14 +269,14 @@ const Navbar = () => {
                 href="/#"
                 className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
               >
-                Sign in
+                Free Stuff
               </a>
 
               <a
                 href="/#"
-                className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+                className="rounded-md bg-primary px-7 py-3 text-base font-medium text-black bg-lavender hover:bg-lavender/90"
               >
-                Sign Up
+                Let's Talk
               </a>
             </div>
           </div>
