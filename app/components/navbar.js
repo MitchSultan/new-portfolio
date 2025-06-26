@@ -258,7 +258,7 @@ const Navbar = () => {
               >
                 <ul className="block lg:flex">
                   <ListItem NavLink="/#">Home</ListItem>
-                  <ListItem NavLink="/playground">Playground</ListItem>
+                  <ListItem NavLink="/playground">Work</ListItem>
                   <ListItem NavLink="/About">About</ListItem>
                   <ListItem NavLink="/#">Blog</ListItem>
                 </ul>
@@ -273,7 +273,7 @@ const Navbar = () => {
               </a>
 
               <a
-                href="/#"
+                href="/wa.me/254703666366"
                 className="rounded-md bg-primary px-7 py-3 text-base font-medium text-black bg-lavender hover:bg-lavender/90"
               >
                 Let's Talk

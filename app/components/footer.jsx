@@ -176,7 +176,7 @@ export default function Footer() {
 class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
 >
 <div className="container mx-auto">
-  <div className="-mx-4 flex flex-wrap">
+  <div className="-mx-4 flex justify-evenly flex-wrap">
     <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
       <div className="mb-10 w-full">
         <a
@@ -233,7 +233,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
         </p>
       </div>
     </div>
-    <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+    {/*<div className="w-full px-4 sm:w-1/2 lg:w-2/12">
       <div className="mb-10 w-full">
         <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
           Resources
@@ -274,7 +274,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
         </ul>
       </div>
     </div>
-    <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+     <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
       <div className="mb-10 w-full">
         <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
           Company
@@ -315,7 +315,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
           </li>
         </ul>
       </div>
-    </div>
+    </div> */}
     <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
       <div class="mb-10 w-full">
         <h4 class="mb-9 text-lg font-semibold text-dark dark:text-white">
@@ -324,7 +324,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
         <ul class="space-y-3">
           <li>
             <a
-              href="javascript:void(0)"
+              href="/About"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
               About
@@ -332,7 +332,7 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
           </li>
           <li>
             <a
-              href="javascript:void(0)"
+              href="/services"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
               Services
@@ -340,20 +340,20 @@ class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
           </li>
           <li>
             <a
-              href="javascript:void(0)"
+              href="/playground"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
-              Playground
+              Work
             </a>
           </li>
-          <li>
+          {/* <li>
             <a
               href="javascript:void(0)"
               class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
             >
               Blog
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

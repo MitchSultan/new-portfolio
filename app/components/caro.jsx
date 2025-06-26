@@ -23,9 +23,9 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden p-6 my-3 mx-auto">
+    <div className="relative w-full min-h-screen md:h-screen overflow-hidden p-6 my-3 mx-auto">
       
-      <h1 className=' text-right text-5xl text-black font-extrabold capitalize'>Skills I Offer</h1>
+      <h1 className=' text-right text-5xl text-black font-extrabold capitalize'>Mockups</h1>
       {/* Carousel Container */}
       <div className="relative overflow-hidden rounded-lg shadow-lg">
         {/* Images */}
@@ -38,7 +38,7 @@ export default function Carousel() {
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="max-w-full h-auto object-cover"
+                className="w-full h-auto object-cover"
               />
             </div>
           ))}
