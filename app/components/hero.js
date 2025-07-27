@@ -24,8 +24,8 @@ export default function Hero() {
    },[]);
   
   return (
-    <div className='h-screen w-full flex  items-center justify-center gap-2 '>
-      <div className='hero flex flex-col md:flex-row items-center justify-center float-start bg-light max-w-full h-96 p-4 mx-5'>
+    <div className='h-screen w-full flex  items-center justify-center gap-2 p-4 '>
+      <div className='hero flex flex-col md:flex-row items-center justify-center float-start bg-light max-w-full min-h-96 p-2  md:mx-5'>
         <div>
         <h1 className=' text-left text-5xl text-black font-extrabold capitalize'>Agency-level quality with freelancer-level attention.</h1>
         <p>I Build High-Converting Websites & Custom Software for Growing Brands</p>
@@ -38,6 +38,7 @@ export default function Hero() {
         <img src='/images/hero1.png' alt='Hero Image' className='  max-w-full h-auto ' />
         </div>
       </div>
+      
       
     </div>
   )

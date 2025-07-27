@@ -57,7 +57,7 @@ export default function Footer() {
 
 //     <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
 //       <li>
-//         <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> About </a>
+//         <a className="text-lavender transition hover:text-gray-700/75" href="#"> About </a>
 //       </li>
 
 //       <li>
@@ -172,323 +172,251 @@ export default function Footer() {
 //     </ul>
 //   </div>
 // </footer>
-<footer
-class="relative z-10 bg-white pb-10 pt-20 lg:pb-20 lg:pt-[120px] dark:bg-dark"
->
-<div className="container mx-auto">
-  <div className="-mx-4 flex justify-evenly flex-wrap">
-    <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
-      <div className="mb-10 w-full">
-        <a
-          href="javascript:void(0)"
-          className="mb-6 inline-block max-w-[160px]"
+
+ <footer className="bg-white">
+  <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div
+      className="flex flex-col items-center gap-4 rounded-lg bg-lavender p-6 shadow-lg sm:flex-row sm:justify-between"
+    >
+      <strong className="text-xl text-black sm:text-xl"> Boost your Business today! </strong>
+
+      <a
+        className="inline-flex items-center gap-2 rounded-full border border-white bg-black px-8 py-3 text-lavender hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden"
+        href="https://wa.me/703666366"
+      >
+        <span className="text-sm font-medium"> Let's Get Started </span>
+
+        <svg
+          className="size-5 shadow-sm rtl:rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <img
-            src="/1.png"
-            alt="logo"
-            className="max-w-full dark:hidden"
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
           />
-          <img
-            src="/2.png"
-            alt="logo"
-            className="hidden max-w-full dark:block"
-          />
-        </a>
-        <p className="mb-7 text-base text-body-color dark:text-dark-6">
-          I'm the best in the business
-        </p>
-        <p
-          className="flex items-center text-sm font-medium text-dark dark:text-white"
-        >
-          <span className="mr-3 text-primary">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_941_15626)">
-                <path
-                  d="M15.1875 19.4688C14.3438 19.4688 13.375 19.25 12.3125 18.8438C10.1875 18 7.84377 16.375 5.75002 14.2813C3.65627 12.1875 2.03127 9.84377 1.18752 7.68752C0.250019 5.37502 0.343769 3.46877 1.43752 2.40627C1.46877 2.37502 1.53127 2.34377 1.56252 2.31252L4.18752 0.750025C4.84377 0.375025 5.68752 0.562525 6.12502 1.18752L7.96877 3.93753C8.40627 4.59378 8.21877 5.46877 7.59377 5.90627L6.46877 6.68752C7.28127 8.00002 9.59377 11.2188 13.2813 13.5313L13.9688 12.5313C14.5 11.7813 15.3438 11.5625 16.0313 12.0313L18.7813 13.875C19.4063 14.3125 19.5938 15.1563 19.2188 15.8125L17.6563 18.4375C17.625 18.5 17.5938 18.5313 17.5625 18.5625C17 19.1563 16.1875 19.4688 15.1875 19.4688ZM2.37502 3.46878C1.78127 4.12503 1.81252 5.46877 2.50002 7.18752C3.28127 9.15627 4.78127 11.3125 6.75002 13.2813C8.68752 15.2188 10.875 16.7188 12.8125 17.5C14.5 18.1875 15.8438 18.2188 16.5313 17.625L18.0313 15.0625C18.0313 15.0313 18.0313 15.0313 18.0313 15L15.2813 13.1563C15.2813 13.1563 15.2188 13.1875 15.1563 13.2813L14.4688 14.2813C14.0313 14.9063 13.1875 15.0938 12.5625 14.6875C8.62502 12.25 6.18752 8.84377 5.31252 7.46877C4.90627 6.81252 5.06252 5.96878 5.68752 5.53128L6.81252 4.75002V4.71878L4.96877 1.96877C4.96877 1.93752 4.93752 1.93752 4.90627 1.96877L2.37502 3.46878Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M18.3125 8.90633C17.9375 8.90633 17.6563 8.62508 17.625 8.25008C17.375 5.09383 14.7813 2.56258 11.5938 2.34383C11.2188 2.31258 10.9063 2.00008 10.9375 1.59383C10.9688 1.21883 11.2813 0.906333 11.6875 0.937583C15.5625 1.18758 18.7188 4.25008 19.0313 8.12508C19.0625 8.50008 18.7813 8.84383 18.375 8.87508C18.375 8.90633 18.3438 8.90633 18.3125 8.90633Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M15.2187 9.18755C14.875 9.18755 14.5625 8.93755 14.5312 8.56255C14.3437 6.87505 13.0312 5.56255 11.3437 5.3438C10.9687 5.31255 10.6875 4.93755 10.7187 4.56255C10.75 4.18755 11.125 3.9063 11.5 3.93755C13.8437 4.2188 15.6562 6.0313 15.9375 8.37505C15.9687 8.75005 15.7187 9.0938 15.3125 9.1563C15.25 9.18755 15.2187 9.18755 15.2187 9.18755Z"
-                  fill="currentColor"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_941_15626">
-                  <rect width="20" height="20" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </span>
-          <span>+254(703)666-366</span>
-        </p>
-      </div>
+        </svg>
+      </a>
     </div>
-    {/*<div className="w-full px-4 sm:w-1/2 lg:w-2/12">
-      <div className="mb-10 w-full">
-        <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
-          Resources
-        </h4>
-        <ul className="space-y-3">
+
+    <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="text-center sm:text-left">
+        <p className="text-lg font-medium text-gray-900">About Me</p>
+
+        <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a
-              href="javascript:void(0)"
-              className="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              SaaS Development
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+              My Story
             </a>
           </li>
+
           <li>
-            <a
-              href="javascript:void(0)"
-              className="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              Our Products
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> My Toolbox </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+              My work
             </a>
           </li>
+
           <li>
-            <a
-              href="javascript:void(0)"
-              className="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              User Flow
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Careers </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="text-center sm:text-left">
+        <p className="text-lg font-medium text-gray-900">Our Services</p>
+
+        <ul className="mt-8 space-y-4 text-sm">
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+              Web Development
             </a>
           </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Web Design </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Marketing </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Google Ads </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="text-center sm:text-left">
+        <p className="text-lg font-medium text-gray-900">Resources</p>
+
+        <ul className="mt-8 space-y-4 text-sm">
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Online Guides </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+              Conference Notes
+            </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Forum </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Downloads </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+              Upcoming Events
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="text-center sm:text-left">
+        <p className="text-lg font-medium text-gray-900">Helpful Links</p>
+
+        <ul className="mt-8 space-y-4 text-sm">
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> FAQs </a>
+          </li>
+
+          <li>
+            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Support </a>
+          </li>
+
           <li>
             <a
-              href="javascript:void(0)"
-              className="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
+              className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
+              href="#"
             >
-              User Strategy
+              <span className="text-gray-700 transition group-hover:text-gray-700/75"> Live Chat </span>
+
+              <span className="relative flex size-2">
+                <span
+                  className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lavender opacity-75"
+                ></span>
+                <span className="relative inline-flex size-2 rounded-full bg-lavender"></span>
+              </span>
             </a>
           </li>
         </ul>
       </div>
     </div>
-     <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
-      <div className="mb-10 w-full">
-        <h4 className="mb-9 text-lg font-semibold text-dark dark:text-white">
-          Company
-        </h4>
-        <ul class="space-y-3">
-          <li>
-            <a
-              href="https://pixelwebsolution.com"
-              target='_blank'
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              Pixel
-            </a>
-          </li>
-          <li>
-            <a
-              href="javascript:void(0)"
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              Contact & Support
-            </a>
-          </li>
-          <li>
-            <a
-              href="javascript:void(0)"
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-               History
-            </a>
-          </li>
-          <li>
-            <a
-              href="javascript:void(0)"
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              Setting & Privacy
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div> */}
-    <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-      <div class="mb-10 w-full">
-        <h4 class="mb-9 text-lg font-semibold text-dark dark:text-white">
-          Quick Links
-        </h4>
-        <ul class="space-y-3">
-          <li>
-            <a
-              href="/About"
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a
-              href="/services"
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              Services
-            </a>
-          </li>
-          <li>
-            <a
-              href="/playground"
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              Work
-            </a>
-          </li>
-          {/* <li>
-            <a
-              href="javascript:void(0)"
-              class="inline-block text-base leading-loose text-body-color hover:text-primary dark:text-dark-6"
-            >
-              Blog
-            </a>
-          </li> */}
-        </ul>
-      </div>
-    </div>
-    <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
-      <div class="mb-10 w-full">
-        <h4 class="mb-9 text-lg font-semibold text-dark dark:text-white">
-          Follow Me On
-        </h4>
-        <div class="mb-6 flex items-center">
+
+    <div className="mt-16">
+      <ul className="flex justify-center gap-6 sm:justify-end">
+        <li>
           <a
-            href="javascript:void(0)"
-            class="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4 dark:border-dark-3 dark:text-white dark:hover:border-primary"
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+            className="text-lavender transition hover:text-teal-700/75"
           >
-            <svg
-              width="8"
-              height="16"
-              viewBox="0 0 8 16"
-              class="fill-current"
-            >
+            <span className="sr-only">Facebook</span>
+            <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
-                d="M7.43902 6.4H6.19918H5.75639V5.88387V4.28387V3.76774H6.19918H7.12906C7.3726 3.76774 7.57186 3.56129 7.57186 3.25161V0.516129C7.57186 0.232258 7.39474 0 7.12906 0H5.51285C3.76379 0 2.54609 1.44516 2.54609 3.5871V5.83226V6.34839H2.10329H0.597778C0.287819 6.34839 0 6.63226 0 7.04516V8.90323C0 9.26452 0.243539 9.6 0.597778 9.6H2.05902H2.50181V10.1161V15.3032C2.50181 15.6645 2.74535 16 3.09959 16H5.18075C5.31359 16 5.42429 15.9226 5.51285 15.8194C5.60141 15.7161 5.66783 15.5355 5.66783 15.3806V10.1419V9.62581H6.13276H7.12906C7.41688 9.62581 7.63828 9.41935 7.68256 9.10968V9.08387V9.05806L7.99252 7.27742C8.01466 7.09677 7.99252 6.89032 7.85968 6.68387C7.8154 6.55484 7.61614 6.42581 7.43902 6.4Z"
+                fillRule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                clipRule="evenodd"
               />
             </svg>
           </a>
+        </li>
+
+        <li>
           <a
-            href="javascript:void(0)"
-            class="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4 dark:border-dark-3 dark:text-white dark:hover:border-primary"
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+            className="text-lavender transition hover:text-teal-700/75"
           >
-            <svg
-              width="16"
-              height="12"
-              viewBox="0 0 16 12"
-              class="fill-current"
-            >
+            <span className="sr-only">Instagram</span>
+            <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
-                d="M14.2194 2.06654L15.2 0.939335C15.4839 0.634051 15.5613 0.399217 15.5871 0.2818C14.8129 0.704501 14.0903 0.845401 13.6258 0.845401H13.4452L13.3419 0.751468C12.7226 0.258317 11.9484 0 11.1226 0C9.31613 0 7.89677 1.36204 7.89677 2.93542C7.89677 3.02935 7.89677 3.17025 7.92258 3.26419L8 3.73386L7.45806 3.71037C4.15484 3.61644 1.44516 1.03327 1.00645 0.587084C0.283871 1.76125 0.696774 2.88845 1.13548 3.59296L2.0129 4.90802L0.619355 4.20352C0.645161 5.18982 1.05806 5.96477 1.85806 6.52838L2.55484 6.99804L1.85806 7.25636C2.29677 8.45401 3.27742 8.94716 4 9.13503L4.95484 9.36986L4.05161 9.93346C2.60645 10.8728 0.8 10.8024 0 10.7319C1.62581 11.7652 3.56129 12 4.90323 12C5.90968 12 6.65806 11.9061 6.83871 11.8356C14.0645 10.2857 14.4 4.41487 14.4 3.2407V3.07632L14.5548 2.98239C15.4323 2.23092 15.7935 1.8317 16 1.59687C15.9226 1.62035 15.8194 1.66732 15.7161 1.6908L14.2194 2.06654Z"
+                fillRule="evenodd"
+                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                clipRule="evenodd"
               />
             </svg>
           </a>
+        </li>
+
+        <li>
           <a
-            href="javascript:void(0)"
-            class="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4 dark:border-dark-3 dark:text-white dark:hover:border-primary"
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+            className="text-lavender transition hover:text-teal-700/75"
           >
-            <svg
-              width="16"
-              height="12"
-              viewBox="0 0 16 12"
-              class="fill-current"
-            >
+            <span className="sr-only">Twitter</span>
+            <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
-                d="M15.6645 1.88018C15.4839 1.13364 14.9419 0.552995 14.2452 0.359447C13.0065 6.59222e-08 8 0 8 0C8 0 2.99355 6.59222e-08 1.75484 0.359447C1.05806 0.552995 0.516129 1.13364 0.335484 1.88018C0 3.23502 0 6 0 6C0 6 0 8.79263 0.335484 10.1198C0.516129 10.8664 1.05806 11.447 1.75484 11.6406C2.99355 12 8 12 8 12C8 12 13.0065 12 14.2452 11.6406C14.9419 11.447 15.4839 10.8664 15.6645 10.1198C16 8.79263 16 6 16 6C16 6 16 3.23502 15.6645 1.88018ZM6.4 8.57143V3.42857L10.5548 6L6.4 8.57143Z"
+                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
               />
             </svg>
           </a>
+        </li>
+
+        <li>
           <a
-            href="javascript:void(0)"
-            class="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4 dark:border-dark-3 dark:text-white dark:hover:border-primary"
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+            className="text-lavender transition hover:text-teal-700/75"
           >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              class="fill-current"
-            >
+            <span className="sr-only">GitHub</span>
+            <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
-                d="M13.0214 0H1.02084C0.453707 0 0 0.451613 0 1.01613V12.9839C0 13.5258 0.453707 14 1.02084 14H12.976C13.5432 14 13.9969 13.5484 13.9969 12.9839V0.993548C14.0422 0.451613 13.5885 0 13.0214 0ZM4.15142 11.9H2.08705V5.23871H4.15142V11.9ZM3.10789 4.3129C2.42733 4.3129 1.90557 3.77097 1.90557 3.11613C1.90557 2.46129 2.45002 1.91935 3.10789 1.91935C3.76577 1.91935 4.31022 2.46129 4.31022 3.11613C4.31022 3.77097 3.81114 4.3129 3.10789 4.3129ZM11.9779 11.9H9.9135V8.67097C9.9135 7.90323 9.89082 6.8871 8.82461 6.8871C7.73571 6.8871 7.57691 7.74516 7.57691 8.60323V11.9H5.51254V5.23871H7.53154V6.16452H7.55423C7.84914 5.62258 8.50701 5.08065 9.52785 5.08065C11.6376 5.08065 12.0232 6.43548 12.0232 8.2871V11.9H11.9779Z"
+                fillRule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clipRule="evenodd"
               />
             </svg>
           </a>
+        </li>
+
+        <li>
+          <a
+            href="#"
+            rel="noreferrer"
+            target="_blank"
+            className="text-lavender transition hover:text-teal-700/75"
+          >
+            <span className="sr-only">Dribbble</span>
+            <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fillRule="evenodd"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div className="mt-16 sm:flex sm:items-center sm:justify-between">
+        <div className="flex justify-center text-teal-600 sm:justify-start">
+         
         </div>
-        <p class="text-base text-body-color dark:text-dark-6">
-          &copy; 2025 Mitch
+
+        <p className="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-right">
+          Copyright &copy; 2025. All rights reserved.Made by Mitch
         </p>
       </div>
     </div>
   </div>
-</div>
-
-<div>
-  <span class="absolute bottom-0 left-0 z-[-1]">
-    <svg
-      width="217"
-      height="229"
-      viewBox="0 0 217 229"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M-64 140.5C-64 62.904 -1.096 1.90666e-05 76.5 1.22829e-05C154.096 5.49924e-06 217 62.904 217 140.5C217 218.096 154.096 281 76.5 281C-1.09598 281 -64 218.096 -64 140.5Z"
-        fill="url(#paint0_linear_1179_5)"
-      />
-      <defs>
-        <linearGradient
-          id="paint0_linear_1179_5"
-          x1="76.5"
-          y1="281"
-          x2="76.5"
-          y2="1.22829e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#3056D3" stop-opacity="0.08" />
-          <stop offset="1" stop-color="#C4C4C4" stop-opacity="0" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </span>
-  <span class="absolute right-10 top-10 z-[-1]">
-    <svg
-      width="75"
-      height="75"
-      viewBox="0 0 75 75"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M37.5 -1.63918e-06C58.2107 -2.54447e-06 75 16.7893 75 37.5C75 58.2107 58.2107 75 37.5 75C16.7893 75 -7.33885e-07 58.2107 -1.63918e-06 37.5C-2.54447e-06 16.7893 16.7893 -7.33885e-07 37.5 -1.63918e-06Z"
-        fill="url(#paint0_linear_1179_4)"
-      />
-      <defs>
-        <linearGradient
-          id="paint0_linear_1179_4"
-          x1="-1.63917e-06"
-          y1="37.5"
-          x2="75"
-          y2="37.5"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#13C296" stop-opacity="0.31" />
-          <stop offset="1" stop-color="#C4C4C4" stop-opacity="0" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </span>
-</div>
-</footer>
-    
+</footer>   
   )
 }

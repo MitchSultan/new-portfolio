@@ -9,14 +9,18 @@ export default function Exper() {
     <div className=' p-3'>
        <section>
   <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-    <header>
+    <header className="flex flex-col justify-between items-left md:flex-row md:items-center">
+      <div>
       <h2 className="text-3xl font-extrabold capitalize text-black md:text-5xl">Some of my work</h2>
 
       <p className="mt-4 max-w-md text-gray-500">
         I have created a variety of projects, including websites, applications, and more. Here are some of my favorites.
         <br />
       </p>
-      <button>All Projects</button>
+      </div>
+      <div>
+      <a href='/playground'><button className='btn w-32 h-12 rounded-sm bg-white outline outline-1 outline-lavender text-black'>All Projects</button></a>
+      </div>
     </header>
 
     <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

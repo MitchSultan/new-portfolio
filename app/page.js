@@ -27,9 +27,10 @@ export default function page() {
       {/* <Projects/> */}
       
       <Exper />
-      <Carousel />
+      {/* <Carousel /> */}
       {/* <Blog /> */}
-      <Banner/>
+      <Banner />
+      
       
       <Footer />
     </div>
