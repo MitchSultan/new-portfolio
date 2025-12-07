@@ -57,11 +57,11 @@ export default function Footer() {
 
 //     <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
 //       <li>
-//         <a className="text-lavender transition hover:text-gray-700/75" href="#"> About </a>
+//         <a className="text-lavender transition hover:/75" href="#"> About </a>
 //       </li>
 
 //       <li>
-//         <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Careers </a>
+//         <a className=" transition hover:/75" href="#"> Careers </a>
 //       </li>
 
 //       <li>
@@ -173,15 +173,15 @@ export default function Footer() {
 //   </div>
 // </footer>
 
- <footer className="bg-white">
+ <footer className="">
   <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div
       className="flex flex-col items-center gap-4 rounded-lg bg-lavender p-6 shadow-lg sm:flex-row sm:justify-between"
     >
-      <strong className="text-xl text-black sm:text-xl"> Boost your Business today! </strong>
+      <strong className="text-xl t sm:text-xl"> Boost your Business today! </strong>
 
       <a
-        className="inline-flex items-center gap-2 rounded-full border border-white bg-black px-8 py-3 text-lavender hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden"
+        className="inline-flex items-center gap-2 rounded-full border border-white px-8 py-3 text-lavender hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden"
         href="https://wa.me/703666366"
       >
         <span className="text-sm font-medium"> Let's Get Started </span>
@@ -205,79 +205,79 @@ export default function Footer() {
 
     <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium text-gray-900">About Me</p>
+        <p className="text-lg font-medium ">About Me</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+            <a className=" transition hover:/75" href="#">
               My Story
             </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> My Toolbox </a>
+            <a className=" transition hover:/75" href="#"> My Toolbox </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+            <a className=" transition hover:/75" href="#">
               My work
             </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Careers </a>
+            <a className=" transition hover:/75" href="#"> Careers </a>
           </li>
         </ul>
       </div>
 
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium text-gray-900">Our Services</p>
+        <p className="text-lg font-medium ">Our Services</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+            <a className=" transition hover:/75" href="#">
               Web Development
             </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Web Design </a>
+            <a className=" transition hover:/75" href="#"> Web Design </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Marketing </a>
+            <a className=" transition hover:/75" href="#"> Marketing </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Google Ads </a>
+            <a className=" transition hover:/75" href="#"> Google Ads </a>
           </li>
         </ul>
       </div>
 
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium text-gray-900">Resources</p>
+        <p className="text-lg font-medium ">Resources</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Online Guides </a>
+            <a className=" transition hover:/75" href="#"> Online Guides </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+            <a className=" transition hover:/75" href="#">
               Conference Notes
             </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Forum </a>
+            <a className=" transition hover:/75" href="#"> Forum </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Downloads </a>
+            <a className=" transition hover:/75" href="#"> Downloads </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#">
+            <a className=" transition hover:/75" href="#">
               Upcoming Events
             </a>
           </li>
@@ -285,15 +285,15 @@ export default function Footer() {
       </div>
 
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium text-gray-900">Helpful Links</p>
+        <p className="text-lg font-medium ">Helpful Links</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> FAQs </a>
+            <a className=" transition hover:/75" href="#"> FAQs </a>
           </li>
 
           <li>
-            <a className="text-gray-700 transition hover:text-gray-700/75" href="#"> Support </a>
+            <a className=" transition hover:/75" href="#"> Support </a>
           </li>
 
           <li>
@@ -301,7 +301,7 @@ export default function Footer() {
               className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
               href="#"
             >
-              <span className="text-gray-700 transition group-hover:text-gray-700/75"> Live Chat </span>
+              <span className=" transition group-hover:/75"> Live Chat </span>
 
               <span className="relative flex size-2">
                 <span
@@ -322,7 +322,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:text-teal-700/75"
+            className="text-lavender transition hover:/75"
           >
             <span className="sr-only">Facebook</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -340,7 +340,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:text-teal-700/75"
+            className="text-lavender transition hover:/75"
           >
             <span className="sr-only">Instagram</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -358,7 +358,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:text-teal-700/75"
+            className="text-lavender transition hover:/75"
           >
             <span className="sr-only">Twitter</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -374,7 +374,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:text-teal-700/75"
+            className="text-lavender transition hover:/75"
           >
             <span className="sr-only">GitHub</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -392,7 +392,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:text-teal-700/75"
+            className="text-lavender transition hover:/75"
           >
             <span className="sr-only">Dribbble</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

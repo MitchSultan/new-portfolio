@@ -21,15 +21,16 @@ export default function page() {
       <Navbar />
       <Hero />
       <About />
+      <TextCursor />
       
 
       {/* <Testimonial /> */}
       {/* <Projects/> */}
       
-      <Exper />
+      <Exper />/
       {/* <Carousel /> */}
       {/* <Blog /> */}
-      <Banner />
+      
       
       
       <Footer />

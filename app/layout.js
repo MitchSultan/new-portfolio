@@ -20,16 +20,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <>
     <StrictMode>
     <Analytics />
     <html lang="en">
       <body
       suppressHydrationWarning={true}
-        className= 'bg-background {`${geistSans.variable} ${geistMono.variable} antialiased`} '
+        className= 'bg-background {`${geistSans.variable} ${geistMono.variable} antialiased`} dark:bg-dark dark:text-white'
       >
         {children}
       </body>
     </html>
     </StrictMode>
+    </>
   );
 }

@@ -219,10 +219,10 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className={`flex  w-full justify-between  items-center z-50 bg-white dark:bg-dark`}>
-      <div className="container">
+    <header className="flex  w-full justify-between  items-center z-50 rounded-lg bg-white dark:bg-white dark:text-black">
+      <div className="w-full">
         <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-32 max-w-full px-4">
+          <div className="w-32 h-24 max-w-full px-4">
             <a href="/#" className="block w-full py-5">
               <img
                 src="1.png"
