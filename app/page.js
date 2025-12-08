@@ -27,7 +27,7 @@ export default function page() {
       {/* <Testimonial /> */}
       {/* <Projects/> */}
       
-      <Exper />/
+      <Exper />
       {/* <Carousel /> */}
       {/* <Blog /> */}
       

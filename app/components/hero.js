@@ -35,7 +35,7 @@ export default function Hero() {
    },[]);
   
   return (
-    <div className='h-screen w-full flex  items-center justify-center gap-2 p-4 '>
+    <div className='h-screen w-full flex  items-center justify-center gap-2 md:p-4 '>
       <div className='hero flex flex-col md:flex-row items-center justify-center float-start  max-w-full min-h-96 p-2  md:mx-5'>
         <div className='flex flex-col items-start justify-center gap-2'>
         <h1 className=' text-left text-5xl  font-extrabold capitalize'>Agency-level quality with freelancer-level attention.</h1>
@@ -49,10 +49,11 @@ export default function Hero() {
           <p>Current Time: {time} (UTC +3 hrs)</p>
         </div>
         </div>
-        <div ref={contRef}  className='hero-image hidden md:flex  max-w-96'>
-        <img src='/images/bno.png' alt='Hero Image' className='  max-w-full h-auto ' />
-        </div>
+        
       </div>
+      <div ref={contRef}  className='hero-image hidden md:flex  max-w-96'>
+        <img src='/images/hor.png' alt='Hero Image' className='  max-w-full h-auto ' />
+        </div>
       
       
     </div>
