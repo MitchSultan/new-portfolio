@@ -35,27 +35,29 @@ export default function Hero() {
    },[]);
   
   return (
-    <div className='h-screen w-full flex  items-center justify-center gap-2 md:p-4 '>
-      <div className='hero flex flex-col md:flex-row items-center justify-center float-start  max-w-full min-h-96 p-2  md:mx-5'>
-        <div className='flex flex-col items-start justify-center gap-2'>
-        <h1 className=' text-left text-5xl  font-extrabold capitalize'>Agency-level quality with freelancer-level attention.</h1>
-        <p>I Build High-Converting Websites & Custom Software for Growing Brands</p>
-        <div className=' flex gap-2'>
-        <button className='btn w-32 h-12 rounded-sm bg-lavender outline outline-1 outline-white text-black'><a href='https://wa.me/254703666366'>Lets Talk </a></button>
-        <button className='btn w-32 h-12 rounded-sm bg-white outline outline-1 outline-lavender text-black'><a href='/playground'>See My Work</a></button>
+    <div className='h-screen w-full flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black'>
+      <div className='hero flex flex-col md:flex-row items-center justify-center max-w-7xl gap-12 p-6 md:mx-5'>
+        <div className='flex flex-col items-start justify-center gap-6 flex-1'>
+          <h1 className='font-display text-left'>Agency-level quality with freelancer-level attention.</h1>
+          <p className='text-left text-lg md:text-xl text-gray-600 dark:text-gray-400'>I Build High-Converting Websites & Custom Software for Growing Brands</p>
+          <div className='flex gap-4'>
+            <a href='https://wa.me/254703666366' className='btn-primary'>
+              Let's Talk
+            </a>
+            <a href='/playground' className='btn-secondary'>
+              See My Work
+            </a>
+          </div>
+          
+          <div className='mt-4'>
+            <p className='text-left text-sm md:text-base text-gray-500 dark:text-gray-400'>Current Time: {time} (UTC +3 hrs)</p>
+          </div>
         </div>
         
-        <div>
-          <p>Current Time: {time} (UTC +3 hrs)</p>
+        <div ref={contRef} className='hero-image flex items-center justify-center max-w-full flex-1'>
+          <img src='/images/hor.png' alt='Hero Image' className='max-w-96 h-auto drop-shadow-2xl' />
         </div>
-        </div>
-        
       </div>
-      <div ref={contRef}  className='hero-image hidden md:flex  max-w-96'>
-        <img src='/images/hor.png' alt='Hero Image' className='  max-w-full h-auto ' />
-        </div>
-      
-      
     </div>
   )
 }

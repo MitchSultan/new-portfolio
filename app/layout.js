@@ -1,16 +1,17 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
-import { StrictMode } from "react";
-import { Analytics } from "@vercel/analytics/next"
+import ClientProviders from "./providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 export const metadata = {
@@ -20,18 +21,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <>
-    <StrictMode>
-    <Analytics />
-    <html lang="en">
-      <body
-      suppressHydrationWarning={true}
-        className= 'bg-background {`${geistSans.variable} ${geistMono.variable} antialiased`} dark:bg-dark dark:text-white'
-      >
-        {children}
+    <html lang="en" className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
+      <body className="bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300 antialiased">
+        <ClientProviders>
+          {children}
+        </ClientProviders>
       </body>
     </html>
-    </StrictMode>
-    </>
   );
 }

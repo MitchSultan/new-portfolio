@@ -173,18 +173,18 @@ export default function Footer() {
 //   </div>
 // </footer>
 
- <footer className="">
+ <footer className="bg-white dark:bg-gray-900 transition-colors">
   <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div
-      className="flex flex-col items-center gap-4 rounded-lg bg-lavender p-6 shadow-lg sm:flex-row sm:justify-between"
+      className="flex flex-col items-center gap-4 rounded-lg bg-primary-100 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 p-6 shadow-lg sm:flex-row sm:justify-between"
     >
-      <strong className="text-xl t sm:text-xl"> Boost your Business today! </strong>
+      <strong className="text-xl text-gray-900 dark:text-white sm:text-xl"> Boost your Business today! </strong>
 
       <a
-        className="inline-flex items-center gap-2 rounded-full border border-white px-8 py-3 text-lavender hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden"
+        className="inline-flex items-center gap-2 rounded-full border-2 border-primary-600 dark:border-primary-400 bg-primary-600 dark:bg-primary-500 px-8 py-3 text-white hover:bg-primary-700 dark:hover:bg-primary-600 transition-all duration-300 focus:ring-3 focus:outline-hidden"
         href="https://wa.me/703666366"
       >
-        <span className="text-sm font-medium"> Let's Get Started </span>
+        <span className="text-sm font-medium">Let's Get Started </span>
 
         <svg
           className="size-5 shadow-sm rtl:rotate-180"
@@ -205,79 +205,79 @@ export default function Footer() {
 
     <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium ">About Me</p>
+        <p className="text-lg font-medium text-gray-900 dark:text-white">About Me</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className=" transition hover:/75" href="#">
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="/About#my-story">
               My Story
             </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> My Toolbox </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="/About#my-toolbox"> My Toolbox </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#">
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="/About#my-work">
               My work
             </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> Careers </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="/About#career"> Career </a>
           </li>
         </ul>
       </div>
 
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium ">Our Services</p>
+        <p className="text-lg font-medium text-gray-900 dark:text-white">Our Services</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className=" transition hover:/75" href="#">
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#">
               Web Development
             </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> Web Design </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> Web Design </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> Marketing </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> Marketing </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> Google Ads </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> Google Ads </a>
           </li>
         </ul>
       </div>
 
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium ">Resources</p>
+        <p className="text-lg font-medium text-gray-900 dark:text-white">Resources</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className=" transition hover:/75" href="#"> Online Guides </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> Online Guides </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#">
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#">
               Conference Notes
             </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> Forum </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> Forum </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> Downloads </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> Downloads </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#">
+            <a className="text-gray-900 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#">
               Upcoming Events
             </a>
           </li>
@@ -285,15 +285,15 @@ export default function Footer() {
       </div>
 
       <div className="text-center sm:text-left">
-        <p className="text-lg font-medium ">Helpful Links</p>
+        <p className="text-lg font-medium text-gray-900 dark:text-white">Helpful Links</p>
 
         <ul className="mt-8 space-y-4 text-sm">
           <li>
-            <a className=" transition hover:/75" href="#"> FAQs </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> FAQs </a>
           </li>
 
           <li>
-            <a className=" transition hover:/75" href="#"> Support </a>
+            <a className="text-gray-700 dark:text-gray-300 transition hover:text-primary-600 dark:hover:text-primary-400" href="#"> Support </a>
           </li>
 
           <li>
@@ -301,13 +301,13 @@ export default function Footer() {
               className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
               href="#"
             >
-              <span className=" transition group-hover:/75"> Live Chat </span>
+              <span className="text-gray-700 dark:text-gray-300 transition group-hover:text-primary-600 dark:group-hover:text-primary-400"> Live Chat </span>
 
               <span className="relative flex size-2">
                 <span
-                  className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lavender opacity-75"
+                  className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"
                 ></span>
-                <span className="relative inline-flex size-2 rounded-full bg-lavender"></span>
+                <span className="relative inline-flex size-2 rounded-full bg-primary-500"></span>
               </span>
             </a>
           </li>
@@ -322,7 +322,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:/75"
+            className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
           >
             <span className="sr-only">Facebook</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -340,7 +340,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:/75"
+            className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
           >
             <span className="sr-only">Instagram</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -358,7 +358,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:/75"
+            className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
           >
             <span className="sr-only">Twitter</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -374,7 +374,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:/75"
+            className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
           >
             <span className="sr-only">GitHub</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -392,7 +392,7 @@ export default function Footer() {
             href="#"
             rel="noreferrer"
             target="_blank"
-            className="text-lavender transition hover:/75"
+            className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
           >
             <span className="sr-only">Dribbble</span>
             <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -406,13 +406,13 @@ export default function Footer() {
         </li>
       </ul>
 
-      <div className="mt-16 sm:flex sm:items-center sm:justify-between">
+      <div className="mt-16 sm:flex sm:items-center sm:justify-between border-t border-gray-200 dark:border-gray-800 pt-8">
         <div className="flex justify-center text-teal-600 sm:justify-start">
          
         </div>
 
-        <p className="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-right">
-          Copyright &copy; 2025. All rights reserved.Made by Mitch
+        <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0 sm:text-right">
+          Copyright &copy; 2025. All rights reserved. Made by Mitch
         </p>
       </div>
     </div>
