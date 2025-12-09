@@ -35,7 +35,7 @@ export default function Hero() {
    },[]);
   
   return (
-    <div className='h-screen w-full flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black'>
+    <div className='h-screen w-full mt-20 flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:p-4 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black'>
       <div className='hero flex flex-col md:flex-row items-center justify-center max-w-7xl gap-12 p-6 md:mx-5'>
         <div className='flex flex-col items-start justify-center gap-6 flex-1'>
           <h1 className='font-display text-left'>Agency-level quality with freelancer-level attention.</h1>

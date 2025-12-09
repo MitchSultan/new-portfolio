@@ -17,7 +17,7 @@ import Footer from "./components/footer";
 
 export default function page() {
   return (
-    <div className="p-4">
+    <div className="p-4 overflow-x-hidden">
       <Navbar />
       <Hero />
       <About />
