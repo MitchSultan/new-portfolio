@@ -25,6 +25,7 @@ export default function RootLayout({ children }) {
      suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="8oWQjXaNYE-izREtHoHC5J0xHLTRLBnyFOQrE_mbfKw" />
+        <meta name="p:domain_verify" content="f86266286b27ae5d70773ff19b0102ec"/>
       </head>
       <body className="bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300 antialiased">
         <ClientProviders>

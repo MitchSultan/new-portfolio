@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "slug": "web-development-trends-2026",
+        "title": "Top Web Development Trends in 2026",
+        "excerpt": "Explore the revolutionary shifts in web development, from AI-native codebases to quantum-resistant encryption standards.",
+        "content": "<h2>The AI-Native Web</h2><p>In 2026, web development has moved beyond simple AI assistants. We are now seeing entire codebases managed and optimized by AI agents. Developers are becoming architects, guiding these high-level systems rather than writing every line of boilerplate.</p><h2>WebAssembly's Domination</h2><p>Wasm has finally fulfilled its promise. It's no longer just for heavy computation; adoption in UI frameworks has surged, allowing for near-native performance for web apps across all devices.</p><h2>The Death of the Password</h2><p>Passkeys and biometric authentication are now the standard. The days of 'Forgot Password' are behind us as we embrace a more secure, seamless identity verification layer built directly into browsers.</p>",
+        "date": "October 12, 2026",
+        "author": "Sarah Jenkins"
+    },
+    {
+        "id": 2,
+        "slug": "vr-ar-integration-web",
+        "title": "Integrating VR/AR directly into the DOM",
+        "excerpt": "With the new WebXR 2.0 specs, spatial computing is no longer a niche. Here is how to build immersive experiences with standard HTML.",
+        "content": "<h2>Spatial HTML Tags</h2><p>The introduction of spatial HTML tags has revolutionized how we think about layout. Elements can now have z-depth and volumetric properties by default, making 3D interfaces accessible to any frontend developer.</p><h2>Performance on the Edge</h2><p>Rendering these heavy 3D assets requires massive compute power. Fortunately, edge computing has evolved to handle pre-rendering of 3D scenes, delivering them to the client with minimal latency.</p>",
+        "date": "November 05, 2026",
+        "author": "Michael Chen"
+    },
+    {
+        "id": 3,
+        "slug": "serverless-2-0",
+        "title": "Serverless 2.0: The End of Cold Starts",
+        "excerpt": "New infrastructure breakthroughs have eliminated the cold start problem entirely. What does this mean for your Next.js applications?",
+        "content": "<h2>Instantaneous Compute</h2><p>Serverless functions now hydrate instantly thanks to snapshotting technology being baked into the silicon of modern server farms. This removes the main bottleneck that held back complex enterprise apps from going fully serverless.</p><h2>Stateful Serverless</h2><p>We are also seeing the rise of 'stateful serverless' patterns, where ephemeral functions can maintain a lightweight, consistent state without the need for external databases for every small transaction.</p>",
+        "date": "December 01, 2026",
+        "author": "Alex Rivera"
+    }
+]
