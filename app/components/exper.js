@@ -83,7 +83,7 @@ export default function Exper() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="min-h-screen bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div ref={sectionRef} className="min-h-screen  py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
@@ -91,13 +91,13 @@ export default function Exper() {
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
               Some of my work
             </h2>
-            <p className="text-gray-400 max-w-md">
+            <p className=" max-w-md">
               I have created a variety of projects, including websites, applications, and more. 
               Here are some of my favorites.
             </p>
           </div>
           <a href="/playground">
-            <button className="px-6 py-3 rounded-lg bg-transparent border border-purple-500 text-white hover:bg-purple-500/10 transition-all duration-300">
+            <button className="px-6 py-3 rounded-lg bg-transparent border border-purple-500  hover:bg-purple-500/10 transition-all duration-300">
               All Projects
             </button>
           </a>

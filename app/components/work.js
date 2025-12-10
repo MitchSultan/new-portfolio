@@ -142,39 +142,14 @@ const Work = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Navigation */}
-      {/* <nav className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="text-2xl font-bold text-gray-900">
-              Portfolio
-            </div>
-            <div className="flex items-center space-x-8">
-              <a
-                to="/"
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
-              >
-                Home
-              </a>
-              <a
-                to="/work"
-                className="text-blue-600 font-semibold"
-              >
-                Work
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav> */}
-
-      {/* Hero Section */}
+    <div className="min-h-screen ">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold  mb-4">
             My Work
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl  max-w-2xl mx-auto">
             A showcase of my recent projects and the impact they've made
           </p>
         </div>

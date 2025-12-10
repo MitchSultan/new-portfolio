@@ -7,7 +7,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="flex w-full justify-between items-center z-50 rounded-lg bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <header className="flex w-full justify-between items-center z-50 rounded-lg  shadow-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
       <div className="w-full">
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-32 h-24 max-w-full px-4">

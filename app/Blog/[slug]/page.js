@@ -1,6 +1,8 @@
 import React from 'react'
 import blogData from '../blogData.json'
-import Link from 'next/link'
+import Link from 'next/link';
+import Navbar from '@/app/components/navbar';
+import Footer from '@/app/components/footer';
 import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
@@ -17,10 +19,12 @@ export default function BlogPost({ params }) {
   }
 
   return (
-    <article className="min-h-screen bg-gray-50 dark:bg-gray-900 py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 animate-fade-in-up">
+    <>
+    <Navbar />
+    <article className="min-h-screen   py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto  rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 animate-fade-in-up">
         {/* Header Section */}
-        <div className="relative h-64 sm:h-80 md:h-96 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800">
+        <div className="relative max- h-64 sm:max-h-80 md:max-h-96 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800">
            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
            <div className="absolute inset-0 bg-black/10"></div>
            <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 text-white z-10">
@@ -69,5 +73,7 @@ export default function BlogPost({ params }) {
         </div>
       </div>
     </article>
+    <Footer />
+    </>
   )
 }

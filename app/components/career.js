@@ -8,8 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 const careerData = [
   {
     id: 1,
-    year: '2021 - 2022',
-    company: 'Tech Startup Inc.',
+    year: '2023 - 2024',
+    company: 'Telsec .',
     role: 'Junior Frontend Developer',
     description: 'Started my journey building responsive web applications and learning modern frameworks.',
     metrics: [
@@ -22,9 +22,9 @@ const careerData = [
   },
   {
     id: 2,
-    year: '2022 - 2023',
-    company: 'Digital Agency Pro',
-    role: 'Mid-Level Frontend Developer',
+    year: '2024 - 2025',
+    company: 'Digital Oasis Ltd',
+    role: 'Frontend Developer',
     description: 'Led frontend development for major client projects, mentored junior developers, and optimized workflows.',
     metrics: [
       { label: 'Team Members Mentored', value: '5', icon: '👥' },
@@ -36,9 +36,9 @@ const careerData = [
   },
   {
     id: 3,
-    year: '2023 - Present',
-    company: 'Innovation Labs',
-    role: 'Senior Frontend Developer',
+    year: '2025 - Present',
+    company: 'MAD Graphix',
+    role: 'Mid-level Frontend Developer',
     description: 'Architecting scalable frontend solutions, leading technical decisions, and driving innovation in user experience.',
     metrics: [
       { label: 'Apps Architected', value: '8', icon: '🏗️' },
@@ -97,15 +97,15 @@ export default function Career() {
                 <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm font-semibold mb-4">
                   My Journey
                 </span>
-                <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                <h2 className="text-4xl md:text-6xl font-extrabold mb-6 ">
                   Career Trajectory
                 </h2>
               </div>
-              <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
+              <p className="text-lg md:text-xl  leading-relaxed">
                 From crafting my first components to architecting enterprise solutions, 
                 each role has been a stepping stone in my journey to master frontend development.
               </p>
-              <p className="text-base text-gray-500">
+              <p className="text-base ">
                 Scroll through my professional evolution and see the measurable impact 
                 I've created at each stage of my career.
               </p>
@@ -153,7 +153,7 @@ export default function Career() {
                   </div>
 
                   {/* Card Content */}
-                  <div className="md:ml-12 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 md:p-8 border border-gray-700 hover:border-gray-600 transition-all duration-300 group-hover:scale-[1.02]">
+                  <div className="md:ml-12  rounded-2xl p-6 md:p-8 border border-gray-700 hover:border-gray-600 transition-all duration-300 group-hover:scale-[1.02]">
                     {/* Header */}
                     <div className="mb-6">
                       <div className="flex items-center justify-between mb-2">
