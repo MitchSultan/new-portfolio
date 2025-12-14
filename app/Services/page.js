@@ -71,7 +71,7 @@ const itemVariants = {
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-background dark:bg-black flex flex-col font-sans selection:bg-primary-500 selection:text-white">
+    <div className="min-h-screen   flex flex-col font-sans selection:bg-primary-500 selection:text-white">
       <Navbar />
       
       <main className="flex-grow pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
@@ -81,7 +81,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-neutral-900 dark:text-white tracking-tight leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-display font-bold  tracking-tight leading-tight"
           >
             Services that <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
@@ -92,7 +92,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-neutral-600 dark:text-neutral-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+            className=" text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
           >
             I offer a comprehensive suite of digital services designed to elevate your brand. 
             From pixel-perfect designs to powerful code, I've got you covered.
