@@ -94,10 +94,10 @@ const Work = () => {
      },
       {
       id: 5,
-      title: "Justa The Realtor",
-      niche: "Real Estate",
+      title: "Mad Graphix",
+      niche: "Design Company",
       image: "/just.png",
-      liveUrl: "https://justatherealtor.co.ke",
+      liveUrl: "https://madgraphix.co.ke",
       description: "An elegant restaurant website featuring online menu, reservation system, and contact information. Designed to provide an immersive dining experience preview for potential customers.",
       technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
       features: [
@@ -112,10 +112,10 @@ const Work = () => {
     },
      {
       id: 6,
-      title: "F1rstlap",
-      niche: "Fantasy Sports",
+      title: "Canvas Pile",
+      niche: "curated Arts",
       image: "/f1r.png",
-      liveUrl: "https://f1rstlap.com",
+      liveUrl: "https://canvaspile.com",
       description: "An elegant restaurant website featuring online menu, reservation system, and contact information. Designed to provide an immersive dining experience preview for potential customers.",
       technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
       features: [
@@ -127,7 +127,64 @@ const Work = () => {
       teamSize: "Solo Developer",
       challenges: "Creating an appealing visual design that captures the restaurant's ambiance while ensuring fast loading times and mobile optimization for food imagery.",
       results: "Increased online reservations by 60% and improved customer engagement with 3x more social media followers within 2 months of launch."
-    }
+    },
+    
+     {
+      id: 7,
+      title: "Nesh Collections",
+      niche: "Fashion ",
+      image: "/f1r.png",
+      liveUrl: "https://neshcollections.com",
+      description: "An elegant restaurant website featuring online menu, reservation system, and contact information. Designed to provide an immersive dining experience preview for potential customers.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      features: [
+        "Responsive Design",
+        "donation Integration",
+        "online shopping",
+      ],
+      timeline: "1 month",
+      teamSize: "Solo Developer",
+      challenges: "Creating an appealing visual design that captures the restaurant's ambiance while ensuring fast loading times and mobile optimization for food imagery.",
+      results: "Increased online reservations by 60% and improved customer engagement with 3x more social media followers within 2 months of launch."
+    },
+    
+     {
+      id: 8,
+      title: "Inner Harbor Resort",
+      niche: "Resort",
+      image: "/f1r.png",
+      liveUrl: "https://innerharborresort.co.ke",
+      description: "An elegant restaurant website featuring online menu, reservation system, and contact information. Designed to provide an immersive dining experience preview for potential customers.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      features: [
+        "Responsive Design",
+        "donation Integration",
+        "online shopping",
+      ],
+      timeline: "1 month",
+      teamSize: "Solo Developer",
+      challenges: "Creating an appealing visual design that captures the restaurant's ambiance while ensuring fast loading times and mobile optimization for food imagery.",
+      results: "Increased online reservations by 60% and improved customer engagement with 3x more social media followers within 2 months of launch."
+    },
+    
+     {
+      id: 9,
+      title: "Reuben Chumba",
+      niche: "Portfolio",
+      image: "/f1r.png",
+      liveUrl: "https://reubenchumba.co.ke",
+      description: "An elegant restaurant website featuring online menu, reservation system, and contact information. Designed to provide an immersive dining experience preview for potential customers.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      features: [
+        "Responsive Design",
+        "donation Integration",
+        "online shopping",
+      ],
+      timeline: "1 month",
+      teamSize: "Solo Developer",
+      challenges: "Creating an appealing visual design that captures the restaurant's ambiance while ensuring fast loading times and mobile optimization for food imagery.",
+      results: "Increased online reservations by 60% and improved customer engagement with 3x more social media followers within 2 months of launch."
+    },
      
   ];
 
@@ -185,7 +242,7 @@ const Work = () => {
                 <div className="flex gap-3">
                   <button
                     onClick={() => handleLearnMore(project)}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex-1 justify-center"
+                    className="flex items-center gap-2 px-4 py-2   rounded-lg  transition-colors duration-200 font-medium flex-1 justify-center"
                   >
                     <Eye size={18} />
                     Learn More

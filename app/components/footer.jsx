@@ -141,7 +141,7 @@ export default function Footer() {
       <ul className="flex justify-center gap-6 sm:justify-end">
         <li>
           <a
-            href="#"
+            href="https://web.facebook.com/mitch.sultan.7"
             rel="noreferrer"
             target="_blank"
             className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
@@ -177,7 +177,7 @@ export default function Footer() {
 
         <li>
           <a
-            href="#"
+            href="https://x.com/MadebyMitch23"
             rel="noreferrer"
             target="_blank"
             className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
@@ -193,7 +193,7 @@ export default function Footer() {
 
         <li>
           <a
-            href="#"
+            href="https://github.com/MitchSultan"
             rel="noreferrer"
             target="_blank"
             className="text-primary-600 dark:text-primary-400 transition hover:text-primary-700 dark:hover:text-primary-300"
