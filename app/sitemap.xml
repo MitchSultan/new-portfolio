@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.madebymitch.com/</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/playground</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/About</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Services</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Blog</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/colorPalette</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Services/web-design</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Services/web-development</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Services/seo</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Services/ads</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Services/content-creation</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Blog/web-development-trends-2026</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Blog/vr-ar-integration-web</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.madebymitch.com/Blog/serverless-2-0</loc>
+  <lastmod>2025-12-16T09:26:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
