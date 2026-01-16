@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import Link from 'next/link'
 import blogData from './blogData.json'
 import Footer from '../components/footer';
@@ -50,4 +50,25 @@ export default function BlogPage() {
     <Footer />
     </>
   )
+}*/
+
+import { supabase } from '../lib/supabase/server';
+
+export default async function BlogPage() {
+  const { data: posts } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("published", true)
+    .order("created_at", { ascending: false });
+
+  return (
+    <div>
+      <h1>Blog</h1>
+      {posts?.map(post => (
+        <a key={post.id} href={`/blog/${post.slug}`}>
+          <h2>{post.title}</h2>
+        </a>
+      ))}
+    </div>
+  );
 }

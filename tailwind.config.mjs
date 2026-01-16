@@ -57,8 +57,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Keiner', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['DiamondGrotesk', 'Outfit', 'Inter', 'system-ui', 'sans-serif'],
       },
     },
   },

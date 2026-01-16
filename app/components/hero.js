@@ -36,7 +36,7 @@ export default function Hero() {
   
   return (
     <div className='h-screen max-w-full mt-20 md:mt-2 flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:p-4 '>
-      <div className='hero flex flex-col md:flex-row items-center justify-center max-w-full gap-12 p-6 md:mx-5'>
+      <div className='hero flex flex-col md:flex-row items-start md:items-center justify-center max-w-full gap-12 p-6 md:mx-5'>
         <div className='flex flex-col items-start justify-center mt-32 gap-6 '>
           <h1 className='font-display text-left'>Agency-level quality with freelancer-level attention.</h1>
           <p className='text-left text-lg md:text-xl  '>I Build High-Converting Websites & Custom Software for Growing Brands</p>

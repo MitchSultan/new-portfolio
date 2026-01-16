@@ -3,6 +3,9 @@ import React from "react";
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import About from "./components/skill";
+import Values from "./components/Values";
+import Testimonials from "./components/Testimonials";
+import NewTest from "./components/new-test";
 // import Testimonial from "./components/count";
 import Projects from "./components/projects";
 import TextCursor from './components/textcursor';
@@ -21,6 +24,7 @@ export default function page() {
       <Navbar />
       <Hero />
       <About />
+      <NewTest />
       <TextCursor />
       
 
