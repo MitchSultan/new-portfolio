@@ -87,7 +87,7 @@ export default function Career() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white py-16 md:py-24">
+    <div className="min-h-screen overflow-hidden bg-white dark:bg-black text-gray-900 dark:text-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Left Column - Sticky Pinned */}
@@ -113,20 +113,20 @@ export default function Career() {
               {/* Stats Summary - Hidden on mobile */}
               <div className="hidden md:grid grid-cols-2 gap-4 pt-8 border-t border-gray-800">
                 <div>
-                  <div className="text-3xl font-bold text-purple-400">45+</div>
-                  <div className="text-sm text-gray-500">Total Projects</div>
+                  <div className="text-3xl font-bold text-purple-400">35+</div>
+                  <div className="text-sm text-black">Total Projects</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-pink-400">3</div>
-                  <div className="text-sm text-gray-500">Companies</div>
+                  <div className="text-sm text-black">Companies</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-cyan-400">5+</div>
-                  <div className="text-sm text-gray-500">Years Experience</div>
+                  <div className="text-3xl font-bold text-cyan-400">3+</div>
+                  <div className="text-sm text-black">Years Experience</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-emerald-400">98%</div>
-                  <div className="text-sm text-gray-500">Client Satisfaction</div>
+                  <div className="text-sm text-black">Client Satisfaction</div>
                 </div>
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function Career() {
                       {job.metrics.map((metric, idx) => (
                         <div
                           key={idx}
-                          className="bg-black/50 rounded-xl p-4 border border-gray-800 hover:border-gray-600 transition-all"
+                          className="bg-black rounded-xl p-4 border border-gray-800 hover:border-gray-600 transition-all"
                         >
                           <div className="flex items-start justify-between mb-2">
                             <span className="text-2xl">{metric.icon}</span>

@@ -1,5 +1,6 @@
 import "./globals.css";
 import ClientProviders from "./providers";
+import Tracker from "./components/Tracker";
 
 export const metadata = {
   title: "Mitch's portfolio",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300 antialiased">
         <ClientProviders>
+          <Tracker />
           {children}
         </ClientProviders>
       </body>
