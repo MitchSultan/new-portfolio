@@ -24,7 +24,8 @@ export default {
       colors: {
         // Custom colors with dark mode support
         black: '#262626', // void black
-        lavender: '#b287fd', // bright lavender
+        lavender: '#681fc3', // bright lavender
+        orange: '#f76923', // bright orange
         background: '#d8d9dd', // light gray
         dark: '#212121', // raisin black
         light: '#eae1ff', // lavender mist
