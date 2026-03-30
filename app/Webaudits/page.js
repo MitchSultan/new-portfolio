@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useCallback } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 import AuditHero from './components/AuditHero';
 import MarketInsights from './components/MarketInsights';
 import WhyFunnels from './components/WhyFunnels';
