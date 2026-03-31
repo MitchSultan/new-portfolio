@@ -97,7 +97,7 @@ const stats = [
 
 export default function MarketInsights() {
   return (
-    <section className="py-24 px-6 bg-gray-50 relative overflow-hidden">
+    <section className="py-24 px-6  relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -124,7 +124,7 @@ export default function MarketInsights() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={`group relative p-6 rounded-2xl bg-white border ${stat.border} hover:shadow-lg transition-all duration-500`}
+              className={`group relative p-6 rounded-2xl  border ${stat.border} hover:shadow-lg transition-all duration-500`}
             >
               <div className={`w-12 h-12 rounded-xl ${stat.bg} flex items-center justify-center mb-4`}>
                 <stat.icon className={`w-6 h-6 ${stat.color}`} />

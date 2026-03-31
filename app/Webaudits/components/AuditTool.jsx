@@ -219,7 +219,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
   };
 
   return (
-    <section id="audit-tool" className="py-24 px-6 bg-gray-50 relative overflow-hidden">
+    <section id="audit-tool" className="py-24 px-6  relative overflow-hidden">
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

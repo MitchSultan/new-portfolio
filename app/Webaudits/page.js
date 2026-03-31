@@ -32,7 +32,7 @@ export default function WebAuditsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className=" dark:bg-gray-900 min-h-screen bg-white overflow-x-hidden">
       <Navbar />
       {/* Hero with URL input */}
       <AuditHero onStartAudit={handleStartAudit} />

@@ -21,7 +21,7 @@ export default function AuditHero({ onStartAudit }) {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-white">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden ">
       {/* Subtle grid bg */}
       <div className="absolute inset-0 opacity-[0.04]"
         style={{

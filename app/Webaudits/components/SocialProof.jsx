@@ -76,7 +76,7 @@ export default function SocialProof() {
   const t = testimonials[current];
 
   return (
-    <section className="py-24 px-6 bg-white relative overflow-hidden">
+    <section className="py-24 px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -165,9 +165,8 @@ export default function SocialProof() {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    i === current ? 'bg-primary-500 w-6' : 'bg-gray-300'
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-primary-500 w-6' : 'bg-gray-300'
+                    }`}
                 />
               ))}
             </div>
