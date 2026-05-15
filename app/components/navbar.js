@@ -20,9 +20,8 @@ const Navbar = () => {
               <button
                 onClick={() => setOpen(!open)}
                 id="navbarToggler"
-                className={`${
-                  open && "navbarTogglerActive"
-                } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary-500 focus:ring-2 lg:hidden`}
+                className={`${open && "navbarTogglerActive"
+                  } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary-500 focus:ring-2 lg:hidden`}
               >
                 <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary-500"></span>
                 <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary-500"></span>
@@ -30,11 +29,10 @@ const Navbar = () => {
               </button>
               <nav
                 id="navbarCollapse"
-                className={`absolute right-4 z-50 top-full w-full max-w-[450px] rounded-lg bg-gray-900 text-white px-6 py-5 shadow-lg dark:bg-gray-800 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:bg-transparent lg:dark:bg-transparent lg:text-gray-900 lg:dark:text-white ${
-                  !open && "hidden"
-                } `}
+                className={`absolute right-4 z-50 top-full w-full max-w-[450px] rounded-lg bg-gray-900 text-white px-6 py-5 shadow-lg dark:bg-gray-800 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:bg-transparent lg:dark:bg-transparent lg:text-gray-900 lg:dark:text-white ${!open && "hidden"
+                  } `}
               >
-                <ul className="block lg:flex lg:items-center">
+                <ul className="block p-6 lg:flex lg:items-center">
                   <ListItem NavLink="/#">Home</ListItem>
                   <ListItem NavLink="/playground">Work</ListItem>
                   <ListItem NavLink="/About">About</ListItem>
@@ -51,9 +49,8 @@ const Navbar = () => {
                 aria-label="Toggle dark mode"
               >
                 <span
-                  className={`${
-                    theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
-                  } inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300`}
+                  className={`${theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
+                    } inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300`}
                 />
                 <span className="sr-only">Toggle dark mode</span>
               </button>
