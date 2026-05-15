@@ -104,12 +104,12 @@ export default function Exper() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-6 md:pb-0 hide-scrollbar">
           {projects.map((project, index) => (
             <div
               key={project.id}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
+              className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center"
             >
               <a href={project.link} target="_blank" rel="noopener noreferrer">
                 {/* Card Background with Gradient */}
@@ -165,6 +165,13 @@ export default function Exper() {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
