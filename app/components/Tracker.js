@@ -1,7 +1,8 @@
 "use client";
-import { useEffect } from 'react';
-import { supabase } from '../lib/supabase/server';
-import { usePathname } from 'next/navigation';
+
+import { useEffect } from "react";
+import { supabase } from "../lib/supabase/server";
+import { usePathname } from "next/navigation";
 
 export default function Tracker() {
   const pathname = usePathname();
@@ -9,22 +10,23 @@ export default function Tracker() {
   useEffect(() => {
     const logVisit = async () => {
       try {
-        // Simple visit logging
-        // In a real app you might check for a 'Do Not Track' header or cookie consent
-        // and handle local storage to avoid counting the same user multiple times per session
-        
-        await supabase.from('visitors').insert({
+        await supabase.from("visitors").insert({
           page: pathname,
           user_agent: window.navigator.userAgent,
         });
       } catch (error) {
-        // Silently fail for analytics to not disturb user experience
         console.error("Tracker error:", error);
       }
     };
 
-    logVisit();
+    if ("requestIdleCallback" in window) {
+      const id = requestIdleCallback(() => logVisit(), { timeout: 5000 });
+      return () => cancelIdleCallback(id);
+    }
+
+    const id = setTimeout(logVisit, 2000);
+    return () => clearTimeout(id);
   }, [pathname]);
 
-  return null; // This component renders nothing
+  return null;
 }

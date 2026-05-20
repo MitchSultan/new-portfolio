@@ -1,9 +1,7 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -49,50 +47,55 @@ export default function Exper() {
   const cardsRef = useRef([]);
 
   useEffect(() => {
-    const cards = cardsRef.current;
+    const cards = cardsRef.current.filter(Boolean);
+    if (cards.length === 0) return;
 
-    // Animate cards on scroll
-    cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        {
-          opacity: 0,
-          y: 60,
-          scale: 0.95
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "top 50%",
-            toggleActions: "play none none reverse"
-          },
-          delay: index * 0.1
-        }
-      );
-    });
+    let ctx;
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    const initAnimations = async () => {
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
+
+      ctx = gsap.context(() => {
+        cards.forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 60, scale: 0.95 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                end: "top 50%",
+                toggleActions: "play none none reverse",
+              },
+              delay: index * 0.1,
+            }
+          );
+        });
+      }, sectionRef);
     };
+
+    initAnimations();
+
+    return () => ctx?.revert();
   }, []);
 
   return (
     <div ref={sectionRef} className="min-h-screen  py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
           <div className="mb-6 md:mb-0">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-primary">
               Some of my work
             </h2>
             <p className="max-w-md text-text">
-              I have created a variety of projects, including websites, applications, and more. 
+              I have created a variety of projects, including websites, applications, and more.
               Here are some of my favorites.
             </p>
           </div>
@@ -103,7 +106,6 @@ export default function Exper() {
           </a>
         </div>
 
-        {/* Projects Grid */}
         <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-6 md:pb-0 hide-scrollbar">
           {projects.map((project, index) => (
             <div
@@ -112,12 +114,9 @@ export default function Exper() {
               className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center"
             >
               <a href={project.link} target="_blank" rel="noopener noreferrer">
-                {/* Card Background with Gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.bgGradient} opacity-90 group-hover:opacity-100 transition-opacity duration-500`} />
-                
-                {/* Content Container */}
+
                 <div className="relative h-[450px] flex flex-col justify-between p-6">
-                  {/* Tags */}
                   <div className="flex gap-2 flex-wrap z-10">
                     {project.tags.map((tag) => (
                       <span
@@ -129,18 +128,19 @@ export default function Exper() {
                     ))}
                   </div>
 
-                  {/* Image - Centered */}
                   <div className="flex-1 flex items-center justify-center py-8 z-10">
                     <div className="relative w-full h-full max-w-[280px] max-h-[280px] transition-transform duration-500 group-hover:scale-110">
-                      <img
+                      <Image
                         src={project.image}
                         alt={project.title}
+                        width={280}
+                        height={280}
+                        sizes="(max-width: 768px) 85vw, 280px"
                         className="w-full h-full object-contain drop-shadow-2xl"
                       />
                     </div>
                   </div>
 
-                  {/* Bottom Text */}
                   <div className="z-10">
                     <h3 className="text-lg font-bold mb-2 line-clamp-2 group-hover:text-white/90 transition-colors">
                       {project.title}
@@ -150,7 +150,6 @@ export default function Exper() {
                     </p>
                   </div>
 
-                  {/* Hover Overlay Effect */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </a>

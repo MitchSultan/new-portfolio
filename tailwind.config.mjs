@@ -40,7 +40,16 @@ export default {
       },
       boxShadow: {
         'paper': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-      }
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: '0', transform: 'translateX(10px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.6s ease-out forwards',
+      },
     },
   },
   plugins: [],

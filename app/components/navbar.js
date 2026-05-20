@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -10,7 +11,14 @@ const Navbar = () => {
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-32 h-24 max-w-full px-4">
             <a href="/#" className="block w-full py-5">
-              <img src="1.png" alt="logo" className="w-full h-auto" />
+              <Image
+                src="/1.png"
+                alt="logo"
+                width={128}
+                height={96}
+                className="w-full h-auto"
+                priority
+              />
             </a>
           </div>
           <div className="flex w-full items-center justify-between px-4">

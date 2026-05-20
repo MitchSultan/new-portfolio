@@ -10,13 +10,13 @@ const About = () => {
               <div className="flex items-center -mx-3 sm:-mx-4">
                 <div className="w-full px-3 sm:px-4 hidden lg:block">
                   <div className="h-[500px] py-3 sm:py-4">
-                    <video src="/images/pptry.webm" autoPlay loop muted />
+                    <video src="/images/pptry.webm" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 
                  <div className="w-full px-3 sm:px-4 xl:w-1/2 lg:hidden">
                   <div className="relative z-10 my-4">
-                  <video src="/images/truy.webm" autoPlay loop muted /> 
+                  <video src="/images/truy.webm" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
                   </div>
                 </div> 
               </div>
