@@ -35,11 +35,15 @@ export default function Hero() {
    },[]);
   
   return (
-    <div className='h-screen max-w-full mt-20 md:mt-2 flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:p-4 '>
-      <div className='hero flex flex-col md:flex-row items-start md:items-center justify-center max-w-full gap-12 p-6 md:mx-5'>
-        <div className='flex flex-col items-start justify-center mt-32 gap-6 '>
-          <h1 className='font-display text-left'>Agency-level quality with freelancer-level attention.</h1>
-          <p className='text-left text-lg md:text-xl  '>I Build High-Converting Websites & Custom Software for Growing Brands</p>
+    <div className='relative h-screen max-w-full mt-20 md:mt-2 flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:p-4 overflow-hidden'>
+      <div
+        aria-hidden
+        className='pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] [background-size:20px_30px] [-webkit-mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_60%,transparent_100%)] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_60%,transparent_100%)]'
+      />
+      <div className='hero relative z-10 flex flex-col md:flex-row items-start md:items-center justify-center max-w-full gap-12 p-6 md:mx-5'>
+        <div className='flex flex-col items-center justify-center mt-32 gap-6 '>
+          <h1 className='font-display text-center text-4xl md:text-5xl lg:text-6xl'>Agency-level quality with freelancer-level attention.</h1>
+          <p className='text-center text-lg md:text-xl  '>I Build High-Converting Websites & Custom Software for Growing Brands</p>
           <div className='flex gap-4'>
             <a href='https://wa.me/254703666366' className='btn-primary'>
               Let's Talk
@@ -50,13 +54,11 @@ export default function Hero() {
           </div>
           
           <div className='mt-4'>
-            <p className='text-left text-sm md:text-base text-gray-500 dark:text-gray-400'>Current Time: {time} (UTC +3 hrs)</p>
+            <p className='text-left text-sm md:text-base text-gray-500'>Nairobi Time: {time} (UTC +3 hrs)</p>
           </div>
         </div>
         
-        <div ref={contRef} className='hero-image flex items-center justify-center max-w-full flex-1'>
-          <img src='/images/hor.png' alt='Hero Image' className='max-w-96 h-auto drop-shadow-2xl' />
-        </div>
+        
       </div>
     </div>
   )

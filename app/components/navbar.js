@@ -1,13 +1,11 @@
 'use client';
 import React, { useState } from "react";
-import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="flex w-full justify-between items-center z-50 rounded-lg  shadow-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <header className="flex w-full justify-between items-center z-50 rounded-md shadow-paper border-b border-gray-200 transition-colors duration-300 bg-surface">
       <div className="w-full">
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-32 h-24 max-w-full px-4">
@@ -21,50 +19,51 @@ const Navbar = () => {
                 onClick={() => setOpen(!open)}
                 id="navbarToggler"
                 className={`${open && "navbarTogglerActive"
-                  } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary-500 focus:ring-2 lg:hidden`}
+                  } absolute right-4 top-1/2 block -translate-y-1/2 rounded-md px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
               >
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary-500"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary-500"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary-500"></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
+                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
               </button>
               <nav
                 id="navbarCollapse"
-                className={`absolute right-4 z-50 top-full w-full max-w-[450px] rounded-lg bg-gray-900 text-white px-6 py-5 shadow-lg dark:bg-gray-800 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:bg-transparent lg:dark:bg-transparent lg:text-gray-900 lg:dark:text-white ${!open && "hidden"
+                className={`absolute right-4 z-50 top-full w-full max-w-[450px] rounded-md bg-surface text-text px-6 py-5 shadow-paper lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:bg-transparent lg:text-text ${!open && "hidden"
                   } `}
               >
                 <ul className="block p-6 lg:flex lg:items-center">
                   <ListItem NavLink="/#">Home</ListItem>
-                  <ListItem NavLink="/playground">Work</ListItem>
+                  
+                  <DropdownItem title="Work" NavLink="/playground">
+                    <SubListItem NavLink="/playground#evolve">Evolve Sphere</SubListItem>
+                    <SubListItem NavLink="/playground#canvaspile">Canvas Pile</SubListItem>
+                    <SubListItem NavLink="/playground#tog">The Other Guys</SubListItem>
+                    <SubListItem NavLink="/playground#luxury">Luxury by Tina</SubListItem>
+                  </DropdownItem>
+
                   <ListItem NavLink="/About">About</ListItem>
-                  <ListItem NavLink="/Services ">What I do</ListItem>
-                  <ListItem NavLink="/Webaudits ">Web Audits</ListItem>
+                  
+                  <DropdownItem title="What I do" NavLink="/Services">
+                    <SubListItem NavLink="/Services#web-development">Web Development</SubListItem>
+                    <SubListItem NavLink="/Services#web-design">Web Design</SubListItem>
+                    <SubListItem NavLink="/Services#marketing">Marketing</SubListItem>
+                    <SubListItem NavLink="/Services#seo">SEO & Audits</SubListItem>
+                  </DropdownItem>
+
+                  <ListItem NavLink="/Webaudits">Web Audits</ListItem>
                 </ul>
               </nav>
             </div>
             <div className="hidden justify-end items-center gap-4 pr-16 sm:flex lg:pr-0">
-              {/* Dark Mode Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="relative inline-flex items-center h-6 w-11 rounded-full bg-gray-300 dark:bg-primary-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                aria-label="Toggle dark mode"
-              >
-                <span
-                  className={`${theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
-                    } inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300`}
-                />
-                <span className="sr-only">Toggle dark mode</span>
-              </button>
-
               <a
                 href="/#"
-                className="px-4 py-2 text-base font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                className="px-4 py-2 text-base font-medium text-text hover:text-primary transition-colors"
               >
                 Free Stuff
               </a>
 
               <a
                 href="https://wa.me/254703666366"
-                className="rounded-lg bg-primary-500 dark:bg-primary-600 px-6 py-3 text-base font-semibold text-white hover:bg-primary-600 dark:hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="btn-primary"
               >
                 Let's Talk
               </a>
@@ -83,7 +82,41 @@ const ListItem = ({ children, NavLink }) => {
     <li>
       <a
         href={NavLink}
-        className="flex py-2 text-base font-medium hover:text-primary-500 dark:hover:text-primary-400 lg:ml-12 lg:inline-flex transition-colors"
+        className="flex py-2 text-base font-medium hover:text-primary lg:ml-12 lg:inline-flex transition-colors"
+      >
+        {children}
+      </a>
+    </li>
+  );
+};
+
+const DropdownItem = ({ title, NavLink, children }) => {
+  return (
+    <li className="relative group">
+      <a
+        href={NavLink}
+        className="flex py-2 text-base font-medium hover:text-primary lg:ml-12 lg:inline-flex transition-colors items-center gap-1"
+      >
+        {title}
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+        </svg>
+      </a>
+      <div className="absolute left-0 lg:left-12 top-full hidden group-hover:block z-50 pt-2 lg:pt-4">
+        <ul className="bg-surface rounded-md shadow-paper border border-gray-200 py-2 min-w-[200px] flex flex-col">
+          {children}
+        </ul>
+      </div>
+    </li>
+  );
+};
+
+const SubListItem = ({ children, NavLink }) => {
+  return (
+    <li>
+      <a
+        href={NavLink}
+        className="block px-4 py-2 text-sm text-text hover:bg-neutral hover:text-primary transition-colors"
       >
         {children}
       </a>

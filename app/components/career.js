@@ -52,46 +52,66 @@ const careerData = [
 
 export default function Career() {
   const cardsRef = useRef([]);
+  const gridRef = useRef(null);
+  const leftColRef = useRef(null);
+  const rightColRef = useRef(null);
 
   useEffect(() => {
-    const cards = cardsRef.current;
+    const cards = cardsRef.current.filter(Boolean);
 
-    // Animate cards on scroll
-    cards.forEach((card, index) => {
+    cards.forEach((card) => {
       gsap.fromTo(
         card,
         {
           opacity: 0,
-          x: 100,
-          scale: 0.9
+          y: 60,
+          scale: 0.95
         },
         {
           opacity: 1,
-          x: 0,
+          y: 0,
           scale: 1,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 80%",
-            end: "top 30%",
+            start: "top 85%",
+            end: "top 55%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      if (!gridRef.current || !leftColRef.current || !rightColRef.current) return;
+
+      ScrollTrigger.create({
+        trigger: gridRef.current,
+        start: "top 5rem",
+        endTrigger: rightColRef.current,
+        end: "bottom bottom",
+        pin: leftColRef.current,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+    });
+
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      mm.revert();
     };
   }, []);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-white dark:bg-black text-gray-900 dark:text-white py-16 md:py-24">
+    <div className="min-h-screen py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {/* Left Column - Sticky Pinned */}
-          <div className="md:sticky md:top-20 md:self-start md:h-[calc(100vh-10rem)] flex flex-col justify-center md:pr-8">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
+        >
+          {/* Left column — pinned at top while right column scrolls */}
+          <div ref={leftColRef} className="md:pr-8 md:self-start">
             <div className="space-y-6">
               <div>
                 <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm font-semibold mb-4">
@@ -132,8 +152,8 @@ export default function Career() {
             </div>
           </div>
 
-          {/* Right Column - Scrollable Career Timeline */}
-          <div className="space-y-12">
+          {/* Right column — career cards slide up on scroll */}
+          <div ref={rightColRef} className="space-y-12">
             {careerData.map((job, index) => (
               <div
                 key={job.id}

@@ -104,7 +104,7 @@ export default function ServicesPage() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pb-6 md:pb-0 hide-scrollbar"
         >
           {services.map((service, index) => (
             <motion.a
@@ -112,7 +112,7 @@ export default function ServicesPage() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className={`p-8 rounded-3xl border ${service.border} ${service.color} bg-opacity-50 dark:bg-opacity-10 backdrop-blur-sm transition-all duration-300 hover:shadow-xl block`}
+              className={`flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border ${service.border} ${service.color} bg-opacity-50 dark:bg-opacity-10 backdrop-blur-sm transition-all duration-300 hover:shadow-xl block`}
             >
               <div className="bg-white dark:bg-neutral-800 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 {service.icon}
@@ -132,7 +132,7 @@ export default function ServicesPage() {
           {/* Custom CTA Card within Grid that spans depending on layout or just sits as last item */}
           <motion.div
             variants={itemVariants}
-            className="p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 flex flex-col justify-center items-center text-center space-y-6 hover:border-primary-500 dark:hover:border-primary-500 transition-colors duration-300 group"
+            className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 flex flex-col justify-center items-center text-center space-y-6 hover:border-primary-500 dark:hover:border-primary-500 transition-colors duration-300 group"
           >
             <h3 className="text-2xl font-display font-bold text-neutral-900 dark:text-white">
               Need something custom?
@@ -179,6 +179,15 @@ export default function ServicesPage() {
       </main>
 
       <Footer />
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }

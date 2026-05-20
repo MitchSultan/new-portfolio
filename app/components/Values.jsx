@@ -90,30 +90,39 @@ const Values = () => {
     <section className="py-2 ">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center mb-12 text-center">
-          <span className="block mb-4 text-lg font-semibold text-primary-600 dark:text-primary-400">
+          <span className="block mb-4 text-lg font-semibold text-primary">
             Why Choose Me
           </span>
-          <h2 className="text-3xl font-bold font-display text-dark dark:text-white sm:text-4xl md:text-[40px]">
+          <h2 className="text-3xl font-bold font-display text-primary sm:text-4xl md:text-[40px]">
             Our Core Values
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-3 gap-6 md:gap-8 pb-6 md:pb-0 hide-scrollbar">
           {values.map((value, index) => (
-            <div key={index} className="card-hover flex flex-col items-center text-center">
-              <div className="p-4 rounded-full bg-primary-50 dark:bg-gray-800 mb-6">
+            <div key={index} className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none card-hover flex flex-col items-center text-center">
+              <div className="p-4 rounded-md bg-surface border border-gray-200 shadow-sm mb-6">
                 {value.icon}
               </div>
-              <h3 className="mb-4 text-xl font-bold text-dark dark:text-white">
+              <h3 className="mb-4 text-xl font-bold text-primary">
                 {value.title}
               </h3>
-              <p className="text-base text-body-color leading-relaxed dark:text-gray-400">
+              <p className="text-base text-text leading-relaxed">
                 {value.description}
               </p>
             </div>
           ))}
         </div>
       </div>
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 };

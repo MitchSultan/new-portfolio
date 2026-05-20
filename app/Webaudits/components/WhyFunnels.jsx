@@ -72,13 +72,14 @@ export default function WhyFunnels() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none lg:grid-cols-2 gap-6 md:gap-12 items-start pb-6 md:pb-0 hide-scrollbar">
           {/* Pain points */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex-none w-[90vw] sm:w-[400px] md:w-auto snap-center md:snap-align-none"
           >
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <XCircle className="w-5 h-5 text-rose-500" />
@@ -112,6 +113,7 @@ export default function WhyFunnels() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex-none w-[90vw] sm:w-[400px] md:w-auto snap-center md:snap-align-none"
           >
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-500" />
@@ -142,6 +144,15 @@ export default function WhyFunnels() {
           </motion.div>
         </div>
       </div>
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }

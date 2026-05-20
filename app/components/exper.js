@@ -88,16 +88,16 @@ export default function Exper() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
           <div className="mb-6 md:mb-0">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-primary">
               Some of my work
             </h2>
-            <p className=" max-w-md">
+            <p className="max-w-md text-text">
               I have created a variety of projects, including websites, applications, and more. 
               Here are some of my favorites.
             </p>
           </div>
           <a href="/playground">
-            <button className="px-6 py-3 rounded-lg bg-transparent border border-purple-500  hover:bg-purple-500/10 transition-all duration-300">
+            <button className="btn-secondary">
               All Projects
             </button>
           </a>

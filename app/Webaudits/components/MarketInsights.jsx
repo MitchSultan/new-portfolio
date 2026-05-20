@@ -116,7 +116,7 @@ export default function MarketInsights() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6 md:pb-0 hide-scrollbar">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -124,7 +124,7 @@ export default function MarketInsights() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={`group relative p-6 rounded-2xl  border ${stat.border} hover:shadow-lg transition-all duration-500`}
+              className={`flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none group relative p-6 rounded-2xl  border ${stat.border} hover:shadow-lg transition-all duration-500`}
             >
               <div className={`w-12 h-12 rounded-xl ${stat.bg} flex items-center justify-center mb-4`}>
                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
@@ -142,6 +142,15 @@ export default function MarketInsights() {
           ))}
         </div>
       </div>
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }

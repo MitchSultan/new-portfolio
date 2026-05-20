@@ -5,62 +5,42 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class', // Enable dark mode with class strategy
   theme: {
     extend: {
       fontSize: {
-        // Custom font sizes
-        'xs': '0.75rem',    // Extra Small
-        'sm': '0.875rem',   // Small
-        'base': '1rem',     // Base
-        'lg': '1.125rem',   // Large
-        'xl': '1.25rem',    // Extra Large
-        '2xl': '1.5rem',    // 2X Large
-        '3xl': '1.875rem',  // 3X Large
-        '4xl': '2.25rem',   // 4X Large
-        '5xl': '3rem',      // 5X Large
-        '6xl': '4rem',      // 6X Large
+        'sm': '0.875rem',   // 14px
+        'base': '1rem',     // 16px
+        'lg': '1.125rem',   // 18px
+        'xl': '1.5rem',     // 24px
+        '2xl': '2rem',      // 32px
+        '3xl': '2.5rem',    // 40px
       },
       colors: {
-        // Custom colors with dark mode support
-        black: '#262626', // void black
-        lavender: '#681fc3', // bright lavender
-        orange: '#f76923', // bright orange
-        background: '#d8d9dd', // light gray
-        dark: '#212121', // raisin black
-        light: '#eae1ff', // lavender mist
-        green: '#b2f142', //lime green
-        
-        // Theme colors
-        primary: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#b287fd', // lavender
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
-        },
-        secondary: {
-          50: '#fdf2f8',
-          100: '#fce7f3',
-          200: '#fbcfe8',
-          300: '#f9a8d4',
-          400: '#f472b6',
-          500: '#ec4899',
-          600: '#db2777',
-          700: '#be185d',
-          800: '#9f1239',
-          900: '#831843',
-        },
+        primary: "#111111",
+        secondary: "#8B5CF6",
+        success: "#16A34A",
+        warning: "#D97706",
+        danger: "#DC2626",
+        surface: "#FFFFFF",
+        text: "#111827",
+        neutral: "#FFFFFF",
       },
       fontFamily: {
-        sans: ['Keiner', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['DiamondGrotesk', 'Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-roboto)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-pt-mono)', 'ui-monospace', 'monospace'],
       },
+      spacing: {
+        sm: '4px',
+        md: '8px',
+      },
+      borderRadius: {
+        sm: '4px',
+        md: '8px',
+      },
+      boxShadow: {
+        'paper': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+      }
     },
   },
   plugins: [],

@@ -60,11 +60,11 @@ const Work = () => {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pb-6 md:pb-0 hide-scrollbar">
             {projects.map((project) => (
               <div
                 key={project.id}
-                className=" rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -119,6 +119,16 @@ const Work = () => {
           onClose={closeModal}
         />
       )}
+
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };

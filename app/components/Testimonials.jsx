@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
@@ -81,13 +80,13 @@ const Testimonials = () => {
     const visibleTestimonialMobile = testimonials[currentIndex];
 
     return (
-        <section className="py-20 bg-white dark:bg-dark overflow-hidden">
+        <section className="py-20 bg-surface overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <span className="block mb-4 text-lg font-semibold text-primary-600 dark:text-primary-400">
+                    <span className="block mb-4 text-lg font-semibold text-primary">
                         Testimonials
                     </span>
-                    <h2 className="text-3xl font-bold font-display text-dark dark:text-white sm:text-4xl md:text-[40px]">
+                    <h2 className="text-3xl font-bold font-display text-primary sm:text-4xl md:text-[40px]">
                         What Clients Say
                     </h2>
                 </div>
@@ -98,13 +97,13 @@ const Testimonials = () => {
                         <div
                             key={`${currentIndex}-${index}`}
                             ref={el => cardsRef.current[index] = el}
-                            className="w-1/3 bg-gray-50 dark:bg-dark-2 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col justify-between"
+                            className="w-1/3 bg-surface p-8 rounded-md shadow-paper border border-gray-200 flex flex-col justify-between"
                         >
-                            <p className="text-base text-body-color dark:text-gray-300 italic mb-6">"{item.text}"</p>
+                            <p className="text-base text-text italic mb-6">"{item.text}"</p>
                             <div>
-                                <h4 className="text-lg font-bold text-dark dark:text-white">{item.name}</h4>
-                                <p className="text-sm text-primary-600 dark:text-primary-400 mb-1">{item.rank}</p>
-                                <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-primary-500 transition-colors">
+                                <h4 className="text-lg font-bold text-primary">{item.name}</h4>
+                                <p className="text-sm text-primary mb-1">{item.rank}</p>
+                                <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-primary transition-colors">
                                     Visit Website
                                 </a>
                             </div>
@@ -117,7 +116,7 @@ const Testimonials = () => {
 
                     <button
                         onClick={prevSlide}
-                        className="absolute left-0 z-10 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 text-dark dark:text-white transition-colors"
+                        className="absolute left-0 z-10 p-2 rounded-full bg-surface shadow-paper hover:bg-neutral text-primary transition-colors"
                         aria-label="Previous testimonial"
                     >
                         <ArrowLeft size={24} />
@@ -125,13 +124,13 @@ const Testimonials = () => {
 
                     <div
                         key={currentIndex}
-                        className="w-full md:w-2/3 bg-gray-50 dark:bg-dark-2 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col justify-between mx-12 min-h-[300px]"
+                        className="w-full md:w-2/3 bg-surface p-8 rounded-md shadow-paper border border-gray-200 flex flex-col justify-between mx-12 min-h-[300px]"
                     >
-                        <p className="text-base text-body-color dark:text-gray-300 italic mb-6">"{visibleTestimonialMobile.text}"</p>
+                        <p className="text-base text-text italic mb-6">"{visibleTestimonialMobile.text}"</p>
                         <div>
-                            <h4 className="text-lg font-bold text-dark dark:text-white">{visibleTestimonialMobile.name}</h4>
-                            <p className="text-sm text-primary-600 dark:text-primary-400 mb-1">{visibleTestimonialMobile.rank}</p>
-                            <a href={visibleTestimonialMobile.link} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-primary-500 transition-colors">
+                            <h4 className="text-lg font-bold text-primary">{visibleTestimonialMobile.name}</h4>
+                            <p className="text-sm text-primary mb-1">{visibleTestimonialMobile.rank}</p>
+                            <a href={visibleTestimonialMobile.link} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-primary transition-colors">
                                 Visit Website
                             </a>
                         </div>
@@ -139,7 +138,7 @@ const Testimonials = () => {
 
                     <button
                         onClick={nextSlide}
-                        className="absolute right-0 z-10 p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 text-dark dark:text-white transition-colors"
+                        className="absolute right-0 z-10 p-2 rounded-full bg-surface shadow-paper hover:bg-neutral text-primary transition-colors"
                         aria-label="Next testimonial"
                     >
                         <ArrowRight size={24} />

@@ -32,7 +32,7 @@ export default function WebDevPage() {
   const techStack = ["Next.js", "React", "Node.js", "Supabase", "Tailwind CSS", "TypeScript"];
 
   return (
-    <div className="min-h-screen bg-background dark:bg-black flex flex-col font-sans">
+    <div className="min-h-screen  flex flex-col font-sans">
       <Navbar />
       
       <main className="flex-grow pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
@@ -64,14 +64,14 @@ export default function WebDevPage() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 gap-6 md:gap-8 mb-20 pb-6 md:pb-0 hide-scrollbar">
           {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
+              className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
             >
               <div className="mb-4 bg-blue-50 dark:bg-blue-900/10 w-12 h-12 rounded-xl flex items-center justify-center">
                 {feature.icon}
@@ -112,6 +112,15 @@ export default function WebDevPage() {
 
       </main>
       <Footer />
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }

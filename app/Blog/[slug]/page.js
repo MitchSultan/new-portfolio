@@ -1,79 +1,254 @@
-import React from 'react'
-import blogData from '../blogData.json'
-import Link from 'next/link';
-import Navbar from '@/app/components/navbar';
-import Footer from '@/app/components/footer';
-import { notFound } from 'next/navigation'
+"use client";
+import React, { useEffect, useState, useRef } from "react";
+import { useParams } from "next/navigation";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import { supabase } from "../../lib/supabase/server";
+import { format } from "date-fns";
+import DOMPurify from "dompurify";
+import { ArrowLeft, Clock, Eye, Share2, Twitter, Linkedin, MessageCircle } from "lucide-react";
 
-export async function generateStaticParams() {
-  return blogData.map((post) => ({
-    slug: post.slug,
-  }))
-}
+export default function BlogPostPage() {
+  const params = useParams();
+  const slug = params?.slug;
 
-export default function BlogPost({ params }) {
-  const post = blogData.find(p => p.slug === params.slug)
+  const [post, setPost] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
-  if (!post) {
-    notFound()
+  // Scroll Progress
+  useEffect(() => {
+    const updateProgress = () => {
+      const scrollPosition = window.scrollY;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      setProgress((scrollPosition / height) * 100);
+    };
+
+    window.addEventListener("scroll", updateProgress);
+    return () => window.removeEventListener("scroll", updateProgress);
+  }, []);
+
+  // Fetch Post
+  useEffect(() => {
+    if (!slug) return;
+
+    const fetchPost = async () => {
+      try {
+        const { data: postData, error: postError } = await supabase
+          .from("posts")
+          .select("*")
+          .eq("slug", slug)
+          .eq("status", "published")
+          .single();
+
+        if (postError) throw postError;
+
+        setPost(postData);
+
+        // Fetch Related Posts
+        if (postData.category) {
+          const { data: relatedData } = await supabase
+            .from("posts")
+            .select("id, title, slug, cover_image_url, reading_time_minutes, published_at")
+            .eq("category", postData.category)
+            .eq("status", "published")
+            .neq("id", postData.id)
+            .order("published_at", { ascending: false })
+            .limit(3);
+          
+          if (relatedData) setRelatedPosts(relatedData);
+        }
+
+        // Handle View Tracking (Debounced via localStorage)
+        const viewedKey = `viewed_${postData.id}`;
+        if (!localStorage.getItem(viewedKey)) {
+          // Record view
+          await supabase.from("post_views").insert([{ post_id: postData.id, user_agent: navigator.userAgent }]);
+          localStorage.setItem(viewedKey, "true");
+        }
+
+      } catch (error) {
+        console.error("Error fetching post:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-gray-800 border-t-[#00E5A0] rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white">
+        <h1 className="text-4xl font-bold mb-4">Post not found</h1>
+        <a href="/Blog" className="text-[#00E5A0] hover:underline flex items-center gap-2">
+          <ArrowLeft size={16} /> Back to Blog
+        </a>
+      </div>
+    );
+  }
+
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const encodedTitle = encodeURIComponent(post.title);
+
   return (
-    <>
-    <Navbar />
-    <article className="min-h-screen   py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto  rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 animate-fade-in-up">
-        {/* Header Section */}
-        <div className="relative max- h-64 sm:max-h-80 md:max-h-96 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800">
-           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
-           <div className="absolute inset-0 bg-black/10"></div>
-           <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 text-white z-10">
-             <div className="flex flex-wrap items-center gap-4 mb-4 text-sm md:text-base font-medium opacity-90">
-               <span className="bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 shadow-sm">{post.date}</span>
-               <span className="hidden sm:inline">•</span>
-               <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-400 to-orange-500 mr-2 border-2 border-white/20"></div>
-                  <span>{post.author}</span>
-               </div>
-             </div>
-             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-2 tracking-tight">
-               {post.title}
-             </h1>
-           </div>
+    <div className="min-h-screen bg-[#0a0a0a] text-gray-100 font-sans flex flex-col selection:bg-[#00E5A0] selection:text-black">
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 h-1 bg-[#00E5A0] z-50 transition-all duration-150 ease-out" style={{ width: `${progress}%` }}></div>
+      
+      <Navbar />
+      
+      <main className="flex-grow pt-24 pb-20 w-full">
+        {/* Back Link */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mb-6">
+          <a href="/Blog" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#00E5A0] transition-colors font-medium">
+            <ArrowLeft size={18} /> Back to Blog
+          </a>
         </div>
-        
-        {/* Content Section */}
-        <div className="p-8 md:p-12 lg:p-16">
-          <div 
-            className="prose prose-lg dark:prose-invert max-w-none 
-            prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-indigo-100 
-            prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-p:leading-8
-            prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-500
-            prose-blockquote:border-l-indigo-500 prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-800/50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
-            prose-li:marker:text-indigo-500"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-          
-          {/* Footer/Navigation */}
-          <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
-            <Link href="/Blog" className="group inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors px-4 py-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/20">
-              <svg className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-              Back to all articles
-            </Link>
+
+        {/* Hero Section */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <div className="flex items-center gap-3 mb-6 flex-wrap">
+            <span className="px-3 py-1 bg-[#00E5A0]/10 text-[#00E5A0] text-xs font-bold rounded-full border border-[#00E5A0]/20">
+              {post.category || "Uncategorized"}
+            </span>
+            <span className="text-sm text-gray-500 flex items-center gap-1">
+              {post.published_at ? format(new Date(post.published_at), 'MMMM d, yyyy') : 'Draft'}
+            </span>
+            <span className="text-sm text-gray-500 flex items-center gap-1 before:content-['•'] before:mr-3">
+              <Clock size={14} /> {post.reading_time_minutes || 5} min read
+            </span>
+            <span className="text-sm text-gray-500 flex items-center gap-1 before:content-['•'] before:mr-3">
+              <Eye size={14} /> {post.views_count || 0} views
+            </span>
+          </div>
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-8">
+            {post.title}
+          </h1>
+
+          {/* Cover Image */}
+          <div className="w-full h-[40vh] md:h-[60vh] rounded-3xl overflow-hidden relative border border-gray-800 shadow-2xl mb-12">
+            {post.cover_image_url ? (
+              <img 
+                src={post.cover_image_url} 
+                alt={post.title} 
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-800 to-gray-900" />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80"></div>
+          </div>
+
+          {/* Content & Sidebar Layout */}
+          <div className="flex flex-col lg:flex-row gap-12">
             
-            <div className="flex space-x-3">
-              <button className="p-2 rounded-full text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" /></svg>
-              </button>
-              <button className="p-2 rounded-full text-gray-400 hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-              </button>
-            </div>
+            {/* Main Content */}
+            <article className="lg:w-3/4 prose prose-invert prose-emerald max-w-none prose-lg
+              prose-headings:font-bold prose-headings:tracking-tight 
+              prose-a:text-[#00E5A0] prose-a:no-underline hover:prose-a:underline
+              prose-img:rounded-2xl prose-img:border prose-img:border-gray-800"
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
+            />
+
+            {/* Sticky Sidebar */}
+            <aside className="lg:w-1/4">
+              <div className="sticky top-32 space-y-8">
+                {/* Tags */}
+                {post.tags && post.tags.length > 0 && (
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Tags</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map(tag => (
+                        <span key={tag} className="px-3 py-1 bg-gray-900 text-gray-300 text-xs rounded-full border border-gray-800">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Social Share */}
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 flex items-center gap-2">
+                    <Share2 size={14} /> Share Article
+                  </h3>
+                  <div className="flex gap-3">
+                    <a 
+                      href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${shareUrl}`}
+                      target="_blank" rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#1DA1F2] transition-colors border border-gray-800 hover:border-[#1DA1F2]"
+                    >
+                      <Twitter size={18} />
+                    </a>
+                    <a 
+                      href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${encodedTitle}`}
+                      target="_blank" rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#0A66C2] transition-colors border border-gray-800 hover:border-[#0A66C2]"
+                    >
+                      <Linkedin size={18} />
+                    </a>
+                    <a 
+                      href={`https://wa.me/?text=${encodedTitle} - ${shareUrl}`}
+                      target="_blank" rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#25D366] transition-colors border border-gray-800 hover:border-[#25D366]"
+                    >
+                      <MessageCircle size={18} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
-      </div>
-    </article>
-    <Footer />
-    </>
-  )
+
+        {/* Related Posts */}
+        {relatedPosts.length > 0 && (
+          <div className="bg-gray-900/30 border-t border-gray-800 py-20 mt-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-white mb-10 text-center">More from {post.category}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {relatedPosts.map((related) => (
+                  <a href={`/Blog/${related.slug}`} key={related.id} className="group block rounded-2xl border border-gray-800 bg-[#0a0a0a] overflow-hidden hover:border-[#00E5A0]/50 transition-all duration-300 hover:-translate-y-1">
+                    <div className="h-40 relative overflow-hidden">
+                      {related.cover_image_url ? (
+                        <img 
+                          src={related.cover_image_url} 
+                          alt={related.title} 
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900" />
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center text-xs text-gray-500 mb-2 gap-3">
+                        <span>{format(new Date(related.published_at), 'MMM d, yyyy')}</span>
+                        <span className="flex items-center gap-1 before:content-['•'] before:mr-2"><Clock size={12}/> {related.reading_time_minutes} min</span>
+                      </div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-[#00E5A0] transition-colors line-clamp-2">
+                        {related.title}
+                      </h3>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+
+      <Footer />
+    </div>
+  );
 }

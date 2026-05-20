@@ -98,12 +98,12 @@ export default function SocialProof() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+          className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none md:grid-cols-4 gap-4 mb-16 pb-4 md:pb-0 hide-scrollbar"
         >
           {proofStats.map((stat, i) => (
             <div
               key={i}
-              className="p-5 rounded-2xl bg-gray-50 border border-gray-200 text-center"
+              className="flex-none w-[70vw] sm:w-[250px] md:w-auto snap-center md:snap-align-none p-5 rounded-2xl bg-gray-50 border border-gray-200 text-center"
             >
               <div className="text-3xl font-extrabold text-gray-900 mb-1">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} />
@@ -180,6 +180,15 @@ export default function SocialProof() {
           </div>
         </motion.div>
       </div>
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }

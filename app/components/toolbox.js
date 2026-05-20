@@ -25,7 +25,7 @@ export default function Toolbox() {
   const duplicatedTools = [...tools, ...tools, ...tools];
 
   return (
-    <div className="w-full bg-white dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-gray-900 bg-gradient-to-br from-gray-50 via-white to-gray-100 py-16 overflow-hidden">
+    <div className="w-full  py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div className="text-left flex flex-col">
           <h2 className="font-display">
