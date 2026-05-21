@@ -45,7 +45,7 @@ export default function FaqSection() {
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Common Questions</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             Got Questions?{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
               We Have Answers
             </span>
           </h2>

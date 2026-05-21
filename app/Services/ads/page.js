@@ -10,22 +10,22 @@ export default function AdsPage() {
     {
       title: "Google Ads",
       description: "Capture intent at the exact moment customers are searching for you.",
-      icon: <Target className="text-orange-500" size={24} />,
+      icon: <Target className="text-white" size={24} />,
     },
     {
       title: "Social Media Ads",
       description: "Engaging campaigns on Facebook, Instagram, and LinkedIn to build brand awareness.",
-      icon: <Users className="text-orange-500" size={24} />,
+      icon: <Users className="text-white" size={24} />,
     },
     {
       title: "ROI Focused",
       description: "Continuous optimization to lower CPC and increase conversion rates.",
-      icon: <DollarSign className="text-orange-500" size={24} />,
+      icon: <DollarSign className="text-white" size={24} />,
     },
     {
       title: "Ad Creative",
       description: "Designing scroll-stopping visuals and copy that compels users to click.",
-      icon: <Megaphone className="text-orange-500" size={24} />,
+      icon: <Megaphone className="text-white" size={24} />,
     },
   ];
 
@@ -41,12 +41,12 @@ export default function AdsPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block p-3 rounded-2xl bg-orange-100 dark:bg-orange-900/30 mb-4"
           >
-            <Megaphone size={40} className="text-orange-600 dark:text-orange-400" />
+            <Megaphone size={40} className="text-[#8338ec] dark:text-orange-400" />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-bold text-neutral-900 dark:text-white tracking-tight"
+            className="text-4xl md:text-6xl font-display font-bold text-[#8338ec] tracking-tight"
           >
             Ads Management
           </motion.h1>
@@ -71,25 +71,25 @@ export default function AdsPage() {
               transition={{ delay: index * 0.1 }}
               className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
             >
-              <div className="mb-4 bg-orange-50 dark:bg-orange-900/10 w-12 h-12 rounded-xl flex items-center justify-center">
+              <div className="mb-4 bg-[#8338ec] w-12 h-12 rounded-xl flex items-center justify-center">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold  mb-2">{feature.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="bg-orange-600 dark:bg-orange-900 rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
+        <div className="bg-[#8338ec] rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
           <div className="relative z-10 space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Ready to scale your leads?</h2>
+            <h2 className="text-3xl text-white md:text-4xl font-bold">Ready to scale your leads?</h2>
             <p className="text-orange-100 max-w-xl mx-auto">
               Stop wasting budget on broad targeting. Let's laser focus your ads.
             </p>
             <a 
               href="https://wa.me/254703666366"
-              className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-3 rounded-full font-bold hover:bg-orange-50 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#8338ec] px-8 py-3 rounded-full font-bold hover:bg-orange-50 transition-colors"
             >
               Start Advertising <ArrowRight size={20} />
             </a>

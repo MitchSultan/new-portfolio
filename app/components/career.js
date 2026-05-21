@@ -18,7 +18,7 @@ const careerData = [
       { label: 'Performance Boost', value: '40%', icon: '⚡' },
       { label: 'Client Satisfaction', value: '4.8/5', icon: '😊' }
     ],
-    color: 'from-blue-500 to-cyan-500'
+    color: ''
   },
   {
     id: 2,
@@ -114,7 +114,7 @@ export default function Career() {
           <div ref={leftColRef} className="md:pr-8 md:self-start">
             <div className="space-y-6">
               <div>
-                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm font-semibold mb-4">
+                <span className="inline-block px-4 py-2 bg-[#fb5607] rounded-full text-sm font-semibold mb-4">
                   My Journey
                 </span>
                 <h2 className="text-4xl md:text-6xl font-extrabold mb-6 ">
@@ -133,19 +133,19 @@ export default function Career() {
               {/* Stats Summary - Hidden on mobile */}
               <div className="hidden md:grid grid-cols-2 gap-4 pt-8 border-t border-gray-800">
                 <div>
-                  <div className="text-3xl font-bold text-purple-400">35+</div>
+                  <div className="text-3xl font-bold text-[#fb5607]">35+</div>
                   <div className="text-sm text-black">Total Projects</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-pink-400">3</div>
+                  <div className="text-3xl font-bold text-[#fb5607]">3</div>
                   <div className="text-sm text-black">Companies</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-cyan-400">3+</div>
+                  <div className="text-3xl font-bold text-[#fb5607]">3+</div>
                   <div className="text-sm text-black">Years Experience</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-emerald-400">98%</div>
+                  <div className="text-3xl font-bold text-[#fb5607]">98%</div>
                   <div className="text-sm text-black">Client Satisfaction</div>
                 </div>
               </div>

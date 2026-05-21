@@ -7,42 +7,42 @@ import { Palette, Code, LineChart, Megaphone, PenTool, ArrowRight } from "lucide
 
 const services = [
   {
-    icon: <Palette size={40} className="text-purple-500" />,
+    icon: <Palette size={40} className="text-[#ffbe0b]" />,
     title: "Web Design",
     description: "Visually stunning, user-centric designs that captive your audience. I create modern, aesthetic interfaces that feel premium and intuitive.",
-    color: "bg-purple-100 dark:bg-purple-900/20",
+    color: "bg-[#ffbe0b]",
     border: "border-purple-200 dark:border-purple-800",
     link: "/Services/web-design",
   },
   {
-    icon: <Code size={40} className="text-blue-500" />,
+    icon: <Code size={40} className="text-[#fb5607]" />,
     title: "Web Development",
     description: "Robust, scalable, and high-performance websites built with the latest technologies like Next.js and React. Expect fast load times and clean code.",
-    color: "bg-blue-100 dark:bg-blue-900/20",
+    color: "bg-[#fb5607]",
     border: "border-blue-200 dark:border-blue-800",
     link: "/Services/web-development",
   },
   {
-    icon: <LineChart size={40} className="text-green-500" />,
+    icon: <LineChart size={40} className="text-[#ff006e]" />,
     title: "SEO Optimization",
     description: "Climb the search rankings and get found. I implement strategic SEO practices to increase your visibility and drive organic traffic to your site.",
-    color: "bg-green-100 dark:bg-green-900/20",
+    color: "bg-[#ff006e]",
     border: "border-green-200 dark:border-green-800",
     link: "/Services/seo",
   },
   {
-    icon: <Megaphone size={40} className="text-orange-500" />,
+    icon: <Megaphone size={40} className="text-[#8338ec]" />,
     title: "Ads Management",
     description: "Targeted campaigns that convert. I manage Google and Social Media ads to ensure you get the best ROI for your marketing budget.",
-    color: "bg-orange-100 dark:bg-orange-900/20",
+    color: "bg-[#8338ec]",
     border: "border-orange-200 dark:border-orange-800",
     link: "/Services/ads",
   },
   {
-    icon: <PenTool size={40} className="text-pink-500" />,
+    icon: <PenTool size={40} className="text-[#3a86ff]" />,
     title: "Content Creation",
     description: "Compelling narratives that tell your brand's story. From website copy to social media posts, I create content that engages and inspires.",
-    color: "bg-pink-100 dark:bg-pink-900/20",
+    color: "bg-[#3a86ff]",
     border: "border-pink-200 dark:border-pink-800",
     link: "/Services/content-creation",
   },
@@ -76,7 +76,11 @@ export default function ServicesPage() {
       
       <main className="flex-grow pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         {/* Hero Section */}
-        <div className="text-center mb-20 space-y-6">
+        <div className="text-center mb-20 space-y-6 relative z-10">
+           <div
+        aria-hidden
+        className='pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] [background-size:20px_30px] [-webkit-mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_60%,transparent_100%)] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_60%,transparent_100%)]'
+      />
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,7 +88,7 @@ export default function ServicesPage() {
             className="text-4xl md:text-6xl lg:text-7xl font-display font-bold  tracking-tight leading-tight"
           >
             Services that <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+            <span className="text-transparent bg-clip-text bg-[#3a86ff]">
               Scale Your Vision
             </span>
           </motion.h1>
@@ -92,7 +96,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className=" text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+            className=" text-sm   md:text-md max-w-3xl mx-auto leading-relaxed"
           >
             I offer a comprehensive suite of digital services designed to elevate your brand. 
             From pixel-perfect designs to powerful code, I've got you covered.
@@ -112,7 +116,7 @@ export default function ServicesPage() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className={`flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border ${service.border} ${service.color} bg-opacity-50 dark:bg-opacity-10 backdrop-blur-sm transition-all duration-300 hover:shadow-xl block`}
+              className={`flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border ${service.border} ${service.color}  backdrop-blur-sm transition-all duration-300 hover:shadow-xl block`}
             >
               <div className="bg-white dark:bg-neutral-800 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 {service.icon}

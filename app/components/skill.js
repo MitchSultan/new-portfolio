@@ -10,7 +10,7 @@ const About = () => {
               <div className="flex items-center -mx-3 sm:-mx-4">
                 <div className="w-full px-3 sm:px-4 hidden lg:block">
                   <div className="h-[500px] py-3 sm:py-4">
-                    <video src="/images/pptry.webm" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
+                    <video src="/images/Scene.webm" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 
@@ -24,7 +24,7 @@ const About = () => {
 
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="mt-10 lg:mt-0">
-                <span className="block mb-4 text-lg font-semibold text-primary">
+                <span className="block mb-4 text-sm font-thin font-mono ">
                   What about me?
                 </span>
                 <h2 className="mb-5 text-3xl font-bold text-primary sm:text-[40px]/[48px]">
@@ -33,7 +33,7 @@ const About = () => {
                 <p className="mb-5 text-base text-text">
                  I have a background in Telecommunications Engineering with a passion for aviation.
                 </p>
-                <p className="mb-8 text-base text-text">
+                <p className="mb-8 text-base font-light text-text">
                   I believe websites are not just an expense for you but could be an asset. I aim to make your website the best it could be and provide value.
                 </p>
                 <a

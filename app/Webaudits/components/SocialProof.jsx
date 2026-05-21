@@ -87,7 +87,7 @@ export default function SocialProof() {
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Proof of Results</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             Nairobi Businesses{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
               Growing With Funnels
             </span>
           </h2>
@@ -113,72 +113,7 @@ export default function SocialProof() {
           ))}
         </motion.div>
 
-        {/* Testimonial carousel */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative max-w-2xl mx-auto"
-        >
-          <div className="p-8 rounded-2xl bg-gray-50 border border-gray-200">
-            <Quote className="w-8 h-8 text-primary-200 mb-4" />
-
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.4 }}
-            >
-              <p className="text-gray-700 text-base leading-relaxed mb-6">
-                &ldquo;{t.text}&rdquo;
-              </p>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-900 font-bold">{t.name}</p>
-                  <p className="text-gray-500 text-sm">{t.role}</p>
-                </div>
-                <div className="text-right">
-                  <div className="flex gap-0.5 justify-end mb-1">
-                    {Array.from({ length: t.stars }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-primary-600 text-sm font-semibold">{t.metric}</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-6">
-            <button
-              onClick={prev}
-              className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-200 transition-colors"
-              id="testimonial-prev"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-primary-500 w-6' : 'bg-gray-300'
-                    }`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={next}
-              className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-200 transition-colors"
-              id="testimonial-next"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </motion.div>
+        
       </div>
       <style jsx>{`
         .hide-scrollbar::-webkit-scrollbar {

@@ -16,8 +16,11 @@ export default function Weather1() {
       const geoRes = await fetch(
         `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${process.env.NEXT_PUBLIC_OPENWEATHER_KEY}`
       );
+      if (!geoRes.ok) {
+        throw new Error('Geocoding request failed');
+      }
       const geoData = await geoRes.json();
-      if (!geoData.length) throw new Error("City not found");
+      if (!Array.isArray(geoData) || !geoData.length) throw new Error("City not found");
 
       const { lat, lon } = geoData[0];
 
@@ -25,6 +28,9 @@ export default function Weather1() {
       const weatherRes = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_OPENWEATHER_KEY}&units=metric`
       );
+      if (!weatherRes.ok) {
+        throw new Error('Weather request failed');
+      }
       const weatherData = await weatherRes.json();
       setWeather(weatherData);
     } catch (err) {

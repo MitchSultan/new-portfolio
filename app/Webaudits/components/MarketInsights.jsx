@@ -108,7 +108,7 @@ export default function MarketInsights() {
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Market Intelligence</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             Nairobi&apos;s Digital Landscape in{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">Numbers</span>
+            <span className="bg-[#3a86ff] bg-clip-text text-transparent">Numbers</span>
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl mx-auto text-lg">
             The data is clear — businesses that invest in digital performance capture

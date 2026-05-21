@@ -33,7 +33,7 @@ export default function FinalCta({ onScrollToAudit }) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-orange/10 border border-orange/20 text-orange text-sm font-medium"
+          className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-orange/10 border border-orange/20 text-[#fb5607] text-sm font-medium"
         >
           <Zap className="w-4 h-4" />
           Don&apos;t Get Left Behind
@@ -47,7 +47,7 @@ export default function FinalCta({ onScrollToAudit }) {
           className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight"
         >
           Your Competitors Are Already{' '}
-          <span className="bg-gradient-to-r from-orange via-primary-400 to-primary-300 bg-clip-text text-transparent">
+          <span className="bg-[#fb5607] bg-clip-text text-transparent">
             Optimizing
           </span>
           . Are You?

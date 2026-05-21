@@ -12,7 +12,7 @@ const Navbar = () => {
           <div className="w-32 h-24 max-w-full px-4">
             <a href="/#" className="block w-full py-5">
               <Image
-                src="/1.png"
+                src="/logo.webp"
                 alt="logo"
                 width={128}
                 height={96}
@@ -42,19 +42,19 @@ const Navbar = () => {
                   <ListItem NavLink="/#">Home</ListItem>
                   
                   <DropdownItem title="Work" NavLink="/playground">
-                    <SubListItem NavLink="/playground#evolve">Evolve Sphere</SubListItem>
-                    <SubListItem NavLink="/playground#canvaspile">Canvas Pile</SubListItem>
-                    <SubListItem NavLink="/playground#tog">The Other Guys</SubListItem>
-                    <SubListItem NavLink="/playground#luxury">Luxury by Tina</SubListItem>
+                    <SubListItem NavLink="https://evolvesphereconsulting.com">Evolve Sphere</SubListItem>
+                    <SubListItem NavLink="https://canvaspile.com">Canvas Pile</SubListItem>
+                    <SubListItem NavLink="https://theotherguyske.org">The Other Guys</SubListItem>
+                    <SubListItem NavLink="https://luxurybytina.com">Luxury by Tina</SubListItem>
                   </DropdownItem>
 
                   <ListItem NavLink="/About">About</ListItem>
                   
                   <DropdownItem title="What I do" NavLink="/Services">
-                    <SubListItem NavLink="/Services#web-development">Web Development</SubListItem>
-                    <SubListItem NavLink="/Services#web-design">Web Design</SubListItem>
-                    <SubListItem NavLink="/Services#marketing">Marketing</SubListItem>
-                    <SubListItem NavLink="/Services#seo">SEO & Audits</SubListItem>
+                    <SubListItem NavLink="/Services/web-development">Web Development</SubListItem>
+                    <SubListItem NavLink="/Services/web-design">Web Design</SubListItem>
+                    <SubListItem NavLink="/Services/marketing">Marketing</SubListItem>
+                    <SubListItem NavLink="/Services/seo">SEO & Audits</SubListItem>
                   </DropdownItem>
 
                   <ListItem NavLink="/Webaudits">Web Audits</ListItem>

@@ -9,36 +9,36 @@ const projects = [
     title: "Evolve Sphere Consulting",
     client: "Prof. Purity Karimi",
     tags: ["Design", "Build", "Consultancy"],
-    image: "/evol.png",
+    image: "/projects/evolve.webp",
     link: "https://evolvesphereconsulting.com",
-    bgGradient: "from-pink-400 via-orange-300 to-yellow-300"
+    bgGradient: "bg-[#3a86ff]",
   },
   {
     id: 2,
     title: "Canvas Pile, Curated arts",
     client: "Vacature Vla",
     tags: ["Design", "Build", "Shopify"],
-    image: "/just.png",
+    image: "/projects/canvaspile.webp",
     link: "https://canvaspile.com",
-    bgGradient: "from-indigo-600 via-purple-600 to-blue-500"
+    bgGradient: "bg-[#8338ec]",  
   },
   {
     id: 3,
     title: "The Other Guys Kenya",
     client: "The Other Guys Kenya",
     tags: ["Design", "Build","NGO"],
-    image: "/etog.png",
-    link: "https://theotherguyskenya.org",
-    bgGradient: "from-gray-900 via-black to-gray-800"
+    image: "/projects/tog.webp",
+    link: "https://theotherguyske.org",
+    bgGradient: "bg-[#fb5607]",
   },
   {
     id: 4,
     title: "Luxury by Tina",
     client: "Tina",
     tags: ["Design", "Build","E-commerce"],
-    image: "/f1r.png",
+    image: "/projects/luxurybytina.webp",
     link: "https://luxurybytina.com",
-    bgGradient: "from-indigo-900 via-blue-900 to-purple-900"
+    bgGradient: "bg-[#ff006e]",
   }
 ];
 
@@ -121,7 +121,7 @@ export default function Exper() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-xs font-medium bg-black/30 backdrop-blur-sm rounded-full border border-white/20"
+                        className="px-3 py-1 text-xs font-medium text-white bg-black/30 backdrop-blur-sm rounded-full border border-white/20"
                       >
                         {tag}
                       </span>

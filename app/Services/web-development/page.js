@@ -10,22 +10,22 @@ export default function WebDevPage() {
     {
       title: "Modern Frontend",
       description: "Built with React, Next.js, and Tailwind CSS for lightning-fast performance.",
-      icon: <Code className="text-blue-500" size={24} />,
+      icon: <Code className="text-white" size={24} />,
     },
     {
       title: "Scalable Backend",
       description: "Secure and robust server-side solutions using Node.js and Supabase.",
-      icon: <Server className="text-blue-500" size={24} />,
+      icon: <Server className="text-white" size={24} />,
     },
     {
       title: "Database Design",
       description: "Efficient schema design and data management for your application's needs.",
-      icon: <Database className="text-blue-500" size={24} />,
+      icon: <Database className="text-white" size={24} />,
     },
     {
       title: "Performance",
       description: "Optimized for Core Web Vitals, ensuring your site loads in milliseconds.",
-      icon: <Zap className="text-blue-500" size={24} />,
+      icon: <Zap className="text-white" size={24} />,
     },
   ];
 
@@ -43,12 +43,12 @@ export default function WebDevPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block p-3 rounded-2xl bg-blue-100 dark:bg-blue-900/30 mb-4"
           >
-            <Code size={40} className="text-blue-600 dark:text-blue-400" />
+            <Code size={40} className="text-[#fb5607]" />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-bold text-neutral-900 dark:text-white tracking-tight"
+            className="text-4xl md:text-6xl text-[#fb5607] font-display font-bold  tracking-tight"
           >
             Web Development
           </motion.h1>
@@ -73,10 +73,10 @@ export default function WebDevPage() {
               transition={{ delay: index * 0.1 }}
               className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
             >
-              <div className="mb-4 bg-blue-50 dark:bg-blue-900/10 w-12 h-12 rounded-xl flex items-center justify-center">
+              <div className="mb-4 bg-[#fb5607] w-12 h-12 rounded-xl flex items-center justify-center">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold text-[#fb5607] mb-2">{feature.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
             </motion.div>
           ))}
@@ -84,7 +84,7 @@ export default function WebDevPage() {
 
         {/* Tech Stack */}
         <div className="mb-20">
-           <h2 className="text-2xl font-bold text-center text-neutral-900 dark:text-white mb-8">Tech Stack</h2>
+           <h2 className="text-2xl font-bold text-center text-[#fb5607] mb-8">Tech Stack</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {techStack.map((tech, index) => (
               <span key={index} className="px-6 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium font-mono text-sm">
@@ -95,7 +95,7 @@ export default function WebDevPage() {
         </div>
 
         {/* CTA */}
-        <div className="bg-blue-600 dark:bg-blue-900 rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
+        <div className="bg-[#fb5607] rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
           <div className="relative z-10 space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Need a powerful website?</h2>
             <p className="text-blue-100 max-w-xl mx-auto">

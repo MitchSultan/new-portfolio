@@ -230,7 +230,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Interactive Audit</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             See How Your Website{' '}
-            <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
               Really Performs
             </span>
           </h2>
@@ -265,7 +265,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
                 type="submit"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-primary-600 to-primary-500 text-white font-bold shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-primary-600 to-primary-500 text-black font-bold shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2"
                 id="audit-tool-run-button"
               >
                 <Search className="w-5 h-5" />

@@ -10,22 +10,22 @@ export default function ContentCreationPage() {
     {
       title: "Copywriting",
       description: "Persuasive website copy, landing pages, and email sequences that drive action.",
-      icon: <Feather className="text-pink-500" size={24} />,
+      icon: <Feather className="text-white" size={24} />,
     },
     {
       title: "Social Media Content",
       description: "Engagement-focused posts, threads, and captions for Twitter, LinkedIn, and Instagram.",
-      icon: <Share2 className="text-pink-500" size={24} />,
+      icon: <Share2 className="text-white" size={24} />,
     },
     {
       title: "Blog Writing",
       description: "SEO-rich articles that establish your authority and educate your customer base.",
-      icon: <PenTool className="text-pink-500" size={24} />,
+      icon: <PenTool className="text-white" size={24} />,
     },
     {
       title: "Creative Strategy",
       description: "Developing a consistent voice and content calendar for your brand.",
-      icon: <Video className="text-pink-500" size={24} />,
+      icon: <Video className="text-white" size={24} />,
     },
   ];
 
@@ -46,7 +46,7 @@ export default function ContentCreationPage() {
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-bold text-neutral-900 dark:text-white tracking-tight"
+            className="text-4xl md:text-6xl font-display font-bold text-[#3a86ff] tracking-tight"
           >
             Content Creation
           </motion.h1>
@@ -71,17 +71,17 @@ export default function ContentCreationPage() {
               transition={{ delay: index * 0.1 }}
               className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
             >
-              <div className="mb-4 bg-pink-50 dark:bg-pink-900/10 w-12 h-12 rounded-xl flex items-center justify-center">
+              <div className="mb-4 bg-[#3a86ff] w-12 h-12 rounded-xl flex items-center justify-center">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold text-[#3a86ff] mb-2">{feature.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="bg-pink-600 dark:bg-pink-900 rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
+        <div className="bg-[#3a86ff] dark:bg-[#3a86ff] rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
           <div className="relative z-10 space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Need words that work?</h2>
             <p className="text-pink-100 max-w-xl mx-auto">

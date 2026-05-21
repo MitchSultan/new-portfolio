@@ -27,9 +27,10 @@ export async function POST(request) {
 
     // 2. Setup Google Auth
     let credentialsPayload = undefined;
-    if (process.env.GSC_SERVICE_ACCOUNT_JSON) {
+    const gscJson = process.env.GSC_SERVICE_ACCOUNT_JSON?.trim();
+    if (gscJson) {
       try {
-        credentialsPayload = JSON.parse(process.env.GSC_SERVICE_ACCOUNT_JSON);
+        credentialsPayload = JSON.parse(gscJson);
       } catch (e) {
         console.warn('Failed to parse GSC_SERVICE_ACCOUNT_JSON, falling back to GOOGLE_APPLICATION_CREDENTIALS');
       }

@@ -62,7 +62,7 @@ export default function WhyFunnels() {
           <span className="text-orange text-sm font-semibold uppercase tracking-widest">The Missing Piece</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             A Website Alone{' '}
-            <span className="bg-gradient-to-r from-orange to-rose-500 bg-clip-text text-transparent">
+            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
               Isn&apos;t Enough
             </span>
           </h2>

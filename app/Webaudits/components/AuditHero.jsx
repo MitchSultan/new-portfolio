@@ -71,7 +71,7 @@ export default function AuditHero({ onStartAudit }) {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-500 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-600" />
           </span>
-          2026 Nairobi Digital Report — Free Access
+          
         </motion.div>
 
         {/* Headline */}
@@ -82,7 +82,7 @@ export default function AuditHero({ onStartAudit }) {
           className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight"
         >
           Is Your Website{' '}
-          <span className="bg-gradient-to-r from-orange via-primary-600 to-primary-500 bg-clip-text text-transparent">
+          <span className="bg-[#3a86ff] bg-clip-text text-transparent">
             Losing Customers
           </span>{' '}
           in Nairobi&apos;s KES 800B+ Digital Economy?
@@ -113,7 +113,7 @@ export default function AuditHero({ onStartAudit }) {
               type="text"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              placeholder="Enter your website URL..."
+              placeholder="madebymitch.com"
               className="w-full pl-12 pr-4 py-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all text-base"
               id="audit-url-input"
             />
@@ -122,7 +122,7 @@ export default function AuditHero({ onStartAudit }) {
             type="submit"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange to-primary-600 text-white font-bold text-base shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange to-primary-600 text-black font-bold text-base shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all flex items-center justify-center gap-2"
             id="audit-start-button"
           >
             <Search className="w-5 h-5" />

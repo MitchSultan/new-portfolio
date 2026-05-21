@@ -10,22 +10,22 @@ export default function SeoPage() {
     {
       title: "Keyword Strategy",
       description: "Targeting the right terms to bring high-intent traffic to your doorstep.",
-      icon: <Search className="text-green-500" size={24} />,
+      icon: <Search className="text-white" size={24} />,
     },
     {
       title: "On-Page SEO",
       description: "Optimizing content, meta tags, and structure for maximum readability and ranking.",
-      icon: <Globe className="text-green-500" size={24} />,
+      icon: <Globe className="text-white" size={24} />,
     },
     {
       title: "Technical SEO",
       description: "Fixing crawl errors, speed issues, and mobile usability to please search engines.",
-      icon: <LineChart className="text-green-500" size={24} />,
+      icon: <LineChart className="text-white" size={24} />,
     },
     {
       title: "Analytics & Reporting",
       description: "Transparent data tracking to show you exactly how your growth is happening.",
-      icon: <BarChart className="text-green-500" size={24} />,
+      icon: <BarChart className="text-white" size={24} />,
     },
   ];
 
@@ -41,12 +41,12 @@ export default function SeoPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block p-3 rounded-2xl bg-green-100 dark:bg-green-900/30 mb-4"
           >
-            <LineChart size={40} className="text-green-600 dark:text-green-400" />
+            <LineChart size={40} className="text-[#ff006e] " />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-bold text-neutral-900 dark:text-white tracking-tight"
+            className="text-4xl md:text-6xl font-display font-bold text-[#ff006e] tracking-tight"
           >
             SEO Optimization
           </motion.h1>
@@ -71,25 +71,25 @@ export default function SeoPage() {
               transition={{ delay: index * 0.1 }}
               className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
             >
-              <div className="mb-4 bg-green-50 dark:bg-green-900/10 w-12 h-12 rounded-xl flex items-center justify-center">
+              <div className="mb-4 bg-[#ff006e] w-12 h-12 rounded-xl flex items-center justify-center">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold text-[#ff006e]  mb-2">{feature.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="bg-green-600 dark:bg-green-900 rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
+        <div className="bg-[#ff006e] rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
           <div className="relative z-10 space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Want to rank #1?</h2>
-            <p className="text-green-100 max-w-xl mx-auto">
+            <p className="text-pink-100 max-w-xl mx-auto">
               Start optimizing your presence today and watch your traffic grow.
             </p>
             <a 
               href="https://wa.me/254703666366"
-              className="inline-flex items-center gap-2 bg-white text-green-600 px-8 py-3 rounded-full font-bold hover:bg-green-50 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#ff006e] px-8 py-3 rounded-full font-bold hover:bg-pink-50 transition-colors"
             >
               Boost My Ranking <ArrowRight size={20} />
             </a>

@@ -3,6 +3,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <footer className="bg-surface transition-colors">
+     
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div
           className="flex flex-col items-center gap-4 rounded-md bg-surface border border-gray-200 p-6 shadow-paper sm:flex-row sm:justify-between"
@@ -38,47 +39,53 @@ export default function Footer() {
 
             <ul className="mt-8 space-y-4 text-sm">
               <li>
-                <a className="text-text transition hover:text-primary" href="/About#my-story">
+                <a className="text-text transition opacity-75 hover:text-primary" href="/About#my-story">
                   My Story
                 </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="/About#my-toolbox"> My Toolbox </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="/About#my-toolbox"> My Toolbox </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="/About#my-work">
+                <a className="text-text transition opacity-75 hover:text-primary" href="/About#my-work">
                   My work
                 </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="/About#career"> Career </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="/About#career"> Career </a>
               </li>
             </ul>
           </div>
 
           <div className="text-center sm:text-left">
-            <p className="text-lg font-medium text-primary">Our Services</p>
+            <p className="text-lg font-medium text-primary">My Services</p>
 
             <ul className="mt-8 space-y-4 text-sm">
               <li>
-                <a className="text-text transition hover:text-primary" href="#">
+                <a className="text-text transition opacity-75 hover:text-primary" href="/Services/web-development">
                   Web Development
                 </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="#"> Web Design </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="/Services/web-design">
+                  Web Design
+                </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="#"> Marketing </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="/Services/seo">
+                  SEO & Audits
+                </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="#"> Google Ads </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="/Services/ads">
+                  Google Ads
+                </a>
               </li>
             </ul>
           </div>
@@ -88,12 +95,12 @@ export default function Footer() {
 
             <ul className="mt-8 space-y-4 text-sm">
               <li>
-                <a className="text-text transition hover:text-primary" href="/colorPalette"> Color Palette </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="/colorPalette"> Color Palette </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="#">
-                  Conference Notes
+                <a className="text-text transition opacity-75 hover:text-primary" href="#">
+                  Web collection
                 </a>
               </li>
             </ul>
@@ -104,19 +111,19 @@ export default function Footer() {
 
             <ul className="mt-8 space-y-4 text-sm">
               <li>
-                <a className="text-text transition hover:text-primary" href="#"> FAQs </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="#"> FAQs </a>
               </li>
 
               <li>
-                <a className="text-text transition hover:text-primary" href="#"> Support </a>
+                <a className="text-text transition opacity-75 hover:text-primary" href="#"> Support </a>
               </li>
 
               <li>
                 <a
-                  className="group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                  href="#"
+                  className="group flex  gap-1.5 "
+                  href="https://wa.me/703666366"
                 >
-                  <span className="text-text transition group-hover:text-primary"> Live Chat </span>
+                  <span className="text-text transition  group-hover:text-primary"> Live Chat </span>
 
                   <span className="relative flex size-2">
                     <span
@@ -152,7 +159,7 @@ export default function Footer() {
 
             <li>
               <a
-                href="#"
+                href="https://www.instagram.com/mitch.sultan/"
                 rel="noreferrer"
                 target="_blank"
                 className="text-primary transition hover:opacity-80"
@@ -204,7 +211,7 @@ export default function Footer() {
 
         <li>
           <a
-            href="#"
+            href="https://dribbble.com/mitchsultan"
             rel="noreferrer"
             target="_blank"
             className="text-primary transition hover:opacity-80"
@@ -227,7 +234,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-right">
-          Copyright &copy; 2025. All rights reserved. Made by Mitch
+          Copyright &copy; 2026. All rights reserved. Made by Mitch
         </p>
       </div>
     </div>

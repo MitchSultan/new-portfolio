@@ -5,25 +5,32 @@ async function getDrivers() {
   
   try {
     // Get drivers list
-    const driversResponse = await fetch(
-      `https://api.openf1.org/v1/drivers?year=2023
-      // `
-    );
+    const driversResponse = await fetch('https://api.openf1.org/v1/drivers?year=2023');
+    if (!driversResponse.ok) {
+      throw new Error(`Drivers fetch failed: ${driversResponse.status}`);
+    }
     const drivers = await driversResponse.json();
 
     // Get latest session key for driver images
     const sessionsResponse = await fetch(
       `https://api.openf1.org/v1/sessions?year=${currentYear}&order=date_desc&page=1`
     );
-    const [latestSession] = await sessionsResponse.json();
+    if (!sessionsResponse.ok) {
+      throw new Error(`Sessions fetch failed: ${sessionsResponse.status}`);
+    }
+    const sessionsData = await sessionsResponse.json();
+    const [latestSession] = sessionsData || [];
 
     // Add image URLs to drivers
     const driversWithImages = await Promise.all(
       drivers.map(async (driver) => {
         try {
           const imageResponse = await fetch(
-            `https://api.openf1.org/v1/images?driver_number=${driver.driver_number}&session_key=${latestSession.session_key}`
+            `https://api.openf1.org/v1/images?driver_number=${driver.driver_number}&session_key=${latestSession?.session_key}`
           );
+          if (!imageResponse.ok) {
+            throw new Error(`Image fetch failed for ${driver.driver_number}: ${imageResponse.status}`);
+          }
           const [imageData] = await imageResponse.json();
           
           return {
