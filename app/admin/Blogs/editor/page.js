@@ -7,7 +7,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import ImageExtension from "@tiptap/extension-image";
 import imageCompression from "browser-image-compression";
-import { ArrowLeft, Save, Upload, X, Check, Image as ImageIcon, Send, Trash2, Link } from "lucide-react";
+import { ArrowLeft, Save, Upload, X, Check, Image as ImageIcon, Send, Trash2, Link } from '@/lib/lucide';
 
 // TipTap Toolbar Component
 const MenuBar = ({ editor }) => {

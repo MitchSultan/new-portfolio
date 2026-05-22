@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Smartphone, ShoppingCart, TrendingUp, Users, AlertTriangle, BarChart3 } from 'lucide-react';
+import { Smartphone, ShoppingCart, TrendingUp, Users, AlertTriangle, BarChart3 } from '@/lib/lucide';
 
 function AnimatedCounter({ target, suffix = '', prefix = '', duration = 2000 }) {
   const [count, setCount] = useState(0);
@@ -37,20 +37,20 @@ const stats = [
     value: 98,
     suffix: '%',
     label: 'Mobile Penetration',
-    description: 'Nearly every Nairobi customer browses on their phone first',
-    color: 'text-emerald-600',
-    bg: 'bg-emerald-50',
-    border: 'border-emerald-200',
+    description: 'Nearly every  customer browses on their phone first',
+    color: 'text-white',
+    bg: 'azure-blue',
+    border: 'azure-blue',
   },
   {
     icon: AlertTriangle,
     value: 67,
     suffix: '%',
     label: 'SMEs Without Optimized Sites',
-    description: 'Two-thirds of Nairobi small businesses have underperforming websites',
+    description: 'Two-thirds of all small businesses have underperforming websites',
     color: 'text-orange',
-    bg: 'bg-orange/5',
-    border: 'border-orange/20',
+    bg: 'blaze-orange',
+    border: 'blaze-orange',
   },
   {
     icon: ShoppingCart,
@@ -58,30 +58,30 @@ const stats = [
     suffix: 'B+',
     prefix: 'KES ',
     label: 'Digital Economy',
-    description: "Nairobi's online market is growing at 23% year-over-year",
+    description: "The global online market is growing at 23% year-over-year",
     color: 'text-primary-600',
-    bg: 'bg-primary-50',
-    border: 'border-primary-200',
+    bg: 'azure-blue',
+    border: 'azure-blue',
   },
   {
     icon: TrendingUp,
     value: 340,
     suffix: '%',
     label: 'Search Growth',
-    description: "Google searches for 'near me' services grew 340% in Nairobi since 2023",
+    description: "Google searches for 'near me' services grew 340% in the global market since 2023",
     color: 'text-teal-600',
-    bg: 'bg-teal-50',
-    border: 'border-teal-200',
+    bg: 'neon-pink',
+    border: 'neon-pink',
   },
   {
     icon: Users,
     value: 4.2,
     suffix: 'M',
     label: 'Online Shoppers',
-    description: '4.2 million Nairobi residents purchase products and services online',
-    color: 'text-sky-600',
-    bg: 'bg-sky-50',
-    border: 'border-sky-200',
+    description: '4.2 million global residents purchase products and services online',
+    color: 'text-blue-violet',
+    bg: 'azure-blue',
+    border: 'azure-blue',
   },
   {
     icon: BarChart3,
@@ -90,8 +90,8 @@ const stats = [
     label: 'Abandon Without Trust',
     description: 'Visitors leave websites that look outdated or load slowly',
     color: 'text-rose-600',
-    bg: 'bg-rose-50',
-    border: 'border-rose-200',
+    bg: 'amber-gold',
+    border: 'amber-gold',
   },
 ];
 
@@ -107,12 +107,12 @@ export default function MarketInsights() {
         >
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Market Intelligence</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
-            Nairobi&apos;s Digital Landscape in{' '}
-            <span className="bg-[#3a86ff] bg-clip-text text-transparent">Numbers</span>
+            The Global Digital Landscape in{' '}
+            <span className="bg-azure-blue bg-clip-text text-transparent">Numbers</span>
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl mx-auto text-lg">
             The data is clear — businesses that invest in digital performance capture
-            the lion&apos;s share of Nairobi&apos;s booming online market.
+            the lion&apos;s share of the global booming online market.
           </p>
         </motion.div>
 
@@ -124,20 +124,20 @@ export default function MarketInsights() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={`flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none group relative p-6 rounded-2xl  border ${stat.border} hover:shadow-lg transition-all duration-500`}
+              className={`flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none group relative p-6 rounded-2xl bg-${stat.bg} border border-${stat.border} hover:shadow-lg transition-all duration-500`}
             >
-              <div className={`w-12 h-12 rounded-xl ${stat.bg} flex items-center justify-center mb-4`}>
+              <div className={`w-12 h-12 rounded-xl  flex items-center justify-center mb-4`}>
                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
               </div>
-              <div className={`text-4xl font-extrabold ${stat.color} mb-1`}>
+              <div className={`text-4xl font-extrabold ${stat.bg} mb-1`}>
                 <AnimatedCounter
                   target={stat.value}
                   suffix={stat.suffix}
                   prefix={stat.prefix || ''}
                 />
               </div>
-              <h3 className="text-gray-900 font-semibold text-lg mb-2">{stat.label}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{stat.description}</p>
+              <h3 className="text-white font-medium text-sm mb-2">{stat.label}</h3>
+              <p className="text-[#E5E5E5] text-sm leading-relaxed">{stat.description}</p>
             </motion.div>
           ))}
         </div>

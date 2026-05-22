@@ -2,158 +2,39 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Gauge, Smartphone, Search, FileText, ArrowRightLeft,
-  MapPin, Globe, Loader2, CheckCircle, AlertTriangle, XCircle
-} from 'lucide-react';
+  Gauge, Smartphone, Search, ShieldCheck, Accessibility,
+  Globe, Loader2, CheckCircle, XCircle
+} from '@/lib/lucide';
+import { AUDIT_CATEGORY_CONFIG, LIGHTHOUSE_LOADING_LABELS } from '../../../lib/lighthouse-categories';
 import AuditResults from './AuditResults';
 
-const auditCategories = [
-  { key: 'performance', label: 'Performance', icon: Gauge, weight: 0.2 },
-  { key: 'mobile', label: 'Mobile UX', icon: Smartphone, weight: 0.2 },
-  { key: 'seo', label: 'SEO Health', icon: Search, weight: 0.15 },
-  { key: 'content', label: 'Content Strategy', icon: FileText, weight: 0.15 },
-  { key: 'conversion', label: 'Conversion Flow', icon: ArrowRightLeft, weight: 0.15 },
-  { key: 'local', label: 'Nairobi Local SEO', icon: MapPin, weight: 0.15 },
-];
+const categoryIcons = {
+  performance: Gauge,
+  mobile: Smartphone,
+  accessibility: Accessibility,
+  'best-practices': ShieldCheck,
+  seo: Search,
+};
 
 const loadingSteps = [
-  { text: 'Resolving domain...', duration: 800 },
-  { text: 'Scanning page structure...', duration: 1200 },
-  { text: 'Evaluating mobile responsiveness...', duration: 1000 },
-  { text: 'Analyzing SEO signals...', duration: 1100 },
-  { text: 'Checking content depth...', duration: 900 },
-  { text: 'Assessing conversion elements...', duration: 1000 },
-  { text: 'Reviewing local Nairobi optimization...', duration: 800 },
-  { text: 'Generating recommendations...', duration: 1200 },
+  { text: 'Resolving domain...', duration: 700 },
+  ...LIGHTHOUSE_LOADING_LABELS.map((label, i) => ({
+    text: `Running Lighthouse: ${label}...`,
+    duration: 1100 + i * 100,
+  })),
+  { text: 'Compiling audit recommendations...', duration: 900 },
 ];
 
-function generateRecommendations(key, score, domain) {
-  const recs = {
-    performance: {
-      low: [
-        `${domain} loads slower than 73% of Nairobi business sites — compress images and enable browser caching`,
-        'Implement lazy loading for below-the-fold content to improve initial paint time',
-        'Consider a CDN with Nairobi edge servers (Cloudflare has a Nairobi POP)',
-      ],
-      mid: [
-        'Good foundation — optimize largest contentful paint by deferring non-critical JavaScript',
-        `${domain} could gain 15-20% speed by switching to next-gen image formats (WebP/AVIF)`,
-      ],
-      high: [
-        `Excellent speed — ${domain} outperforms 85% of Nairobi business websites`,
-        'Maintain performance by monitoring Core Web Vitals monthly',
-      ],
-    },
-    mobile: {
-      low: [
-        '98% of Nairobi users browse on mobile — your site needs a responsive overhaul',
-        'Touch targets are too small for reliable mobile interaction',
-        'Text is not readable without zooming on most Nairobi smartphone screens',
-      ],
-      mid: [
-        'Mobile layout works but could benefit from thumb-friendly navigation patterns',
-        `Optimize ${domain}'s mobile forms — Nairobi users prefer M-Pesa and WhatsApp integrations`,
-      ],
-      high: [
-        'Strong mobile experience — well optimized for Nairobi smartphone users',
-        'Consider adding PWA capabilities for offline access in low-connectivity areas',
-      ],
-    },
-    seo: {
-      low: [
-        `${domain} is barely visible in Google Kenya search results`,
-        'Missing meta descriptions, alt tags, and structured data markup',
-        'No sitemap.xml detected — Google cannot efficiently crawl your pages',
-      ],
-      mid: [
-        'Basic SEO is in place but lacks depth — target long-tail Nairobi keywords',
-        `${domain} could benefit from local business schema markup`,
-      ],
-      high: [
-        `${domain} has strong SEO foundations — expand content to capture more Nairobi search traffic`,
-        'Consider publishing location-specific landing pages for different Nairobi neighborhoods',
-      ],
-    },
-    content: {
-      low: [
-        'Thin content across most pages — Google and customers need more substance',
-        'No blog, resources, or educational content to build authority and trust',
-        'Missing clear value proposition on the homepage',
-      ],
-      mid: [
-        'Decent content but no clear lead magnet or content upgrade strategy',
-        `${domain} would benefit from Nairobi market-specific case studies`,
-      ],
-      high: [
-        'Rich content strategy — keep publishing Nairobi-focused insights',
-        'Consider gating premium content to capture more leads',
-      ],
-    },
-    conversion: {
-      low: [
-        'No clear call-to-action visible above the fold',
-        'Missing trust signals (testimonials, certifications, client logos)',
-        'No WhatsApp integration — Nairobi customers prefer messaging over forms',
-      ],
-      mid: [
-        'CTAs exist but lack urgency and specificity — test "Get Your Free Quote" vs. generic "Contact Us"',
-        `Add a WhatsApp chat button — 89% of Nairobi businesses report higher conversion via WhatsApp`,
-      ],
-      high: [
-        'Strong conversion elements — consider A/B testing CTA copy and placement',
-        'Add exit-intent popups to capture leaving visitors',
-      ],
-    },
-    local: {
-      low: [
-        'No Google Business Profile link detected',
-        'Missing Nairobi-specific keywords and location pages',
-        'Not optimized for "near me" searches which grew 340% in Nairobi',
-      ],
-      mid: [
-        'Some local signals present — add more Nairobi neighborhood targeting',
-        `${domain} should include NAP (Name, Address, Phone) consistently across all pages`,
-      ],
-      high: [
-        'Excellent local optimization — well positioned for Nairobi search queries',
-        'Consider expanding to target specific areas: Westlands, CBD, Karen, Kilimani',
-      ],
-    },
-  };
-
-  const level = score < 45 ? 'low' : score < 75 ? 'mid' : 'high';
-  return recs[key]?.[level] || [];
-}
-
-function generateScores(url) {
-  let seed = 0;
-  for (let i = 0; i < url.length; i++) {
-    seed = ((seed << 5) - seed + url.charCodeAt(i)) | 0;
-  }
-  const seededRandom = (min, max) => {
-    seed = (seed * 16807 + 0) % 2147483647;
-    return min + (Math.abs(seed) % (max - min + 1));
-  };
-
-  const domain = url.replace(/^https?:\/\//, '').replace(/\/$/, '').split('/')[0];
-
-  const results = {};
-  auditCategories.forEach((cat) => {
-    const score = seededRandom(25, 92);
-    results[cat.key] = {
-      score,
-      recommendations: generateRecommendations(cat.key, score, domain),
+function buildDisplayCategories(results) {
+  return AUDIT_CATEGORY_CONFIG.map((config) => {
+    const data = results[config.key];
+    const fromApi = results.categories?.find((c) => c.key === config.key);
+    return {
+      key: config.key,
+      label: data?.label || fromApi?.label || config.key,
+      icon: categoryIcons[config.key] || Gauge,
     };
   });
-
-  let overall = 0;
-  auditCategories.forEach((cat) => {
-    overall += results[cat.key].score * cat.weight;
-  });
-  results.overall = Math.round(overall);
-  results.domain = domain;
-
-  return results;
 }
 
 export default function AuditTool({ initialUrl, onRequestLeadForm }) {
@@ -162,6 +43,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [results, setResults] = useState(null);
+  const [error, setError] = useState(null);
 
   const runAudit = useCallback((targetUrl) => {
     const cleanUrl = targetUrl.trim();
@@ -171,6 +53,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
     setCurrentStep(0);
     setProgress(0);
     setResults(null);
+    setError(null);
   }, []);
 
   useEffect(() => {
@@ -180,11 +63,44 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
   }, [initialUrl, runAudit]);
 
   useEffect(() => {
-    if (phase !== 'analyzing') return;
+    if (phase !== 'analyzing' || !url) return;
 
-    let stepIndex = 0;
+    let cancelled = false;
     let elapsed = 0;
+    let auditData = null;
+    let animationDone = false;
     const totalDuration = loadingSteps.reduce((sum, s) => sum + s.duration, 0);
+
+    const finishIfReady = () => {
+      if (cancelled || !animationDone || !auditData) return;
+      setResults(auditData);
+      setPhase('results');
+    };
+
+    const fetchAudit = async () => {
+      try {
+        const response = await fetch('/api/pagespeed', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to run audit.');
+        }
+        if (!cancelled) {
+          auditData = data;
+          finishIfReady();
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : 'Failed to run audit.');
+          setPhase('error');
+        }
+      }
+    };
+
+    fetchAudit();
 
     const interval = setInterval(() => {
       elapsed += 50;
@@ -192,6 +108,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
       setProgress(pct);
 
       let cumulative = 0;
+      let stepIndex = 0;
       for (let i = 0; i < loadingSteps.length; i++) {
         cumulative += loadingSteps[i].duration;
         if (elapsed < cumulative) {
@@ -203,14 +120,15 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
       setCurrentStep(stepIndex);
 
       if (elapsed >= totalDuration) {
-        clearInterval(interval);
-        const generated = generateScores(url);
-        setResults(generated);
-        setPhase('results');
+        animationDone = true;
+        finishIfReady();
       }
     }, 50);
 
-    return () => clearInterval(interval);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
   }, [phase, url]);
 
   const handleSubmit = (e) => {
@@ -230,13 +148,13 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Interactive Audit</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             See How Your Website{' '}
-            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
+            <span className="bg-azure-blue bg-clip-text text-transparent">
               Really Performs
             </span>
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl mx-auto text-lg">
-            Enter any URL below. Our analysis evaluates 6 critical dimensions
-            that determine whether your site wins or loses Nairobi customers.
+            Enter any URL below. We run a live Google PageSpeed Insights audit
+            using official Lighthouse category scores and recommendations.
           </p>
         </motion.div>
 
@@ -314,6 +232,27 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
             </motion.div>
           )}
 
+          {phase === 'error' && (
+            <motion.div
+              key="error"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="max-w-lg mx-auto p-8 rounded-2xl bg-white border border-rose-200 shadow-sm text-center"
+            >
+              <XCircle className="w-10 h-10 text-rose-500 mx-auto mb-4" />
+              <h3 className="text-gray-900 font-semibold mb-2">Audit could not complete</h3>
+              <p className="text-gray-600 text-sm mb-6">{error}</p>
+              <button
+                type="button"
+                onClick={() => setPhase('idle')}
+                className="px-6 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-700 font-semibold hover:bg-gray-100 transition-all"
+              >
+                Try again
+              </button>
+            </motion.div>
+          )}
+
           {phase === 'results' && results && (
             <motion.div
               key="results"
@@ -322,7 +261,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
             >
               <AuditResults
                 results={results}
-                categories={auditCategories}
+                categories={buildDisplayCategories(results)}
                 onReAudit={() => { setPhase('idle'); setResults(null); }}
                 onRequestLeadForm={onRequestLeadForm}
               />

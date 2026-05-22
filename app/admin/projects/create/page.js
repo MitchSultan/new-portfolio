@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft } from '@/lib/lucide';
 import ProjectForm from '../ProjectForm';
 
 export default function CreateProjectPage() {

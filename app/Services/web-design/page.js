@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import { motion } from "framer-motion";
-import { Palette, Layout, Smartphone, PenTool, ArrowRight, CheckCircle } from "lucide-react";
+import { Palette, Layout, Smartphone, PenTool, ArrowRight, CheckCircle } from '@/lib/lucide';
 
 export default function WebDesignPage() {
   const features = [
@@ -43,12 +43,12 @@ export default function WebDesignPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block p-3 rounded-2xl bg-purple-100 dark:bg-purple-900/30 mb-4"
           >
-            <Palette size={40} className="text-[#ffbe0b]" />
+            <Palette size={40} className="text-amber-gold" />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl text-[#ffbe0b] font-display font-bold  tracking-tight"
+            className="text-4xl md:text-6xl text-amber-gold font-display font-bold  tracking-tight"
           >
             Web Design
           </motion.h1>
@@ -76,7 +76,7 @@ export default function WebDesignPage() {
               <div className="mb-4 bg-purple-50 dark:bg-purple-900/10 w-12 h-12 rounded-xl flex items-center justify-center">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-[#ffbe0b]  mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold text-amber-gold mb-2">{feature.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
             </motion.div>
           ))}
@@ -84,7 +84,7 @@ export default function WebDesignPage() {
 
         {/* Tools Section */}
         <div className="mb-20">
-          <h2 className="text-2xl font-bold text-center text-[#ffbe0b] mb-8">Role & Tools</h2>
+          <h2 className="text-2xl font-bold text-center text-amber-gold mb-8">Role & Tools</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {tools.map((tool, index) => (
               <span key={index} className="px-6 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">
@@ -95,7 +95,7 @@ export default function WebDesignPage() {
         </div>
 
         {/* CTA */}
-        <div className="bg-[#ffbe0b] rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
+        <div className="bg-amber-gold rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
           <div className="relative z-10 space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Ready to design your masterpiece?</h2>
             <p className="text-purple-100 max-w-xl mx-auto">

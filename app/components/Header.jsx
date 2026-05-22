@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from '@/lib/lucide';
 import { gsap } from 'gsap';
 
 const Header = () => {

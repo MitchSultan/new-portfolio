@@ -25,7 +25,7 @@ export default function Hero() {
       />
       <div className='hero relative z-10 flex flex-col md:flex-row items-start md:items-center justify-center max-w-full gap-12 p-6 md:mx-5 animate-fadeIn'>
         <div className='flex flex-col justify-start items-center md:justify-center mt-32 gap-6 '>
-          <h1 className='font-display text-center text-4xl md:text-5xl lg:text-6xl'>Agency-level<span className='bg-[#fb5607] bg-clip-text text-transparent'>quality</span>  with freelancer-level <span className='bg-[#fb5607] bg-clip-text text-transparent'>attention</span>.</h1>
+          <h1 className='font-display text-center text-4xl md:text-5xl lg:text-6xl'>Agency-level<span className='bg-blaze-orange bg-clip-text text-transparent'>quality</span>  with freelancer-level <span className='bg-blaze-orange bg-clip-text text-transparent'>attention</span>.</h1>
           <p className='text-center text-gray-600 text-lg md:text-xl  '>I Build High-Converting Websites & Custom Software for Growing Brands</p>
           <div className='flex gap-4'>
             <a href='https://wa.me/254703666366' className='btn-primary'>

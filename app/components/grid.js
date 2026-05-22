@@ -4,29 +4,26 @@ export default function About() {
   return (
     <>
       
-      <div className='flex justify-between p-3'>
-        <section className="overflow-hidden  sm:grid sm:grid-cols-2 sm:items-center">
+      <div className='flex w-full justify-between p-3'>
+        
   <div className="p-8 md:p-12 lg:px-16 lg:py-24">
-    <div className="mx-auto max-w-xl text-left ltr:sm:text-left rtl:sm:text-right">
+    <div className="mx-auto  text-left ">
+      <img src="/images/hor.webp" alt="hero" className="w-36 h-36 rounded-full object-cover" />
       <h2 className="text-2xl font-bold  md:text-3xl">
-       Turning Client's vision into digital reality
+       Hi I'm Mitch Sultan, a Full Stack <span className="bg-gradient-to-r from-azure-blue to-blue-violet bg-clip-text text-transparent">Developer</span>
       </h2>
 
-      <p className="hidden  md:mt-4 md:block">
+      <p className="text-sm block md:mt-4 md:max-w-xl ">
        
-        I am a web developer with a passion for creating beautiful and functional websites. I have experience in HTML, CSS, JavaScript, and React. I am always learning new technologies and techniques to improve my skills.
+        I am self taught with a passion for creating beautiful and functional websites. I have experience in HTML, CSS, JavaScript, and React. I am always learning new technologies and techniques to improve my skills. I also have a background in Telecommunications Engineering with a passion for aviation.
       </p>
 
       
     </div>
   </div>
 
-  <img
-    alt=""
-    src="/images/hero1.png"
-    className="max-h-96 w-full object-contain sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-ss-[30px] md:h-[calc(100%_-_4rem)] md:rounded-ss-[60px]"
-  />
-</section>
+  
+
       </div>
     </>
   )

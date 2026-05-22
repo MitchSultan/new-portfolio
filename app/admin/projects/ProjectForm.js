@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/app/lib/supabase/server';
 import { useRouter } from 'next/navigation';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft } from '@/lib/lucide';
 import Link from 'next/link';
 
 export default function ProjectForm({ initialData = {}, isEditing = false }) {

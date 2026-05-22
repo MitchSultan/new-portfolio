@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase/server';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, FolderKanban, LogOut } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, LogOut } from '@/lib/lucide';
 
 export default function AdminLayout({ children }) {
   const router = useRouter();

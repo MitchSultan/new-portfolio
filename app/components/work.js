@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
-import { ExternalLink, Eye } from 'lucide-react';
+import { ExternalLink, Eye } from '@/lib/lucide';
 import { supabase } from '../lib/supabase/server';
 import ProjectModal from './projectmodal';
 

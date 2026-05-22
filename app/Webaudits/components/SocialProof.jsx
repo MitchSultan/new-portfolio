@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Star, Quote, ArrowLeft, ArrowRight } from '@/lib/lucide';
 
 const testimonials = [
   {
@@ -56,7 +56,7 @@ function AnimatedCounter({ target, suffix = '' }) {
 }
 
 const proofStats = [
-  { value: 47, suffix: '+', label: 'Nairobi Sites Audited This Month' },
+  { value: 47, suffix: '+', label: 'Global Sites Audited This Month' },
   { value: 92, suffix: '%', label: 'Client Satisfaction Rate' },
   { value: 3.2, suffix: 'x', label: 'Average Conversion Improvement' },
   { value: 24, suffix: 'hr', label: 'Average Turnaround Time' },
@@ -86,8 +86,8 @@ export default function SocialProof() {
         >
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Proof of Results</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
-            Nairobi Businesses{' '}
-            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
+            Businesses{' '}
+            <span className="bg-azure-blue bg-clip-text text-transparent">
               Growing With Funnels
             </span>
           </h2>

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, MessageCircle, Zap } from 'lucide-react';
+import { ArrowUp, MessageCircle, Zap } from '@/lib/lucide';
 
 export default function FinalCta({ onScrollToAudit }) {
   return (
@@ -33,7 +33,7 @@ export default function FinalCta({ onScrollToAudit }) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-orange/10 border border-orange/20 text-[#fb5607] text-sm font-medium"
+          className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-orange/10 border border-orange/20 text-blaze-orange text-sm font-medium"
         >
           <Zap className="w-4 h-4" />
           Don&apos;t Get Left Behind
@@ -47,7 +47,7 @@ export default function FinalCta({ onScrollToAudit }) {
           className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight"
         >
           Your Competitors Are Already{' '}
-          <span className="bg-[#fb5607] bg-clip-text text-transparent">
+          <span className="bg-blaze-orange bg-clip-text text-transparent">
             Optimizing
           </span>
           . Are You?

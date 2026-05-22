@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { motion, AnimatePresence } from "framer-motion";
-import { RefreshCw, Copy, Check } from "lucide-react";
+import { RefreshCw, Copy, Check } from '@/lib/lucide';
 
 // Utility to generate a random HEX color
 const generateRandomHex = () => {
@@ -56,7 +56,7 @@ const ColorStrip = ({ color }) => {
               animate={{ scale: 1, opacity: 1 }}
               className="bg-white/90 dark:bg-black/80 text-green-600 dark:text-green-400 p-2 rounded-full shadow-lg"
             >
-              <Check size={20} strokeWidth={3} />
+              <Check size={20} />
             </motion.div>
           ) : (
              <span className="font-mono text-white font-bold text-shadow-sm uppercase tracking-wider text-sm md:text-base">

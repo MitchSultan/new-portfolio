@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, CheckCircle, MessageSquare, User, Mail, Phone, Building, Globe } from 'lucide-react';
+import { X, Send, CheckCircle, MessageSquare, User, Mail, Phone, Building, Globe } from '@/lib/lucide';
 
 export default function LeadForm({ isOpen, onClose, prefilledUrl }) {
   const [formData, setFormData] = useState({

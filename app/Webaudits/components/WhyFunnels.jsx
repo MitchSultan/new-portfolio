@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { XCircle, CheckCircle, ArrowRight, Globe, Users, Target, Repeat, TrendingDown, DollarSign } from 'lucide-react';
+import { XCircle, CheckCircle, ArrowRight, Globe, Users, Target, Repeat, TrendingDown, DollarSign } from '@/lib/lucide';
 
 const painPoints = [
   { icon: TrendingDown, text: 'High bounce rates — visitors leave in under 8 seconds' },
@@ -14,7 +14,7 @@ const funnelSteps = [
   {
     icon: Globe,
     title: 'Attract',
-    description: 'SEO-optimized content and local targeting bring the right Nairobi audience to you',
+    description: 'SEO-optimized content and local targeting bring the right global audience to you',
     bg: 'bg-emerald-50',
     border: 'border-emerald-200',
     iconColor: 'text-emerald-600',
@@ -62,12 +62,12 @@ export default function WhyFunnels() {
           <span className="text-orange text-sm font-semibold uppercase tracking-widest">The Missing Piece</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             A Website Alone{' '}
-            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
+            <span className="bg-azure-blue bg-clip-text text-transparent">
               Isn&apos;t Enough
             </span>
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl mx-auto text-lg">
-            Most Nairobi businesses have a website. Very few have a system that consistently
+            Most businesses have a website. Very few have a system that consistently
             turns strangers into customers. That system is a content funnel.
           </p>
         </motion.div>

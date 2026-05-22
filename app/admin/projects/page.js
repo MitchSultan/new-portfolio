@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/app/lib/supabase/server';
 import Link from 'next/link';
-import { Plus, Edit, Trash2, ExternalLink } from 'lucide-react';
+import { Plus, Edit, Trash2, ExternalLink } from '@/lib/lucide';
 
 export default function AdminProjects() {
   const [projects, setProjects] = useState([]);

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, ExternalLink, Code, Calendar, Users, Target, CheckCircle } from 'lucide-react';
+import { X, ExternalLink, Code, Calendar, Users, Target, CheckCircle } from '@/lib/lucide';
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   if (!isOpen) return null;

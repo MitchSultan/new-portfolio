@@ -2,22 +2,22 @@
 import React from 'react';
 
 const tools = [
-  { name: 'React', icon: '⚛️', color: 'from-cyan-400 to-blue-500' },
-  { name: 'Next.js', icon: '▲', color: 'from-gray-800 to-black' },
-  { name: 'JavaScript', icon: 'JS', color: 'from-yellow-400 to-yellow-600' },
-  { name: 'TypeScript', icon: 'TS', color: 'from-blue-500 to-blue-700' },
-  { name: 'Tailwind CSS', icon: '🎨', color: 'from-cyan-400 to-blue-600' },
-  { name: 'GSAP', icon: '💚', color: 'from-green-400 to-emerald-600' },
-  { name: 'Git', icon: '📦', color: 'from-orange-500 to-red-600' },
-  { name: 'Figma', icon: '🎯', color: 'from-purple-400 to-pink-600' },
-  { name: 'VS Code', icon: '💻', color: 'from-blue-600 to-indigo-700' },
-  { name: 'HTML5', icon: '🌐', color: 'from-orange-500 to-red-500' },
-  { name: 'CSS3', icon: '🎪', color: 'from-blue-400 to-blue-600' },
-  { name: 'Node.js', icon: '🟢', color: 'from-green-500 to-green-700' },
-  { name: 'Framer Motion', icon: '🎬', color: 'from-pink-500 to-purple-600' },
-  { name: 'Supabase', icon: '⚡', color: 'from-emerald-400 to-green-600' },
-  { name: 'Vercel', icon: '▲', color: 'from-black to-gray-900' },
-  { name: 'npm', icon: '📦', color: 'from-red-500 to-red-700' }
+  { name: 'React', icon: '⚛️', color: 'bg-azure-blue' },
+  { name: 'Next.js', icon: '▲', color: 'blue-violet' },
+  { name: 'JavaScript', icon: 'JS', color: 'azure-blue' },
+  { name: 'TypeScript', icon: 'TS', color: 'blaze-orange' },
+  { name: 'Tailwind CSS', icon: '🎨', color: 'azure-blue' },
+  { name: 'GSAP', icon: '💚', color: 'neon-pink' },
+  { name: 'Git', icon: '📦', color: 'azure-blue' },
+  { name: 'Figma', icon: '🎯', color: 'blue-violet' },
+  { name: 'VS Code', icon: '💻', color: 'blaze-orange' },
+  { name: 'HTML5', icon: '🌐', color: 'neon-pink' },
+  { name: 'CSS3', icon: '🎪', color: 'azure-blue' },
+  { name: 'Node.js', icon: '🟢', color: 'blue-violet' },
+  { name: 'Framer Motion', icon: '🎬', color: 'neon-pink' },
+  { name: 'Supabase', icon: '⚡', color: 'azure-blue' },
+  { name: 'Vercel', icon: '▲', color: 'blaze-orange' },
+  { name: 'npm', icon: '📦', color: 'azure-blue' }
 ];
 
 export default function Toolbox() {
@@ -57,7 +57,7 @@ export default function Toolbox() {
                 <span className="text-4xl mb-2 transform group-hover:scale-125 transition-transform">
                   {tool.icon}
                 </span>
-                <span className="text-white font-semibold text-sm text-center px-2">
+                <span className="text-black font-thin text-sm text-center px-2">
                   {tool.name}
                 </span>
                 
@@ -89,7 +89,7 @@ export default function Toolbox() {
                 <span className="text-4xl mb-2 transform group-hover:scale-125 transition-transform">
                   {tool.icon}
                 </span>
-                <span className="text-white font-semibold text-sm text-center px-2">
+                <span className="text-black font-thin text-sm text-center px-2">
                   {tool.name}
                 </span>
                 

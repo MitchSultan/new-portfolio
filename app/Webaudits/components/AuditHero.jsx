@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, TrendingUp, Smartphone, Globe, Zap } from 'lucide-react';
+import { Search, TrendingUp, Smartphone, Globe, Zap } from '@/lib/lucide';
 
 const floatingStats = [
   { icon: Smartphone, label: '98% Mobile Penetration', x: '5%', y: '20%', delay: 0 },
@@ -82,10 +82,10 @@ export default function AuditHero({ onStartAudit }) {
           className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight"
         >
           Is Your Website{' '}
-          <span className="bg-[#3a86ff] bg-clip-text text-transparent">
+          <span className="bg-azure-blue bg-clip-text text-transparent">
             Losing Customers
           </span>{' '}
-          in Nairobi&apos;s KES 800B+ Digital Economy?
+          in Todays&apos; $2.3 Trillion Digital Economy?
         </motion.h1>
 
         {/* Subheadline */}
@@ -96,7 +96,7 @@ export default function AuditHero({ onStartAudit }) {
           className="mt-6 text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed"
         >
           Get a free, instant website audit and discover what top-performing
-          Nairobi businesses do differently to turn visitors into paying customers.
+          businesses do differently to turn visitors into paying customers.
         </motion.p>
 
         {/* URL Input */}
@@ -136,7 +136,7 @@ export default function AuditHero({ onStartAudit }) {
           transition={{ delay: 1.2 }}
           className="mt-4 text-sm text-gray-400"
         >
-          Free — No signup required — Results in 30 seconds
+          Free — No signup required — Powered by Google PageSpeed Insights
         </motion.p>
       </div>
     </section>

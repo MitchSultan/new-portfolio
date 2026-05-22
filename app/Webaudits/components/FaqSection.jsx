@@ -1,16 +1,16 @@
 'use client';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle } from '@/lib/lucide';
 
 const faqs = [
   {
     question: 'What does the website audit actually measure?',
-    answer: 'Our audit evaluates 6 critical dimensions: page performance (speed, core web vitals), mobile user experience (responsiveness, touch targets), SEO health (meta tags, structure, crawlability), content strategy (depth, relevance, engagement), conversion flow (CTAs, trust signals, lead capture), and Nairobi-specific local SEO (Google Business Profile, local keywords, \'near me\' optimization).',
+    answer: 'Our audit runs Google PageSpeed Insights and reports official Lighthouse categories: Performance (desktop and mobile), Accessibility, Best Practices, and SEO. Each score and recommendation comes from real Lighthouse audits on your URL.',
   },
   {
     question: 'How is this different from Google PageSpeed or Lighthouse?',
-    answer: 'Those tools focus mainly on technical performance metrics. Our audit goes deeper — we evaluate your site as a business tool, not just a technical artifact. We analyze whether your site actually converts Nairobi visitors into customers, includes proper lead capture, and is optimized for how Kenyan consumers browse and buy online (mobile-first, WhatsApp integration, M-Pesa readiness).',
+    answer: 'This tool uses the same PageSpeed Insights / Lighthouse engine. We present the results in a business-friendly breakdown with category scores, failed audit titles from Lighthouse, and Chrome UX Report data when available — without needing to read the raw Lighthouse JSON report.',
   },
   {
     question: 'What exactly is a content funnel?',
@@ -45,7 +45,7 @@ export default function FaqSection() {
           <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Common Questions</span>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
             Got Questions?{' '}
-            <span className="bg-[#3a86ff] bg-clip-text text-transparent">
+            <span className="bg-azure-blue bg-clip-text text-transparent">
               We Have Answers
             </span>
           </h2>

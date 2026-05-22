@@ -6,7 +6,7 @@ import Footer from "../../components/footer";
 import { supabase } from "../../lib/supabase/server";
 import { format } from "date-fns";
 import DOMPurify from "dompurify";
-import { ArrowLeft, Clock, Eye, Share2, Twitter, Linkedin, MessageCircle } from "lucide-react";
+import { ArrowLeft, Clock, Eye, Share2, Twitter, Linkedin, MessageCircle } from '@/lib/lucide';
 
 export default function BlogPostPage() {
   const params = useParams();

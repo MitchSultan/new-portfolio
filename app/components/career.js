@@ -18,7 +18,7 @@ const careerData = [
       { label: 'Performance Boost', value: '40%', icon: '⚡' },
       { label: 'Client Satisfaction', value: '4.8/5', icon: '😊' }
     ],
-    color: ''
+    color: 'bg-blaze-orange'
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const careerData = [
       { label: 'Load Time Reduction', value: '60%', icon: '🔥' },
       { label: 'Revenue Impact', value: '$120K+', icon: '💰' }
     ],
-    color: 'from-purple-500 to-pink-500'
+    color: 'bg-azure-blue'
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const careerData = [
       { label: 'Code Quality Score', value: '98%', icon: '✨' },
       { label: 'Team Productivity', value: '+85%', icon: '🎯' }
     ],
-    color: 'from-emerald-500 to-teal-500'
+    color: 'bg-neon-pink'
   }
 ];
 
@@ -114,7 +114,7 @@ export default function Career() {
           <div ref={leftColRef} className="md:pr-8 md:self-start">
             <div className="space-y-6">
               <div>
-                <span className="inline-block px-4 py-2 bg-[#fb5607] rounded-full text-sm font-semibold mb-4">
+                <span className="inline-block px-4 py-2 bg-blaze-orange rounded-full text-sm font-semibold mb-4">
                   My Journey
                 </span>
                 <h2 className="text-4xl md:text-6xl font-extrabold mb-6 ">
@@ -133,19 +133,19 @@ export default function Career() {
               {/* Stats Summary - Hidden on mobile */}
               <div className="hidden md:grid grid-cols-2 gap-4 pt-8 border-t border-gray-800">
                 <div>
-                  <div className="text-3xl font-bold text-[#fb5607]">35+</div>
+                  <div className="text-3xl font-bold text-blaze-orange">35+</div>
                   <div className="text-sm text-black">Total Projects</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#fb5607]">3</div>
+                  <div className="text-3xl font-bold text-blaze-orange">3</div>
                   <div className="text-sm text-black">Companies</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#fb5607]">3+</div>
+                  <div className="text-3xl font-bold text-blaze-orange">3+</div>
                   <div className="text-sm text-black">Years Experience</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#fb5607]">98%</div>
+                  <div className="text-3xl font-bold text-blaze-orange">98%</div>
                   <div className="text-sm text-black">Client Satisfaction</div>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function Career() {
                       {job.metrics.map((metric, idx) => (
                         <div
                           key={idx}
-                          className="bg-black rounded-xl p-4 border border-gray-800 hover:border-gray-600 transition-all"
+                          className=" rounded-xl p-4 border border-gray-800 hover:border-gray-600 transition-all"
                         >
                           <div className="flex items-start justify-between mb-2">
                             <span className="text-2xl">{metric.icon}</span>

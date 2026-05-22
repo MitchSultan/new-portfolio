@@ -1,3 +1,5 @@
+import { tailwindBrandColors } from './lib/colors.js';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -24,6 +26,7 @@ export default {
         surface: "#FFFFFF",
         text: "#111827",
         neutral: "#FFFFFF",
+        ...tailwindBrandColors,
       },
       fontFamily: {
         sans: ['var(--font-roboto)', 'system-ui', 'sans-serif'],

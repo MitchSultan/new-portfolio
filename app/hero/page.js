@@ -1,5 +1,5 @@
 'use client';
-import { Plus, ArrowRight, Code, Palette, Zap } from 'lucide-react';
+import { Plus, ArrowRight, Code, Palette, Zap } from '@/lib/lucide';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

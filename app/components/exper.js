@@ -11,7 +11,7 @@ const projects = [
     tags: ["Design", "Build", "Consultancy"],
     image: "/projects/evolve.webp",
     link: "https://evolvesphereconsulting.com",
-    bgGradient: "bg-[#3a86ff]",
+    bgGradient: "bg-azure-blue",
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const projects = [
     tags: ["Design", "Build", "Shopify"],
     image: "/projects/canvaspile.webp",
     link: "https://canvaspile.com",
-    bgGradient: "bg-[#8338ec]",  
+    bgGradient: "bg-blue-violet",  
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const projects = [
     tags: ["Design", "Build","NGO"],
     image: "/projects/tog.webp",
     link: "https://theotherguyske.org",
-    bgGradient: "bg-[#fb5607]",
+    bgGradient: "bg-blaze-orange",
   },
   {
     id: 4,
@@ -38,7 +38,7 @@ const projects = [
     tags: ["Design", "Build","E-commerce"],
     image: "/projects/luxurybytina.webp",
     link: "https://luxurybytina.com",
-    bgGradient: "bg-[#ff006e]",
+    bgGradient: "bg-neon-pink",
   }
 ];
 

@@ -6,7 +6,7 @@ import {
   FileText, LayoutGrid, Image as ImageIcon, Plus, 
   Search, Edit, Eye, Trash2, Star, CheckCircle, 
   XCircle, Copy, AlertCircle 
-} from "lucide-react";
+} from '@/lib/lucide';
 
 export default function AdminBlogDashboard() {
   const [activeTab, setActiveTab] = useState("posts"); // 'posts', 'categories', 'images'

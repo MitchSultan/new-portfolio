@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github } from '@/lib/lucide';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 

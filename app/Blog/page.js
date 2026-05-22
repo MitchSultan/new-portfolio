@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { supabase } from "../lib/supabase/server";
 import { format } from "date-fns";
-import { Search, Clock, ArrowRight } from "lucide-react";
+import { Search, Clock, ArrowRight } from '@/lib/lucide';
 import { gsap } from "gsap";
 
 export default function BlogPage() {

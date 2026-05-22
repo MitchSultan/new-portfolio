@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase/server';
-import { Users } from 'lucide-react';
+import { Users } from '@/lib/lucide';
 
 export default function AdminDashboard() {
   const [totalVisitors, setTotalVisitors] = useState(0);

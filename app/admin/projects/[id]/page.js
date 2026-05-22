@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/app/lib/supabase/server';
 import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft } from '@/lib/lucide';
 import ProjectForm from '../ProjectForm';
 import { useParams } from 'next/navigation';
 

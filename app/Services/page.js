@@ -3,46 +3,46 @@ import React from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { motion } from "framer-motion";
-import { Palette, Code, LineChart, Megaphone, PenTool, ArrowRight } from "lucide-react";
+import { Palette, Code, LineChart, Megaphone, PenTool, ArrowRight } from '@/lib/lucide';
 
 const services = [
   {
-    icon: <Palette size={40} className="text-[#ffbe0b]" />,
+    icon: <Palette size={40} className="text-amber-gold" />,
     title: "Web Design",
     description: "Visually stunning, user-centric designs that captive your audience. I create modern, aesthetic interfaces that feel premium and intuitive.",
-    color: "bg-[#ffbe0b]",
+    color: "bg-amber-gold",
     border: "border-purple-200 dark:border-purple-800",
     link: "/Services/web-design",
   },
   {
-    icon: <Code size={40} className="text-[#fb5607]" />,
+    icon: <Code size={40} className="text-blaze-orange" />,
     title: "Web Development",
     description: "Robust, scalable, and high-performance websites built with the latest technologies like Next.js and React. Expect fast load times and clean code.",
-    color: "bg-[#fb5607]",
+    color: "bg-blaze-orange",
     border: "border-blue-200 dark:border-blue-800",
     link: "/Services/web-development",
   },
   {
-    icon: <LineChart size={40} className="text-[#ff006e]" />,
+    icon: <LineChart size={40} className="text-neon-pink" />,
     title: "SEO Optimization",
     description: "Climb the search rankings and get found. I implement strategic SEO practices to increase your visibility and drive organic traffic to your site.",
-    color: "bg-[#ff006e]",
+    color: "bg-neon-pink",
     border: "border-green-200 dark:border-green-800",
     link: "/Services/seo",
   },
   {
-    icon: <Megaphone size={40} className="text-[#8338ec]" />,
+    icon: <Megaphone size={40} className="text-blue-violet" />,
     title: "Ads Management",
     description: "Targeted campaigns that convert. I manage Google and Social Media ads to ensure you get the best ROI for your marketing budget.",
-    color: "bg-[#8338ec]",
+    color: "bg-blue-violet",
     border: "border-orange-200 dark:border-orange-800",
     link: "/Services/ads",
   },
   {
-    icon: <PenTool size={40} className="text-[#3a86ff]" />,
+    icon: <PenTool size={40} className="text-azure-blue" />,
     title: "Content Creation",
     description: "Compelling narratives that tell your brand's story. From website copy to social media posts, I create content that engages and inspires.",
-    color: "bg-[#3a86ff]",
+    color: "bg-azure-blue",
     border: "border-pink-200 dark:border-pink-800",
     link: "/Services/content-creation",
   },
@@ -88,7 +88,7 @@ export default function ServicesPage() {
             className="text-4xl md:text-6xl lg:text-7xl font-display font-bold  tracking-tight leading-tight"
           >
             Services that <br/>
-            <span className="text-transparent bg-clip-text bg-[#3a86ff]">
+            <span className="text-transparent bg-clip-text bg-azure-blue">
               Scale Your Vision
             </span>
           </motion.h1>

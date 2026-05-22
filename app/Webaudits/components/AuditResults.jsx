@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { RefreshCw, Lock, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import { RefreshCw, Lock, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, XCircle } from '@/lib/lucide';
 
 function CircularScore({ score, size = 120, strokeWidth = 8, delay = 0 }) {
   const [animatedScore, setAnimatedScore] = useState(0);
@@ -47,8 +47,7 @@ function CircularScore({ score, size = 120, strokeWidth = 8, delay = 0 }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl font-extrabold text-gray-900">{animatedScore}</span>
-        <span className="text-[10px] text-gray-400 uppercase tracking-wider">/ 100</span>
+        <span className="text-2xl font-extrabold text-gray-900">{animatedScore}%</span>
       </div>
     </div>
   );
@@ -90,35 +89,83 @@ export default function AuditResults({ results, categories, onReAudit, onRequest
     setExpandedCategory(expandedCategory === key ? null : key);
   };
 
-  const scoreColor = results.overall >= 75 ? 'text-emerald-600' : results.overall >= 45 ? 'text-amber-600' : 'text-rose-600';
-  const scoreBg = results.overall >= 75 ? 'bg-emerald-50' : results.overall >= 45 ? 'bg-amber-50' : 'bg-rose-50';
-  const scoreLabel = results.overall >= 75 ? 'Good' : results.overall >= 45 ? 'Needs Work' : 'Critical';
+  const desktopPerformanceScore = results.performance?.score ?? 0;
+  const performanceTitle = results.performance?.label || 'Performance';
+
+  const scoreColor = desktopPerformanceScore >= 75 ? 'text-emerald-600' : desktopPerformanceScore >= 45 ? 'text-amber-600' : 'text-rose-600';
+  const scoreBg = desktopPerformanceScore >= 75 ? 'bg-emerald-50' : desktopPerformanceScore >= 45 ? 'bg-amber-50' : 'bg-rose-50';
+  const scoreLabel = desktopPerformanceScore >= 75 ? 'Good' : desktopPerformanceScore >= 45 ? 'Needs Work' : 'Critical';
 
   return (
     <div className="space-y-8">
-      {/* Overall score card */}
+      {/* Desktop Lighthouse performance score */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="p-8 rounded-2xl bg-white border border-gray-200 shadow-sm text-center"
       >
-        <p className="text-gray-500 text-sm mb-2">Overall Score for</p>
+        <p className="text-gray-500 text-sm mb-2">{performanceTitle} (Desktop) for</p>
         <h3 className="text-gray-900 text-xl font-bold mb-6">{results.domain}</h3>
 
         <div className="flex justify-center mb-4">
-          <CircularScore score={results.overall} size={160} strokeWidth={10} />
+          <CircularScore score={desktopPerformanceScore} size={160} strokeWidth={10} />
         </div>
 
         <span className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold ${scoreColor} ${scoreBg}`}>
-          {results.overall >= 75 ? <CheckCircle className="w-4 h-4" /> : results.overall >= 45 ? <AlertTriangle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+          {desktopPerformanceScore >= 75 ? <CheckCircle className="w-4 h-4" /> : desktopPerformanceScore >= 45 ? <AlertTriangle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
           {scoreLabel}
         </span>
+
+        {results.metrics?.desktop && (
+          <div className="mt-8 pt-6 border-t border-gray-100 text-left">
+            <p className="text-primary-600 text-xs font-semibold uppercase tracking-wider mb-3 text-center">
+              Live Lighthouse metrics (Google PageSpeed)
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 text-sm">
+              <div className="rounded-xl bg-gray-50 p-4">
+                <p className="font-semibold text-gray-800 mb-2">Desktop</p>
+                {Object.entries(results.metrics.desktop).map(([label, value]) =>
+                  value ? (
+                    <p key={label} className="text-gray-600">
+                      <span className="text-gray-500">{label}:</span> {value}
+                    </p>
+                  ) : null
+                )}
+              </div>
+              <div className="rounded-xl bg-gray-50 p-4">
+                <p className="font-semibold text-gray-800 mb-2">Mobile</p>
+                {Object.entries(results.metrics.mobile).map(([label, value]) =>
+                  value ? (
+                    <p key={label} className="text-gray-600">
+                      <span className="text-gray-500">{label}:</span> {value}
+                    </p>
+                  ) : null
+                )}
+              </div>
+            </div>
+            {results.metrics.crux &&
+              Object.values(results.metrics.crux).some(Boolean) && (
+                <div className="mt-4 rounded-xl bg-primary-50/50 p-4 text-sm text-gray-600">
+                  <p className="font-semibold text-gray-800 mb-2">Chrome UX Report (real users)</p>
+                  {Object.entries(results.metrics.crux).map(([label, value]) =>
+                    value ? (
+                      <p key={label}>
+                        <span className="text-gray-500">{label}:</span> {value}
+                      </p>
+                    ) : null
+                  )}
+                </div>
+              )}
+          </div>
+        )}
       </motion.div>
 
       {/* Category breakdown */}
       <div className="space-y-3">
         {categories.map((cat, i) => {
           const data = results[cat.key];
+          if (!data) return null;
+
           const isExpanded = expandedCategory === cat.key;
 
           return (
@@ -138,7 +185,7 @@ export default function AuditResults({ results, categories, onReAudit, onRequest
                   <cat.icon className="w-5 h-5 text-primary-600" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-gray-900 font-semibold text-sm">{cat.label}</h4>
+                  <h4 className="text-gray-900 font-semibold text-sm">{data.label || cat.label}</h4>
                   <div className="mt-2">
                     <ScoreBar score={data.score} delay={0.2 + i * 0.1} />
                   </div>
@@ -179,7 +226,7 @@ export default function AuditResults({ results, categories, onReAudit, onRequest
           onClick={onRequestLeadForm}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange to-primary-600 text-white font-bold shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2"
+          className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange to-primary-600 text-[#020202] font-bold shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2"
           id="unlock-full-report-button"
         >
           <Lock className="w-5 h-5" />

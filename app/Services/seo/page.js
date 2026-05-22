@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import { motion } from "framer-motion";
-import { LineChart, Search, Globe, BarChart, ArrowRight } from "lucide-react";
+import { LineChart, Search, Globe, BarChart, ArrowRight } from '@/lib/lucide';
 
 export default function SeoPage() {
   const features = [
@@ -41,12 +41,12 @@ export default function SeoPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block p-3 rounded-2xl bg-green-100 dark:bg-green-900/30 mb-4"
           >
-            <LineChart size={40} className="text-[#ff006e] " />
+            <LineChart size={40} className="text-neon-pink" />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-bold text-[#ff006e] tracking-tight"
+            className="text-4xl md:text-6xl font-display font-bold text-neon-pink tracking-tight"
           >
             SEO Optimization
           </motion.h1>
@@ -71,17 +71,17 @@ export default function SeoPage() {
               transition={{ delay: index * 0.1 }}
               className="flex-none w-[85vw] sm:w-[350px] md:w-auto snap-center md:snap-align-none p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
             >
-              <div className="mb-4 bg-[#ff006e] w-12 h-12 rounded-xl flex items-center justify-center">
+              <div className="mb-4 bg-neon-pink w-12 h-12 rounded-xl flex items-center justify-center">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-[#ff006e]  mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold text-neon-pink mb-2">{feature.title}</h3>
               <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="bg-[#ff006e] rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
+        <div className="bg-neon-pink rounded-[2.5rem] p-12 text-center text-white relative overflow-hidden">
           <div className="relative z-10 space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Want to rank #1?</h2>
             <p className="text-pink-100 max-w-xl mx-auto">
@@ -89,7 +89,7 @@ export default function SeoPage() {
             </p>
             <a 
               href="https://wa.me/254703666366"
-              className="inline-flex items-center gap-2 bg-white text-[#ff006e] px-8 py-3 rounded-full font-bold hover:bg-pink-50 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-neon-pink px-8 py-3 rounded-full font-bold hover:bg-pink-50 transition-colors"
             >
               Boost My Ranking <ArrowRight size={20} />
             </a>
