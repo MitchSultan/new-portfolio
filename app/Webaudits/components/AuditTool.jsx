@@ -39,7 +39,9 @@ function buildDisplayCategories(results) {
 
 export default function AuditTool({ initialUrl, onRequestLeadForm }) {
   const [url, setUrl] = useState(initialUrl || '');
-  const [phase, setPhase] = useState(initialUrl ? 'analyzing' : 'idle');
+  const [phase, setPhase] = useState(initialUrl ? 'queued' : 'idle');
+  const [jobId, setJobId] = useState(null);
+  const [pollAttempts, setPollAttempts] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [results, setResults] = useState(null);
@@ -49,7 +51,9 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
     const cleanUrl = targetUrl.trim();
     if (!cleanUrl) return;
     setUrl(cleanUrl);
-    setPhase('analyzing');
+    setPhase('queued');
+    setJobId(null);
+    setPollAttempts(0);
     setCurrentStep(0);
     setProgress(0);
     setResults(null);
@@ -63,21 +67,66 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
   }, [initialUrl, runAudit]);
 
   useEffect(() => {
-    if (phase !== 'analyzing' || !url) return;
+    if (phase !== 'queued' || !url) return;
 
     let cancelled = false;
     let elapsed = 0;
-    let auditData = null;
-    let animationDone = false;
+    let pollTimer = null;
+    let attemptCount = 0;
     const totalDuration = loadingSteps.reduce((sum, s) => sum + s.duration, 0);
+    const POLL_INTERVAL_MS = 3000;
+    const MAX_POLL_ATTEMPTS = 40;
 
-    const finishIfReady = () => {
-      if (cancelled || !animationDone || !auditData) return;
-      setResults(auditData);
-      setPhase('results');
+    const stopPolling = () => {
+      if (pollTimer) {
+        clearInterval(pollTimer);
+      }
     };
 
-    const fetchAudit = async () => {
+    const setJobError = (message) => {
+      if (cancelled) return;
+      setError(message);
+      setPhase('error');
+      stopPolling();
+    };
+
+    const pollJob = async (id) => {
+      try {
+        const response = await fetch(`/api/pagespeed/${id}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || `Audit status check failed (${response.status}).`);
+        }
+
+        if (cancelled) return;
+
+        if (data.status === 'completed') {
+          setResults(data.result);
+          setPhase('results');
+          stopPolling();
+          return;
+        }
+
+        if (data.status === 'failed') {
+          setJobError(data.error || 'The audit failed. Please try again.');
+          return;
+        }
+
+        attemptCount += 1;
+        setPollAttempts(attemptCount);
+
+        if (attemptCount >= MAX_POLL_ATTEMPTS) {
+          setJobError('The audit is taking longer than expected. Please try again later.');
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setJobError(err instanceof Error ? err.message : 'Failed to poll audit status.');
+        }
+      }
+    };
+
+    const startJob = async () => {
       try {
         const response = await fetch('/api/pagespeed', {
           method: 'POST',
@@ -85,22 +134,45 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
           body: JSON.stringify({ url }),
         });
         const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.error || 'Failed to run audit.');
+
+        if (response.status === 202 && data?.jobId) {
+          if (cancelled) return;
+          setJobId(data.jobId);
+          
+          // Fire and forget the actual run request so it processes in the background
+          fetch(`/api/pagespeed/${data.jobId}/run`, { method: 'POST' }).catch(console.error);
+
+          await pollJob(data.jobId);
+          if (!cancelled) {
+            pollTimer = setInterval(() => {
+              if (cancelled) return;
+              (async () => {
+                try {
+                  await pollJob(data.jobId);
+                } catch (err) {
+                  console.error('Poll error:', err);
+                }
+              })();
+            }, POLL_INTERVAL_MS);
+          }
+          return;
         }
-        if (!cancelled) {
-          auditData = data;
-          finishIfReady();
+
+        if (response.ok && data?.result) {
+          if (!cancelled) {
+            setResults(data.result);
+            setPhase('results');
+          }
+          return;
         }
+
+        throw new Error(data.error || 'Failed to start the audit.');
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'Failed to run audit.');
-          setPhase('error');
+          setJobError(err instanceof Error ? err.message : 'Failed to start the audit.');
         }
       }
     };
-
-    fetchAudit();
 
     const interval = setInterval(() => {
       elapsed += 50;
@@ -118,16 +190,14 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
         stepIndex = i;
       }
       setCurrentStep(stepIndex);
-
-      if (elapsed >= totalDuration) {
-        animationDone = true;
-        finishIfReady();
-      }
     }, 50);
+
+    startJob();
 
     return () => {
       cancelled = true;
       clearInterval(interval);
+      stopPolling();
     };
   }, [phase, url]);
 
@@ -192,7 +262,7 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
             </motion.form>
           )}
 
-          {phase === 'analyzing' && (
+          {phase === 'queued' && (
             <motion.div
               key="loading"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -200,9 +270,22 @@ export default function AuditTool({ initialUrl, onRequestLeadForm }) {
               exit={{ opacity: 0, scale: 0.95 }}
               className="max-w-lg mx-auto p-8 rounded-2xl bg-white border border-gray-200 shadow-sm"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <Loader2 className="w-6 h-6 text-primary-600 animate-spin" />
-                <span className="text-gray-900 font-semibold">Analyzing {url.replace(/^https?:\/\//, '').split('/')[0]}...</span>
+              <div className="flex flex-col gap-3 mb-6">
+                <div className="flex items-center gap-3">
+                  <Loader2 className="w-6 h-6 text-primary-600 animate-spin" />
+                  <span className="text-gray-900 font-semibold">
+                    Queued audit for {url.replace(/^https?:\/\//, '').split('/')[0]}...
+                  </span>
+                </div>
+                {jobId && (
+                  <p className="text-sm text-gray-500">
+                    Audit job ID: <span className="font-mono text-xs text-gray-700">{jobId}</span>
+                  </p>
+                )}
+                <p className="text-sm text-gray-600">
+                  Waiting for results. We will poll the job status every few seconds.
+                  {pollAttempts > 0 && ` Attempt ${pollAttempts}/${20}.`}
+                </p>
               </div>
 
               <div className="w-full h-2 rounded-full bg-gray-100 mb-6 overflow-hidden">
