@@ -1,231 +1,160 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
 
 const careerData = [
   {
     id: 1,
-    year: '2023 - 2024',
-    company: 'Telsec .',
+    year: '2023 – 2024',
+    company: 'Telsec',
     role: 'Junior Frontend Developer',
-    description: 'Started my journey building responsive web applications and learning modern frameworks.',
+    description:
+      'Started building responsive web applications and learning modern frameworks.',
     metrics: [
-      { label: 'Projects Delivered', value: '12+', icon: '🚀' },
-      { label: 'Code Review Score', value: '95%', icon: '⭐' },
-      { label: 'Performance Boost', value: '40%', icon: '⚡' },
-      { label: 'Client Satisfaction', value: '4.8/5', icon: '😊' }
+      { label: 'Projects delivered', value: '12+' },
+      { label: 'Code review score', value: '95%' },
+      { label: 'Performance boost', value: '40%' },
+      { label: 'Client satisfaction', value: '4.8/5' },
     ],
-    color: 'bg-blaze-orange'
   },
   {
     id: 2,
-    year: '2024 - 2025',
+    year: '2024 – 2025',
     company: 'Digital Oasis Ltd',
     role: 'Frontend Developer',
-    description: 'Led frontend development for major client projects, mentored junior developers, and optimized workflows.',
+    description:
+      'Led frontend development for major client projects, mentored junior developers, and optimized workflows.',
     metrics: [
-      { label: 'Team Members Mentored', value: '5', icon: '👥' },
-      { label: 'Client Projects', value: '25+', icon: '💼' },
-      { label: 'Load Time Reduction', value: '60%', icon: '🔥' },
-      { label: 'Revenue Impact', value: '$120K+', icon: '💰' }
+      { label: 'Developers mentored', value: '5' },
+      { label: 'Client projects', value: '25+' },
+      { label: 'Load time reduction', value: '60%' },
+      { label: 'Revenue impact', value: '$120K+' },
     ],
-    color: 'bg-azure-blue'
   },
   {
     id: 3,
-    year: '2025 - Present',
+    year: '2025 – Present',
     company: 'MAD Graphix',
     role: 'Mid-level Frontend Developer',
-    description: 'Architecting scalable frontend solutions, leading technical decisions, and driving innovation in user experience.',
+    description:
+      'Architecting scalable frontend solutions, leading technical decisions, and driving innovation in user experience.',
     metrics: [
-      { label: 'Apps Architected', value: '8', icon: '🏗️' },
-      { label: 'User Growth', value: '300%', icon: '📈' },
-      { label: 'Code Quality Score', value: '98%', icon: '✨' },
-      { label: 'Team Productivity', value: '+85%', icon: '🎯' }
+      { label: 'Apps architected', value: '8' },
+      { label: 'User growth', value: '300%' },
+      { label: 'Code quality score', value: '98%' },
+      { label: 'Team productivity', value: '+85%' },
     ],
-    color: 'bg-neon-pink'
-  }
+  },
+];
+
+const summary = [
+  { value: '35+', label: 'Projects' },
+  { value: '3', label: 'Companies' },
+  { value: '3+', label: 'Years of experience' },
+  { value: '98%', label: 'Client satisfaction' },
 ];
 
 export default function Career() {
-  const cardsRef = useRef([]);
-  const gridRef = useRef(null);
-  const leftColRef = useRef(null);
-  const rightColRef = useRef(null);
-
-  useEffect(() => {
-    const cards = cardsRef.current.filter(Boolean);
-
-    cards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        {
-          opacity: 0,
-          y: 60,
-          scale: 0.95
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "top 55%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    });
-
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 768px)", () => {
-      if (!gridRef.current || !leftColRef.current || !rightColRef.current) return;
-
-      ScrollTrigger.create({
-        trigger: gridRef.current,
-        start: "top 5rem",
-        endTrigger: rightColRef.current,
-        end: "bottom bottom",
-        pin: leftColRef.current,
-        pinSpacing: false,
-        invalidateOnRefresh: true,
-      });
-    });
-
-    return () => {
-      mm.revert();
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
-        >
-          {/* Left column — pinned at top while right column scrolls */}
-          <div ref={leftColRef} className="md:pr-8 md:self-start">
-            <div className="space-y-6">
-              <div>
-                <span className="inline-block px-4 py-2 bg-blaze-orange rounded-full text-sm font-semibold mb-4">
-                  My Journey
-                </span>
-                <h2 className="text-4xl md:text-6xl font-extrabold mb-6 ">
-                  Career Trajectory
-                </h2>
-              </div>
-              <p className="text-lg md:text-xl  leading-relaxed">
-                From crafting my first components to architecting enterprise solutions, 
-                each role has been a stepping stone in my journey to master frontend development.
-              </p>
-              <p className="text-base ">
-                Scroll through my professional evolution and see the measurable impact 
-                I've created at each stage of my career.
-              </p>
+    <section className='w-full bg-white text-neutral-900'>
+      <div className='mx-auto w-full max-w-[1440px] px-4 py-16 md:px-8 lg:py-[90px]'>
+        {/* Row 1 — headline */}
+        <div className='grid border-t border-neutral-900 md:grid-cols-12'>
+          <p className='py-4 text-sm text-neutral-500 md:col-span-3 md:py-6'>
+            Career, 2023 – present
+          </p>
+          <h1 className='pb-8 font-display text-4xl font-semibold leading-[1] tracking-tighter md:col-span-9 md:border-l md:border-neutral-300 md:py-6 md:pb-12 md:pl-8 md:text-6xl lg:text-7xl'>
+            Career trajectory
+          </h1>
+        </div>
 
-              {/* Stats Summary - Hidden on mobile */}
-              <div className="hidden md:grid grid-cols-2 gap-4 pt-8 border-t border-gray-800">
-                <div>
-                  <div className="text-3xl font-bold text-blaze-orange">35+</div>
-                  <div className="text-sm text-black">Total Projects</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blaze-orange">3</div>
-                  <div className="text-sm text-black">Companies</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blaze-orange">3+</div>
-                  <div className="text-sm text-black">Years Experience</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blaze-orange">98%</div>
-                  <div className="text-sm text-black">Client Satisfaction</div>
-                </div>
-              </div>
-            </div>
+        {/* Row 2 — current role block + intro */}
+        <div className='grid border-t border-neutral-900 md:grid-cols-12'>
+          <div className='bg-blaze-orange flex min-h-[9rem] flex-col justify-between p-4 text-neutral-900 md:col-span-3 md:min-h-[12rem] md:p-6'>
+            <span className='text-sm font-semibold'>Now</span>
+            <span className='text-lg font-semibold leading-tight md:text-xl'>
+              Mid-level Frontend Developer, MAD Graphix
+            </span>
           </div>
-
-          {/* Right column — career cards slide up on scroll */}
-          <div ref={rightColRef} className="space-y-12">
-            {careerData.map((job, index) => (
-              <div
-                key={job.id}
-                ref={(el) => (cardsRef.current[index] = el)}
-                className="relative"
-              >
-                {/* Timeline Line */}
-                {index !== careerData.length - 1 && (
-                  <div className="absolute left-6 top-20 w-0.5 h-full bg-gradient-to-b from-gray-700 to-transparent hidden md:block" />
-                )}
-
-                {/* Career Card */}
-                <div className="relative group">
-                  {/* Timeline Dot */}
-                  <div className={`absolute -left-2 top-6 w-4 h-4 rounded-full bg-gradient-to-r ${job.color} hidden md:block`}>
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r opacity-75 blur animate-pulse" />
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="md:ml-12  rounded-2xl p-6 md:p-8 border border-gray-700 hover:border-gray-600 transition-all duration-300 group-hover:scale-[1.02]">
-                    {/* Header */}
-                    <div className="mb-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-gray-500 font-medium">{job.year}</span>
-                        <span className={`px-3 py-1 bg-gradient-to-r ${job.color} rounded-full text-xs font-bold`}>
-                          Role {job.id}
-                        </span>
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2">{job.role}</h3>
-                      <p className="text-purple-400 font-semibold">{job.company}</p>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-400 mb-6 leading-relaxed">
-                      {job.description}
-                    </p>
-
-                    {/* Metrics Grid */}
-                    <div className="grid grid-cols-2 gap-4">
-                      {job.metrics.map((metric, idx) => (
-                        <div
-                          key={idx}
-                          className=" rounded-xl p-4 border border-gray-800 hover:border-gray-600 transition-all"
-                        >
-                          <div className="flex items-start justify-between mb-2">
-                            <span className="text-2xl">{metric.icon}</span>
-                          </div>
-                          <div className={`text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r ${job.color} bg-clip-text text-transparent`}>
-                            {metric.value}
-                          </div>
-                          <div className="text-xs text-gray-500">
-                            {metric.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            {/* End of Timeline */}
-            <div className="md:ml-12 text-center py-8">
-              <div className="inline-flex items-center gap-2 text-gray-500">
-                <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-                <span className="text-sm font-medium">Journey continues...</span>
-                <div className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
-              </div>
-            </div>
+          <div className='py-6 md:col-span-9 md:border-l md:border-neutral-900 md:py-8 md:pl-8'>
+            <p className='max-w-[32ch] text-xl font-medium leading-snug md:text-3xl'>
+              From first components to scalable architecture, each role has
+              widened what I build and how I lead.
+            </p>
+            <p className='mt-4 max-w-[44ch] text-base leading-relaxed text-neutral-600'>
+              Below: where I worked, what I did, and the measurable results at
+              each stage.
+            </p>
           </div>
         </div>
+
+        {/* Row 3 — summary figures */}
+        <dl
+          aria-label='Career summary'
+          className='grid grid-cols-2 border-t border-neutral-900 md:grid-cols-4'
+        >
+          {summary.map((s, i) => (
+            <div
+              key={s.label}
+              className={`border-neutral-300 p-4 md:p-6 ${
+                i % 2 === 1 ? 'border-l' : ''
+              } ${i > 1 ? 'border-t md:border-t-0' : ''} ${
+                i > 0 ? 'md:border-l' : ''
+              } ${i === 0 ? 'md:pl-0' : ''} ${i === 2 ? 'max-md:border-l-0' : ''}`}
+            >
+              <dd className='font-display text-5xl font-semibold leading-none tracking-tighter md:text-6xl'>
+                {s.value}
+              </dd>
+              <dt className='mt-3 text-sm text-neutral-500'>{s.label}</dt>
+            </div>
+          ))}
+        </dl>
+
+        {/* Roles — one ruled row each */}
+        <div>
+          {careerData.map((job) => (
+            <article
+              key={job.id}
+              className='grid border-t border-neutral-900 md:grid-cols-12'
+            >
+              <p className='py-4 text-sm font-semibold md:col-span-3 md:py-8 md:pr-6'>
+                {job.year}
+              </p>
+
+              <div className='pb-8 md:col-span-5 md:border-l md:border-neutral-300 md:py-8 md:pl-8 md:pr-8'>
+                <h2 className='font-display text-3xl font-semibold leading-[1] tracking-tighter md:text-4xl'>
+                  {job.role}
+                </h2>
+                <p className='mt-3 text-lg font-medium'>{job.company}</p>
+                <p className='mt-5 max-w-[42ch] text-base leading-relaxed text-neutral-600'>
+                  {job.description}
+                </p>
+              </div>
+
+              <dl className='grid grid-cols-2 border-t border-neutral-300 md:col-span-4 md:border-l md:border-t-0 md:border-neutral-300'>
+                {job.metrics.map((m, i) => (
+                  <div
+                    key={m.label}
+                    className={`border-neutral-300 p-4 md:p-6 ${
+                      i % 2 === 1 ? 'border-l' : ''
+                    } ${i > 1 ? 'border-t' : ''}`}
+                  >
+                    <dd className='font-display text-3xl font-semibold leading-none tracking-tighter md:text-4xl'>
+                      {m.value}
+                    </dd>
+                    <dt className='mt-2 text-sm text-neutral-500'>{m.label}</dt>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))}
+        </div>
+
+        {/* Closing rule */}
+        <div className='grid border-y border-neutral-900 md:grid-cols-12'>
+          <p className='py-4 text-sm text-neutral-500 md:col-span-4 md:col-start-9 md:pl-8'>
+            Current role ongoing.
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

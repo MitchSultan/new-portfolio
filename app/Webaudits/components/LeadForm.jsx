@@ -1,7 +1,23 @@
 'use client';
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, CheckCircle, MessageSquare, User, Mail, Phone, Building, Globe } from '@/lib/lucide';
+import React, { useEffect, useRef, useState } from 'react';
+
+const focusRing =
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-neutral-900';
+
+const fieldClass =
+  'h-14 w-full bg-transparent text-base placeholder:text-neutral-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-neutral-900';
+
+function Field({ id, label, optional, children }) {
+  return (
+    <div className='border-t border-neutral-300 px-4 pt-3 md:px-6'>
+      <label htmlFor={id} className='block text-sm text-neutral-500'>
+        {label}
+        {optional && <span> (optional)</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
 
 export default function LeadForm({ isOpen, onClose, prefilledUrl }) {
   const [formData, setFormData] = useState({
@@ -15,6 +31,55 @@ export default function LeadForm({ isOpen, onClose, prefilledUrl }) {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const dialogRef = useRef(null);
+  const firstFieldRef = useRef(null);
+
+  // Pick up the audited URL each time the form opens; reset the success state when it closes
+  useEffect(() => {
+    if (isOpen) {
+      setFormData((prev) => ({ ...prev, website: prev.website || prefilledUrl || '' }));
+    } else {
+      setSubmitted(false);
+    }
+  }, [isOpen, prefilledUrl]);
+
+  // Scroll lock, initial focus, Escape + focus trap
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    firstFieldRef.current?.focus({ preventScroll: true });
+
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -26,6 +91,8 @@ export default function LeadForm({ isOpen, onClose, prefilledUrl }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    // TODO: this is simulated. Nothing is sent anywhere yet — post `formData`
+    // to your backend / WhatsApp / CRM here before shipping.
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setSubmitted(true);
@@ -34,209 +101,182 @@ export default function LeadForm({ isOpen, onClose, prefilledUrl }) {
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        onClick={onClose}
+    <div className='fixed inset-0 z-50'>
+      <div aria-hidden className='fixed inset-0 bg-neutral-900/60' />
+
+      <div
+        className='fixed inset-0 overflow-y-auto overscroll-contain'
+        onMouseDown={(e) => {
+          if (e.target === e.currentTarget) onClose();
+        }}
       >
-        {/* Backdrop */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-
-        {/* Modal */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          transition={{ type: 'spring', damping: 25 }}
-          onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-lg rounded-2xl bg-white border border-gray-200 shadow-2xl overflow-hidden"
+        <div
+          ref={dialogRef}
+          role='dialog'
+          aria-modal='true'
+          aria-labelledby='lead-form-title'
+          className='relative mx-auto my-4 w-[calc(100%-2rem)] max-w-[640px] animate-fadeIn border border-neutral-900 bg-white text-neutral-900 md:my-10'
         >
-          {/* Top gradient bar */}
-          <div className="h-1 w-full bg-gradient-to-r from-orange via-primary-500 to-primary-600" />
+          {/* Top bar */}
+          <div className='flex items-center justify-between'>
+            <p className='px-4 py-4 text-sm text-neutral-500 md:px-6'>
+              {submitted ? 'Request received' : 'Full report'}
+            </p>
+            <button
+              type='button'
+              onClick={onClose}
+              id='lead-form-close'
+              className={`border-l border-neutral-900 px-5 py-4 text-sm font-semibold transition-colors hover:bg-neutral-900 hover:text-white ${focusRing}`}
+            >
+              Close
+            </button>
+          </div>
 
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-gray-200 transition-colors z-10"
-            id="lead-form-close"
-          >
-            <X className="w-4 h-4" />
-          </button>
-
-          <AnimatePresence mode="wait">
-            {!submitted ? (
-              <motion.div
-                key="form"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="p-8"
-              >
-                <div className="text-center mb-8">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange/10 to-primary-100 border border-primary-200 flex items-center justify-center mx-auto mb-4">
-                    <Send className="w-6 h-6 text-primary-600" />
-                  </div>
-                  <h3 className="text-2xl font-extrabold text-gray-900">Get Your Full Report</h3>
-                  <p className="text-gray-500 mt-2 text-sm">
-                    Plus a free 15-minute strategy call to walk through your results
-                    and build a custom growth plan for your Nairobi business.
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Full Name"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 text-sm transition-all"
-                      id="lead-form-name"
-                    />
-                  </div>
-
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Email Address"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 text-sm transition-all"
-                      id="lead-form-email"
-                    />
-                  </div>
-
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input
-                      name="phone"
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Phone (e.g. 0712 345 678)"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 text-sm transition-all"
-                      id="lead-form-phone"
-                    />
-                  </div>
-
-                  <div className="relative">
-                    <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input
-                      name="business"
-                      type="text"
-                      value={formData.business}
-                      onChange={handleChange}
-                      placeholder="Business Name (optional)"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 text-sm transition-all"
-                      id="lead-form-business"
-                    />
-                  </div>
-
-                  <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input
-                      name="website"
-                      type="text"
-                      value={formData.website}
-                      onChange={handleChange}
-                      placeholder="Website URL"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 text-sm transition-all"
-                      id="lead-form-website"
-                    />
-                  </div>
-
-                  <label className="flex items-center gap-3 cursor-pointer group" htmlFor="lead-form-whatsapp">
-                    <div className="relative">
-                      <input
-                        name="whatsapp"
-                        type="checkbox"
-                        checked={formData.whatsapp}
-                        onChange={handleChange}
-                        className="sr-only"
-                        id="lead-form-whatsapp"
-                      />
-                      <div className={`w-5 h-5 rounded border ${formData.whatsapp ? 'bg-primary-600 border-primary-600' : 'border-gray-300 bg-white'} flex items-center justify-center transition-all`}>
-                        {formData.whatsapp && <CheckCircle className="w-3.5 h-3.5 text-white" />}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <MessageSquare className="w-4 h-4 text-emerald-500" />
-                      Send me the report via WhatsApp too
-                    </div>
-                  </label>
-
-                  <motion.button
-                    type="submit"
-                    disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-orange to-primary-600 text-white font-bold text-base shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
-                    id="lead-form-submit"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Get My Full Report + Free Strategy Call
-                      </>
-                    )}
-                  </motion.button>
-
-                  <p className="text-center text-xs text-gray-400">
-                    No spam ever. Your data is used solely to deliver your report.
-                  </p>
-                </form>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="p-8 text-center"
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', delay: 0.2 }}
-                  className="w-20 h-20 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-6"
+          {!submitted ? (
+            <form onSubmit={handleSubmit}>
+              <div className='border-t border-neutral-900 px-4 py-8 md:px-6'>
+                <h2
+                  id='lead-form-title'
+                  className='font-display text-3xl font-semibold leading-[1] tracking-tighter md:text-4xl'
                 >
-                  <CheckCircle className="w-10 h-10 text-emerald-500" />
-                </motion.div>
-
-                <h3 className="text-2xl font-extrabold text-gray-900 mb-2">You&apos;re In</h3>
-                <p className="text-gray-500 mb-6">
-                  Your full report is being prepared. Expect a WhatsApp message within 2 hours
-                  with your detailed analysis and a link to book your free strategy call.
+                  Get your full report
+                </h2>
+                <p className='mt-4 max-w-md text-base leading-relaxed text-neutral-600'>
+                  Plus a free 15-minute strategy call to walk through your
+                  results and build a custom growth plan for your Nairobi
+                  business.
                 </p>
+              </div>
 
-                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-sm text-emerald-700">
-                  <strong>Next step:</strong> Check your WhatsApp for a message from Mitch
-                </div>
+              <Field id='lead-form-name' label='Full name'>
+                <input
+                  ref={firstFieldRef}
+                  id='lead-form-name'
+                  name='name'
+                  type='text'
+                  required
+                  autoComplete='name'
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={fieldClass}
+                />
+              </Field>
 
-                <button
-                  onClick={onClose}
-                  className="mt-6 text-sm text-gray-400 hover:text-gray-700 transition-colors"
+              <Field id='lead-form-email' label='Email address'>
+                <input
+                  id='lead-form-email'
+                  name='email'
+                  type='email'
+                  required
+                  autoComplete='email'
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={fieldClass}
+                />
+              </Field>
+
+              <Field id='lead-form-phone' label='Phone'>
+                <input
+                  id='lead-form-phone'
+                  name='phone'
+                  type='tel'
+                  required
+                  autoComplete='tel'
+                  placeholder='e.g. 0712 345 678'
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={fieldClass}
+                />
+              </Field>
+
+              <Field id='lead-form-business' label='Business name' optional>
+                <input
+                  id='lead-form-business'
+                  name='business'
+                  type='text'
+                  autoComplete='organization'
+                  value={formData.business}
+                  onChange={handleChange}
+                  className={fieldClass}
+                />
+              </Field>
+
+              <Field id='lead-form-website' label='Website URL'>
+                <input
+                  id='lead-form-website'
+                  name='website'
+                  type='text'
+                  inputMode='url'
+                  value={formData.website}
+                  onChange={handleChange}
+                  className={fieldClass}
+                />
+              </Field>
+
+              <label
+                htmlFor='lead-form-whatsapp'
+                className='flex cursor-pointer items-center gap-3 border-t border-neutral-300 px-4 py-5 text-base md:px-6'
+              >
+                <input
+                  id='lead-form-whatsapp'
+                  name='whatsapp'
+                  type='checkbox'
+                  checked={formData.whatsapp}
+                  onChange={handleChange}
+                  className='size-5 accent-neutral-900'
+                />
+                Send me the report via WhatsApp too
+              </label>
+
+              <button
+                type='submit'
+                id='lead-form-submit'
+                disabled={isSubmitting}
+                className={`bg-blaze-orange flex min-h-[6rem] w-full items-end justify-between border-t border-neutral-900 px-6 py-6 text-left text-lg font-semibold text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white disabled:opacity-60 disabled:hover:bg-blaze-orange disabled:hover:text-neutral-900 ${focusRing}`}
+              >
+                <span>
+                  {isSubmitting
+                    ? 'Sending...'
+                    : 'Get my full report + free strategy call'}
+                </span>
+                <span aria-hidden>→</span>
+              </button>
+
+              <p className='border-t border-neutral-900 px-4 py-4 text-sm text-neutral-500 md:px-6'>
+                No spam ever. Your data is used solely to deliver your report.
+              </p>
+            </form>
+          ) : (
+            <div role='status'>
+              <div className='border-t border-neutral-900 px-4 py-8 md:px-6'>
+                <h2
+                  id='lead-form-title'
+                  className='font-display text-3xl font-semibold leading-[1] tracking-tighter md:text-4xl'
                 >
-                  Close this window
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+                  You&apos;re in
+                </h2>
+                <p className='mt-4 max-w-md text-base leading-relaxed text-neutral-600'>
+                  Your full report is being prepared. Expect a WhatsApp message
+                  within 2 hours with your detailed analysis and a link to book
+                  your free strategy call.
+                </p>
+              </div>
+              <p className='border-t border-neutral-300 px-4 py-5 text-base md:px-6'>
+                <span className='font-semibold'>Next step:</span> check your
+                WhatsApp for a message from Mitch.
+              </p>
+              <button
+                type='button'
+                onClick={onClose}
+                className={`flex min-h-[5rem] w-full items-end justify-between border-t border-neutral-900 px-6 py-5 text-left text-lg font-semibold transition-colors hover:bg-neutral-900 hover:text-white ${focusRing}`}
+              >
+                <span>Close this window</span>
+                <span aria-hidden>→</span>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

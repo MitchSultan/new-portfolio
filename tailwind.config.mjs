@@ -18,13 +18,14 @@ export default {
         '3xl': '2.5rem',    // 40px
       },
       colors: {
-        primary: "#111111",
-        secondary: "#8B5CF6",
+        primary: "#351e28",
+        secondary: "#ff5c34",
         success: "#16A34A",
         warning: "#D97706",
         danger: "#DC2626",
-        surface: "#FFFFFF",
-        text: "#111827",
+        surface: "#d1efff",
+        text: "#351e28",
+        tangerine: "#ff5c34",
         neutral: "#FFFFFF",
         ...tailwindBrandColors,
       },

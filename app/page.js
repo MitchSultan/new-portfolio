@@ -7,7 +7,7 @@ import HomeBelowFold from "./components/HomeBelowFold";
 
 export default function Page() {
   return (
-    <div className="p-4 overflow-x-hidden">
+    <div className=" ">
       <Navbar />
       <Hero />
       <About />

@@ -1,133 +1,211 @@
 'use client';
-import React, { useState } from "react";
-import Image from "next/image";
+
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
+const navItems = [
+  {
+    title: 'Projects',
+    href: '/playground',
+    children: [
+      { label: 'Evolve Sphere', href: 'https://evolvesphereconsulting.com' },
+      { label: 'Teeside Ltd', href: 'https://teesidemanagementltd.co.ke' },
+      { label: 'The Other Guys', href: 'https://theotherguyske.org' },
+      { label: 'Luxury by Tina', href: 'https://luxurybytina.com' },
+    ],
+  },
+  { title: 'Mitch', href: '/About' },
+  {
+    title: 'Services',
+    href: '/Services',
+    children: [
+      { label: 'Web development', href: '/Services/web-development' },
+      { label: 'Web design', href: '/Services/web-design' },
+      { label: 'Marketing', href: '/Services/marketing' },
+      { label: 'SEO & audits', href: '/Services/seo' },
+    ],
+  },
+  { title: 'Web audits', href: '/Webaudits' },
+];
+
+const isExternal = (href) => /^https?:\/\//.test(href);
+
+const linkFocus =
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-neutral-900';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href) =>
+    pathname === href || pathname.startsWith(`${href}/`);
+
+  // Close the mobile menu on Escape
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
 
   return (
-    <header className="flex w-full justify-between items-center z-50 rounded-md shadow-paper border-b border-gray-200 transition-colors duration-300 bg-surface">
-      <div className="w-full">
-        <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-32 h-24 max-w-full px-4">
-            <a href="/#" className="block w-full py-5">
-              <Image
-                src="/logo.webp"
-                alt="logo"
-                width={128}
-                height={96}
-                className="w-full h-auto"
-                priority
-              />
-            </a>
-          </div>
-          <div className="flex w-full items-center justify-between px-4">
-            <div>
-              <button
-                onClick={() => setOpen(!open)}
-                id="navbarToggler"
-                className={`${open && "navbarTogglerActive"
-                  } absolute right-4 top-1/2 block -translate-y-1/2 rounded-md px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
-              >
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-primary"></span>
-              </button>
-              <nav
-                id="navbarCollapse"
-                className={`absolute right-4 z-50 top-full w-full max-w-[450px] rounded-md bg-surface text-text px-6 py-5 shadow-paper lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:bg-transparent lg:text-text ${!open && "hidden"
-                  } `}
-              >
-                <ul className="block p-6 lg:flex lg:items-center">
-                  <ListItem NavLink="/#">Home</ListItem>
-                  
-                  <DropdownItem title="Work" NavLink="/playground">
-                    <SubListItem NavLink="https://evolvesphereconsulting.com">Evolve Sphere</SubListItem>
-                    <SubListItem NavLink="https://canvaspile.com">Canvas Pile</SubListItem>
-                    <SubListItem NavLink="https://theotherguyske.org">The Other Guys</SubListItem>
-                    <SubListItem NavLink="https://luxurybytina.com">Luxury by Tina</SubListItem>
-                  </DropdownItem>
+    <header className='relative z-50 w-full border-b border-neutral-900 bg-white text-neutral-900'>
+      <div className='mx-auto w-full max-w-[1440px] px-4 md:px-8'>
+        <div className='flex h-16 items-stretch justify-between lg:grid lg:h-20 lg:grid-cols-12'>
+          {/* Logo — sits in the grid's side column */}
+          <a
+            href='/#'
+            className={`flex items-center gap-3 pr-6 lg:col-span-3 ${linkFocus}`}
+          >
+            <Image
+              src='/logos/favicon.svg'
+              alt=''
+              width={64}
+              height={48}
+              className='h-auto w-12'
+              priority
+            />
+            <span className='text-sm font-semibold'>MadeByMitch</span>
+          </a>
 
-                  <ListItem NavLink="/About">About</ListItem>
-                  
-                  <DropdownItem title="What I do" NavLink="/Services">
-                    <SubListItem NavLink="/Services/web-development">Web Development</SubListItem>
-                    <SubListItem NavLink="/Services/web-design">Web Design</SubListItem>
-                    <SubListItem NavLink="/Services/marketing">Marketing</SubListItem>
-                    <SubListItem NavLink="/Services/seo">SEO & Audits</SubListItem>
-                  </DropdownItem>
+          {/* Desktop nav — cells across the main columns */}
+          <nav
+            aria-label='Main'
+            className='hidden lg:col-span-9 lg:block'
+          >
+            <ul className='flex h-full'>
+              {navItems.map((item) => (
+                <li
+                  key={item.title}
+                  className='group relative border-l border-neutral-300'
+                >
+                  <a
+                    href={item.href}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    className={`relative flex h-full items-center gap-2 px-6 text-sm font-medium transition-colors hover:bg-neutral-100 aria-[current=page]:after:absolute aria-[current=page]:after:inset-x-0 aria-[current=page]:after:bottom-0 aria-[current=page]:after:h-[2px] aria-[current=page]:after:bg-neutral-900 ${linkFocus}`}
+                  >
+                    {item.title}
+                    {item.children && (
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='h-4 w-4 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180'
+                        viewBox='0 0 20 20'
+                        fill='currentColor'
+                        aria-hidden='true'
+                      >
+                        <path
+                          fillRule='evenodd'
+                          d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
+                          clipRule='evenodd'
+                        />
+                      </svg>
+                    )}
+                  </a>
 
-                  <ListItem NavLink="/Webaudits">Web Audits</ListItem>
-                </ul>
-              </nav>
-            </div>
-            <div className="hidden justify-end items-center gap-4 pr-16 sm:flex lg:pr-0">
-              <a
-                href="/#"
-                className="px-4 py-2 text-base font-medium text-text hover:text-primary transition-colors"
-              >
-                Free Stuff
-              </a>
+                  {item.children && (
+                    <ul className='absolute left-[-1px] top-full hidden min-w-[240px] border border-neutral-900 bg-white group-focus-within:block group-hover:block'>
+                      {item.children.map((child) => (
+                        <li
+                          key={child.label}
+                          className='border-t border-neutral-300 first:border-t-0'
+                        >
+                          <a
+                            href={child.href}
+                            {...(isExternal(child.href)
+                              ? { target: '_blank', rel: 'noopener noreferrer' }
+                              : {})}
+                            className={`flex items-center justify-between px-6 py-4 text-sm transition-colors hover:bg-neutral-900 hover:text-white ${linkFocus}`}
+                          >
+                            <span>
+                              {child.label}
+                              {isExternal(child.href) && (
+                                <span className='sr-only'>
+                                  {' '}
+                                  (opens in a new tab)
+                                </span>
+                              )}
+                            </span>
+                            {isExternal(child.href) && (
+                              <span aria-hidden>↗</span>
+                            )}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-              <a
-                href="https://wa.me/254703666366"
-                className="btn-primary"
-              >
-                Let's Talk
-              </a>
-            </div>
-          </div>
+          {/* Mobile toggle */}
+          <button
+            type='button'
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls='mobile-menu'
+            className={`-mr-4 border-l border-neutral-300 px-5 text-sm font-semibold transition-colors hover:bg-neutral-100 md:-mr-8 md:px-8 lg:hidden ${linkFocus}`}
+          >
+            {open ? 'Close' : 'Menu'}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {open && (
+        <nav
+          id='mobile-menu'
+          aria-label='Mobile'
+          className='absolute inset-x-0 top-full max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-neutral-900 bg-white lg:hidden'
+        >
+          <ul className='mx-auto max-w-[1440px] px-4 md:px-8'>
+            {navItems.map((item) => (
+              <li
+                key={item.title}
+                className='border-t border-neutral-300 first:border-t-0'
+              >
+                <a
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className={`flex items-center justify-between py-4 text-2xl font-semibold tracking-tight aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-4 ${linkFocus}`}
+                >
+                  <span>{item.title}</span>
+                  <span aria-hidden>→</span>
+                </a>
+
+                {item.children && (
+                  <ul className='pb-4'>
+                    {item.children.map((child) => (
+                      <li key={child.label}>
+                        <a
+                          href={child.href}
+                          onClick={() => setOpen(false)}
+                          {...(isExternal(child.href)
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
+                          className={`flex items-center justify-between border-t border-neutral-300 py-3 pl-4 text-base text-neutral-600 hover:text-neutral-900 ${linkFocus}`}
+                        >
+                          <span>
+                            {child.label}
+                            {isExternal(child.href) && (
+                              <span className='sr-only'> (opens in a new tab)</span>
+                            )}
+                          </span>
+                          {isExternal(child.href) && <span aria-hidden>↗</span>}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
   );
 };
 
 export default Navbar;
-
-const ListItem = ({ children, NavLink }) => {
-  return (
-    <li>
-      <a
-        href={NavLink}
-        className="flex py-2 text-base font-medium hover:text-primary lg:ml-12 lg:inline-flex transition-colors"
-      >
-        {children}
-      </a>
-    </li>
-  );
-};
-
-const DropdownItem = ({ title, NavLink, children }) => {
-  return (
-    <li className="relative group">
-      <a
-        href={NavLink}
-        className="flex py-2 text-base font-medium hover:text-primary lg:ml-12 lg:inline-flex transition-colors items-center gap-1"
-      >
-        {title}
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-        </svg>
-      </a>
-      <div className="absolute left-0 lg:left-12 top-full hidden group-hover:block z-50 pt-2 lg:pt-4">
-        <ul className="bg-surface rounded-md shadow-paper border border-gray-200 py-2 min-w-[200px] flex flex-col">
-          {children}
-        </ul>
-      </div>
-    </li>
-  );
-};
-
-const SubListItem = ({ children, NavLink }) => {
-  return (
-    <li>
-      <a
-        href={NavLink}
-        className="block px-4 py-2 text-sm text-text hover:bg-neutral hover:text-primary transition-colors"
-      >
-        {children}
-      </a>
-    </li>
-  );
-};

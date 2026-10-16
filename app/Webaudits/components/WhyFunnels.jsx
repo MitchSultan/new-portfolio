@@ -1,158 +1,121 @@
-'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
-import { XCircle, CheckCircle, ArrowRight, Globe, Users, Target, Repeat, TrendingDown, DollarSign } from '@/lib/lucide';
 
 const painPoints = [
-  { icon: TrendingDown, text: 'High bounce rates — visitors leave in under 8 seconds' },
-  { icon: XCircle, text: 'No clear path from browsing to buying' },
-  { icon: DollarSign, text: 'Wasted ad spend driving traffic to pages that do not convert' },
-  { icon: Users, text: 'Zero follow-up system — lost leads never return' },
+  'High bounce rates: visitors leave in under 8 seconds',
+  'No clear path from browsing to buying',
+  'Wasted ad spend driving traffic to pages that do not convert',
+  'Zero follow-up system: lost leads never return',
 ];
 
+// `width` narrows the rule above each step, so the list reads as a funnel.
 const funnelSteps = [
   {
-    icon: Globe,
     title: 'Attract',
-    description: 'SEO-optimized content and local targeting bring the right global audience to you',
-    bg: 'bg-emerald-50',
-    border: 'border-emerald-200',
-    iconColor: 'text-emerald-600',
-    width: 'w-full',
+    description:
+      'SEO-optimized content and local targeting bring the right global audience to you',
+    width: '100%',
   },
   {
-    icon: Users,
     title: 'Engage',
-    description: 'Value-driven pages, lead magnets, and interactive tools build trust and capture leads',
-    bg: 'bg-primary-50',
-    border: 'border-primary-200',
-    iconColor: 'text-primary-600',
-    width: 'w-[85%]',
+    description:
+      'Value-driven pages, lead magnets, and interactive tools build trust and capture leads',
+    width: '85%',
   },
   {
-    icon: Target,
     title: 'Convert',
-    description: 'Strategic CTAs, personalized follow-ups, and WhatsApp automation close the deal',
-    bg: 'bg-orange/5',
-    border: 'border-orange/20',
-    iconColor: 'text-orange',
-    width: 'w-[70%]',
+    description:
+      'Strategic CTAs, personalized follow-ups, and WhatsApp automation close the deal',
+    width: '70%',
+    accent: true,
   },
   {
-    icon: Repeat,
     title: 'Retain',
-    description: 'Automated sequences turn one-time buyers into repeat customers and referrals',
-    bg: 'bg-sky-50',
-    border: 'border-sky-200',
-    iconColor: 'text-sky-600',
-    width: 'w-[55%]',
+    description:
+      'Automated sequences turn one-time buyers into repeat customers and referrals',
+    width: '55%',
   },
 ];
 
 export default function WhyFunnels() {
   return (
-    <section className="py-24 px-6  relative overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-orange text-sm font-semibold uppercase tracking-widest">The Missing Piece</span>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900">
-            A Website Alone{' '}
-            <span className="bg-azure-blue bg-clip-text text-transparent">
-              Isn&apos;t Enough
-            </span>
-          </h2>
-          <p className="mt-4 text-gray-500 max-w-xl mx-auto text-lg">
-            Most businesses have a website. Very few have a system that consistently
-            turns strangers into customers. That system is a content funnel.
+    <section className='w-full bg-white text-neutral-900'>
+      <div className='mx-auto w-full max-w-[1440px] px-4 py-16 md:px-8 lg:py-[90px]'>
+        {/* Row 1 — headline */}
+        <div className='grid border-t border-neutral-900 md:grid-cols-12'>
+          <p className='py-4 text-sm text-neutral-500 md:col-span-3 md:py-6'>
+            The missing piece
           </p>
-        </motion.div>
+          <h2 className='pb-8 font-display text-4xl font-semibold leading-[1] tracking-tighter md:col-span-9 md:border-l md:border-neutral-300 md:py-6 md:pb-12 md:pl-8 md:text-6xl lg:text-7xl'>
+            A website alone isn&apos;t enough
+          </h2>
+        </div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none lg:grid-cols-2 gap-6 md:gap-12 items-start pb-6 md:pb-0 hide-scrollbar">
-          {/* Pain points */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex-none w-[90vw] sm:w-[400px] md:w-auto snap-center md:snap-align-none"
-          >
-            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <XCircle className="w-5 h-5 text-rose-500" />
-              What a Basic Website Gets You
+        {/* Row 2 — intro */}
+        <div className='grid border-t border-neutral-900 md:grid-cols-12'>
+          <div className='hidden md:col-span-3 md:block' aria-hidden />
+          <p className='max-w-xl py-6 text-base leading-relaxed text-neutral-600 md:col-span-9 md:border-l md:border-neutral-300 md:pl-8'>
+            Most businesses have a website. Very few have a system that
+            consistently turns strangers into customers. That system is a
+            content funnel.
+          </p>
+        </div>
+
+        {/* Row 3 — problem | solution */}
+        <div className='grid border-y border-neutral-900 md:grid-cols-12'>
+          {/* Problem */}
+          <div className='py-8 md:col-span-6 md:pr-8'>
+            <h3 className='font-display text-2xl font-semibold leading-tight tracking-tight md:text-3xl'>
+              What a basic website gets you
             </h3>
-            <div className="space-y-4">
-              {painPoints.map((point, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-rose-50 border border-rose-200"
+            <ul className='mt-8'>
+              {painPoints.map((text, i) => (
+                <li
+                  key={text}
+                  className='grid grid-cols-[3rem_1fr] border-t border-neutral-300 py-4'
                 >
-                  <point.icon className="w-5 h-5 text-rose-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-gray-700 text-sm">{point.text}</p>
-                </motion.div>
+                  <span className='text-sm tabular-nums text-neutral-500'>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className='text-base leading-snug'>{text}</span>
+                </li>
               ))}
-            </div>
+            </ul>
+          </div>
 
-            {/* Arrow connector */}
-            <div className="flex justify-center my-8 lg:hidden">
-              <ArrowRight className="w-8 h-8 text-primary-500 rotate-90" />
-            </div>
-          </motion.div>
-
-          {/* Funnel visualization */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex-none w-[90vw] sm:w-[400px] md:w-auto snap-center md:snap-align-none"
-          >
-            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-emerald-500" />
-              What a Content Funnel Delivers
+          {/* Solution */}
+          <div className='border-t border-neutral-900 py-8 md:col-span-6 md:border-l md:border-t-0 md:border-neutral-900 md:pl-8'>
+            <h3 className='font-display text-2xl font-semibold leading-tight tracking-tight md:text-3xl'>
+              What a content funnel delivers
             </h3>
-            <div className="space-y-3 flex flex-col items-center">
+            <ol className='mt-8 space-y-6'>
               {funnelSteps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.15 }}
-                  className={`${step.width} p-5 rounded-2xl ${step.bg} border ${step.border}`}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-white border border-gray-100 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <step.icon className={`w-5 h-5 ${step.iconColor}`} />
-                    </div>
+                <li key={step.title}>
+                  <div
+                    aria-hidden
+                    className={`h-1 ${
+                      step.accent ? 'bg-blaze-orange' : 'bg-neutral-900'
+                    }`}
+                    style={{ width: step.width }}
+                  />
+                  <div className='mt-3 grid grid-cols-[3rem_1fr]'>
+                    <span className='text-sm tabular-nums text-neutral-500'>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                     <div>
-                      <h4 className="text-gray-900 font-bold text-base">{step.title}</h4>
-                      <p className="text-gray-500 text-sm mt-1">{step.description}</p>
+                      <h4 className='text-xl font-semibold tracking-tight'>
+                        {step.title}
+                      </h4>
+                      <p className='mt-1 max-w-[46ch] text-base leading-snug text-neutral-600'>
+                        {step.description}
+                      </p>
                     </div>
                   </div>
-                </motion.div>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ol>
+          </div>
         </div>
       </div>
-      <style jsx>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 }

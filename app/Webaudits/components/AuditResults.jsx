@@ -1,247 +1,240 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { RefreshCw, Lock, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, XCircle } from '@/lib/lucide';
+import React, { useEffect, useState } from 'react';
+import useCountUp from './useCountUp';
 
-function CircularScore({ score, size = 120, strokeWidth = 8, delay = 0 }) {
-  const [animatedScore, setAnimatedScore] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
+const focusRing =
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-neutral-900';
 
-  useEffect(() => {
-    if (!isInView) return;
-    const timer = setTimeout(() => {
-      let current = 0;
-      const interval = setInterval(() => {
-        current += 1;
-        if (current >= score) {
-          setAnimatedScore(score);
-          clearInterval(interval);
-        } else {
-          setAnimatedScore(current);
-        }
-      }, 15);
-    }, delay * 1000);
-    return () => clearTimeout(timer);
-  }, [isInView, score, delay]);
+// Status is always shown as a word as well as a colour.
+const getStatus = (score) =>
+  score >= 75
+    ? { label: 'Good', bar: 'bg-emerald-600' }
+    : score >= 45
+      ? { label: 'Needs work', bar: 'bg-amber-500' }
+      : { label: 'Critical', bar: 'bg-rose-600' };
 
-  const offset = circumference - (animatedScore / 100) * circumference;
-  const color = score >= 75 ? '#059669' : score >= 45 ? '#d97706' : '#ef4444';
-
-  return (
-    <div ref={ref} className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="-rotate-90">
-        <circle
-          cx={size / 2} cy={size / 2} r={radius}
-          fill="none" stroke="#f3f4f6" strokeWidth={strokeWidth}
-        />
-        <circle
-          cx={size / 2} cy={size / 2} r={radius}
-          fill="none" stroke={color} strokeWidth={strokeWidth}
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          style={{ transition: 'stroke-dashoffset 0.3s ease' }}
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl font-extrabold text-gray-900">{animatedScore}%</span>
-      </div>
-    </div>
-  );
-}
-
-function ScoreBar({ score, delay = 0 }) {
+function ScoreBar({ score, height = 'h-2', delay = 0 }) {
   const [width, setWidth] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!isInView) return;
-    const timer = setTimeout(() => setWidth(score), delay * 1000);
+    const timer = setTimeout(() => setWidth(score), 50 + delay * 1000);
     return () => clearTimeout(timer);
-  }, [isInView, score, delay]);
+  }, [score, delay]);
 
-  const color = score >= 75 ? 'bg-emerald-500' : score >= 45 ? 'bg-amber-500' : 'bg-rose-500';
-  const StatusIcon = score >= 75 ? CheckCircle : score >= 45 ? AlertTriangle : XCircle;
-  const statusColor = score >= 75 ? 'text-emerald-500' : score >= 45 ? 'text-amber-500' : 'text-rose-500';
+  const { bar } = getStatus(score);
 
   return (
-    <div ref={ref} className="flex items-center gap-3 w-full">
-      <StatusIcon className={`w-4 h-4 ${statusColor} flex-shrink-0`} />
-      <div className="flex-1 h-2.5 rounded-full bg-gray-100 overflow-hidden">
-        <div
-          className={`h-full rounded-full ${color} transition-all duration-1000 ease-out`}
-          style={{ width: `${width}%` }}
-        />
-      </div>
-      <span className="text-gray-900 font-bold text-sm w-8 text-right">{score}</span>
+    <div
+      className={`w-full bg-neutral-200 ${height}`}
+      role='img'
+      aria-label={`Score ${score} out of 100`}
+    >
+      <div
+        className={`h-full ${bar} transition-[width] duration-1000 ease-out motion-reduce:transition-none`}
+        style={{ width: `${width}%` }}
+      />
     </div>
   );
 }
 
-export default function AuditResults({ results, categories, onReAudit, onRequestLeadForm }) {
+function MetricList({ title, data }) {
+  const entries = Object.entries(data || {}).filter(([, value]) => value);
+  if (entries.length === 0) return null;
+
+  return (
+    <div className='p-4 md:p-6'>
+      <h4 className='mb-3 text-sm font-semibold'>{title}</h4>
+      <dl>
+        {entries.map(([label, value]) => (
+          <div
+            key={label}
+            className='flex items-baseline justify-between gap-4 border-t border-neutral-300 py-2 text-sm'
+          >
+            <dt className='text-neutral-500'>{label}</dt>
+            <dd className='text-right font-medium'>{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+export default function AuditResults({
+  results,
+  categories,
+  onReAudit,
+  onRequestLeadForm,
+}) {
   const [expandedCategory, setExpandedCategory] = useState(null);
 
-  const toggleCategory = (key) => {
+  const toggleCategory = (key) =>
     setExpandedCategory(expandedCategory === key ? null : key);
-  };
 
-  const desktopPerformanceScore = results.performance?.score ?? 0;
+  const performanceScore = results.performance?.score ?? 0;
   const performanceTitle = results.performance?.label || 'Performance';
+  const status = getStatus(performanceScore);
+  const [scoreRef, scoreDisplay] = useCountUp(performanceScore);
 
-  const scoreColor = desktopPerformanceScore >= 75 ? 'text-emerald-600' : desktopPerformanceScore >= 45 ? 'text-amber-600' : 'text-rose-600';
-  const scoreBg = desktopPerformanceScore >= 75 ? 'bg-emerald-50' : desktopPerformanceScore >= 45 ? 'bg-amber-50' : 'bg-rose-50';
-  const scoreLabel = desktopPerformanceScore >= 75 ? 'Good' : desktopPerformanceScore >= 45 ? 'Needs Work' : 'Critical';
+  const hasCrux =
+    results.metrics?.crux && Object.values(results.metrics.crux).some(Boolean);
 
   return (
-    <div className="space-y-8">
-      {/* Desktop Lighthouse performance score */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="p-8 rounded-2xl bg-white border border-gray-200 shadow-sm text-center"
-      >
-        <p className="text-gray-500 text-sm mb-2">{performanceTitle} (Desktop) for</p>
-        <h3 className="text-gray-900 text-xl font-bold mb-6">{results.domain}</h3>
-
-        <div className="flex justify-center mb-4">
-          <CircularScore score={desktopPerformanceScore} size={160} strokeWidth={10} />
+    <div>
+      {/* Headline score */}
+      <div className='grid border-t border-neutral-900 md:grid-cols-12'>
+        <div className='py-6 md:col-span-3 md:pr-6'>
+          <p className='text-sm text-neutral-500'>
+            {performanceTitle} (desktop) for
+          </p>
+          <p className='mt-1 break-all text-lg font-semibold'>
+            {results.domain}
+          </p>
         </div>
 
-        <span className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold ${scoreColor} ${scoreBg}`}>
-          {desktopPerformanceScore >= 75 ? <CheckCircle className="w-4 h-4" /> : desktopPerformanceScore >= 45 ? <AlertTriangle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
-          {scoreLabel}
-        </span>
-
-        {results.metrics?.desktop && (
-          <div className="mt-8 pt-6 border-t border-gray-100 text-left">
-            <p className="text-primary-600 text-xs font-semibold uppercase tracking-wider mb-3 text-center">
-              Live Lighthouse metrics (Google PageSpeed)
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 text-sm">
-              <div className="rounded-xl bg-gray-50 p-4">
-                <p className="font-semibold text-gray-800 mb-2">Desktop</p>
-                {Object.entries(results.metrics.desktop).map(([label, value]) =>
-                  value ? (
-                    <p key={label} className="text-gray-600">
-                      <span className="text-gray-500">{label}:</span> {value}
-                    </p>
-                  ) : null
-                )}
-              </div>
-              <div className="rounded-xl bg-gray-50 p-4">
-                <p className="font-semibold text-gray-800 mb-2">Mobile</p>
-                {Object.entries(results.metrics.mobile).map(([label, value]) =>
-                  value ? (
-                    <p key={label} className="text-gray-600">
-                      <span className="text-gray-500">{label}:</span> {value}
-                    </p>
-                  ) : null
-                )}
-              </div>
-            </div>
-            {results.metrics.crux &&
-              Object.values(results.metrics.crux).some(Boolean) && (
-                <div className="mt-4 rounded-xl bg-primary-50/50 p-4 text-sm text-gray-600">
-                  <p className="font-semibold text-gray-800 mb-2">Chrome UX Report (real users)</p>
-                  {Object.entries(results.metrics.crux).map(([label, value]) =>
-                    value ? (
-                      <p key={label}>
-                        <span className="text-gray-500">{label}:</span> {value}
-                      </p>
-                    ) : null
-                  )}
-                </div>
-              )}
+        <div className='pb-8 md:col-span-9 md:border-l md:border-neutral-300 md:py-8 md:pl-8'>
+          <p
+            ref={scoreRef}
+            className='font-display text-[7rem] font-semibold leading-[0.85] tracking-tighter tabular-nums md:text-[11rem]'
+          >
+            {scoreDisplay}
+            <span className='text-4xl md:text-6xl'>%</span>
+          </p>
+          <div className='mt-8'>
+            <ScoreBar score={performanceScore} height='h-3' />
           </div>
-        )}
-      </motion.div>
+          <p className='mt-4 flex items-center gap-3 text-lg font-semibold'>
+            <span
+              aria-hidden
+              className={`inline-block size-3 ${status.bar}`}
+            />
+            {status.label}
+          </p>
+        </div>
+      </div>
+
+      {/* Live metrics */}
+      {results.metrics?.desktop && (
+        <div className='grid border-t border-neutral-900 md:grid-cols-12'>
+          <p className='py-4 text-sm text-neutral-500 md:col-span-3 md:py-6 md:pr-6'>
+            Live Lighthouse metrics (Google PageSpeed)
+          </p>
+          <div
+            className={`grid border-t border-neutral-300 md:col-span-9 md:border-l md:border-t-0 ${
+              hasCrux ? 'md:grid-cols-3' : 'md:grid-cols-2'
+            }`}
+          >
+            <MetricList title='Desktop' data={results.metrics.desktop} />
+            <div className='border-t border-neutral-300 md:border-l md:border-t-0'>
+              <MetricList title='Mobile' data={results.metrics.mobile} />
+            </div>
+            {hasCrux && (
+              <div className='border-t border-neutral-300 md:border-l md:border-t-0'>
+                <MetricList
+                  title='Chrome UX Report (real users)'
+                  data={results.metrics.crux}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Category breakdown */}
-      <div className="space-y-3">
+      <div className='border-y border-neutral-900'>
         {categories.map((cat, i) => {
           const data = results[cat.key];
           if (!data) return null;
 
           const isExpanded = expandedCategory === cat.key;
+          const recommendations = data.recommendations || [];
 
           return (
-            <motion.div
+            <div
               key={cat.key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.08 }}
-              className="rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden"
+              className='border-t border-neutral-300 first:border-t-0'
             >
-              <button
-                onClick={() => toggleCategory(cat.key)}
-                className="w-full flex items-center gap-4 p-5 text-left hover:bg-gray-50 transition-colors"
-                id={`audit-category-${cat.key}`}
-              >
-                <div className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
-                  <cat.icon className="w-5 h-5 text-primary-600" />
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-gray-900 font-semibold text-sm">{data.label || cat.label}</h4>
-                  <div className="mt-2">
-                    <ScoreBar score={data.score} delay={0.2 + i * 0.1} />
-                  </div>
-                </div>
-                {isExpanded ? (
-                  <ChevronUp className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                )}
-              </button>
+              <h4>
+                <button
+                  type='button'
+                  onClick={() => toggleCategory(cat.key)}
+                  aria-expanded={isExpanded}
+                  aria-controls={`audit-panel-${cat.key}`}
+                  id={`audit-category-${cat.key}`}
+                  className={`grid w-full items-center gap-4 py-5 text-left transition-colors hover:bg-neutral-50 md:grid-cols-12 md:gap-0 ${focusRing}`}
+                >
+                  <span className='text-base font-semibold md:col-span-3'>
+                    {data.label || cat.label}
+                  </span>
+                  <span className='md:col-span-7 md:border-l md:border-neutral-300 md:px-8'>
+                    <ScoreBar score={data.score} delay={0.1 + i * 0.1} />
+                  </span>
+                  <span className='flex items-center justify-between md:col-span-2 md:border-l md:border-neutral-300 md:px-6'>
+                    <span className='font-display text-3xl font-semibold leading-none tracking-tighter tabular-nums'>
+                      {data.score}
+                    </span>
+                    <span aria-hidden className='text-xl'>
+                      {isExpanded ? '−' : '+'}
+                    </span>
+                  </span>
+                </button>
+              </h4>
 
               {isExpanded && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="px-5 pb-5 border-t border-gray-100"
+                <div
+                  id={`audit-panel-${cat.key}`}
+                  role='region'
+                  aria-labelledby={`audit-category-${cat.key}`}
+                  className='grid border-t border-neutral-300 md:grid-cols-12'
                 >
-                  <div className="pt-4 space-y-3">
-                    <p className="text-primary-600 text-xs font-semibold uppercase tracking-wider">Recommendations</p>
-                    {data.recommendations.map((rec, j) => (
-                      <div key={j} className="flex items-start gap-3 text-sm text-gray-600">
-                        <span className="text-primary-500 mt-0.5">•</span>
-                        <span>{rec}</span>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
+                  <p className='py-4 text-sm text-neutral-500 md:col-span-3'>
+                    Recommendations
+                  </p>
+                  <ul className='pb-6 md:col-span-9 md:border-l md:border-neutral-300 md:py-4 md:pl-8'>
+                    {recommendations.length === 0 ? (
+                      <li className='text-base text-neutral-600'>
+                        No recommendations for this category.
+                      </li>
+                    ) : (
+                      recommendations.map((rec, j) => (
+                        <li
+                          key={j}
+                          className='grid grid-cols-[3rem_1fr] border-t border-neutral-300 py-3 text-base leading-snug first:border-t-0 first:pt-0'
+                        >
+                          <span className='text-sm tabular-nums text-neutral-500'>
+                            {String(j + 1).padStart(2, '0')}
+                          </span>
+                          <span className='text-neutral-700'>{rec}</span>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </div>
               )}
-            </motion.div>
+            </div>
           );
         })}
       </div>
 
-      {/* Action buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 justify-center pt-4">
-        <motion.button
+      {/* Actions */}
+      <div className='grid border-b border-neutral-900 md:grid-cols-12'>
+        <button
+          type='button'
           onClick={onRequestLeadForm}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange to-primary-600 text-[#020202] font-bold shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2"
-          id="unlock-full-report-button"
+          id='unlock-full-report-button'
+          className={`bg-blaze-orange flex min-h-[8rem] items-end justify-between px-6 py-6 text-left text-lg font-semibold text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white md:col-span-8 ${focusRing}`}
         >
-          <Lock className="w-5 h-5" />
-          Unlock Full Report + Free Strategy Call
-        </motion.button>
-        <motion.button
+          <span>Unlock full report + free strategy call</span>
+          <span aria-hidden>→</span>
+        </button>
+        <button
+          type='button'
           onClick={onReAudit}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-700 font-semibold hover:bg-gray-100 transition-all flex items-center justify-center gap-2"
-          id="re-audit-button"
+          id='re-audit-button'
+          className={`flex min-h-[6rem] items-end justify-between border-t border-neutral-900 px-6 py-6 text-left text-lg font-semibold transition-colors hover:bg-neutral-900 hover:text-white md:col-span-4 md:min-h-[8rem] md:border-l md:border-t-0 ${focusRing}`}
         >
-          <RefreshCw className="w-5 h-5" />
-          Audit Another Site
-        </motion.button>
+          <span>Audit another site</span>
+          <span aria-hidden>↺</span>
+        </button>
       </div>
     </div>
   );
