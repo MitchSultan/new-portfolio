@@ -12,7 +12,7 @@ if (!key) {
 }
 if (urls.length === 0) {
   throw new Error(
-    "Pass one or more fully-qualified changed URLs, for example https://madebymitch.com/Blog/new-article."
+    "Pass one or more fully-qualified changed URLs, for example https://www.madebymitch.com/Blog/new-article."
   );
 }
 

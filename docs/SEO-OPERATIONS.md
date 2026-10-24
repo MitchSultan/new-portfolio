@@ -3,7 +3,7 @@
 ## Verified project context
 
 - Brand: Made by Mitch / Mitch Sultan, inferred from the site header, footer, and existing social profiles.
-- Canonical host: `https://madebymitch.com`, taken from the existing root canonical. The old hand-written sitemap used `www.madebymitch.com`; this implementation standardizes on the non-`www` host and redirects `www`.
+- Canonical host: `https://www.madebymitch.com`, matching the production Vercel primary domain. Vercel redirects the apex domain to `www`; do not add an opposing application-level redirect.
 - Business focus: Nairobi web development, with the homepage specifically targeting real-estate agents, developers, and property managers in Kenya.
 - Language: English. No `hreflang` is configured because the site does not provide translated pages.
 - No street address or public email is present. Therefore no LocalBusiness address or fabricated NAP is emitted. The schema identifies the business as an Organization/Person and describes service areas; WhatsApp is the visible contact channel.
@@ -102,8 +102,8 @@ Revisit this table against each provider's current crawler documentation and you
 
 ## Search Console and Bing setup
 
-1. Deploy the canonical host and verify `https://madebymitch.com/robots.txt` and `https://madebymitch.com/sitemap.xml`.
-2. In Google Search Console, add the Domain property (or URL-prefix property), complete DNS/site verification, then submit `https://madebymitch.com/sitemap.xml` under **Sitemaps**.
+1. Deploy the canonical host and verify `https://www.madebymitch.com/robots.txt` and `https://www.madebymitch.com/sitemap.xml`.
+2. In Google Search Console, add the Domain property (or URL-prefix property), complete DNS/site verification, then submit `https://www.madebymitch.com/sitemap.xml` under **Sitemaps**.
 3. In Bing Webmaster Tools, import the verified Search Console property or verify the domain, then submit the same sitemap under **Sitemaps**.
 4. Inspect the homepage, an important service URL, and a published blog post with each tool's URL inspection/live test. Resolve canonical, crawl, and rendering reports before requesting indexing.
 5. Sitemap submission is a discovery hint, not an indexing guarantee. Do not ping deprecated sitemap-ping endpoints.
@@ -125,7 +125,7 @@ $env:INDEXNOW_KEY = $key
 Deploy the key file, then notify IndexNow after publishing or materially updating URLs:
 
 ```powershell
-npm run seo:indexnow -- https://madebymitch.com/Blog/your-updated-slug https://madebymitch.com/Services/seo
+npm run seo:indexnow -- https://www.madebymitch.com/Blog/your-updated-slug https://www.madebymitch.com/Services/seo
 ```
 
 The script verifies the public key file exists and matches `INDEXNOW_KEY`, sends URLs only for one host per request, and fails explicitly on rejected responses. Remove a generated key file from the repository if you do not want to use IndexNow.
@@ -140,7 +140,7 @@ npm run start
 ```
 
 ```powershell
-npm run seo:crawl -- https://madebymitch.com
+npm run seo:crawl -- https://www.madebymitch.com
 ```
 
 For local validation, use `http://localhost:3000`. The report lists inbound links, orphaned sitemap URLs, routes deeper than three internal clicks, broken internal URLs, and redirecting internal URLs. The crawler follows internal HTML links and reads sitemap entries; it does not authenticate into admin areas.
@@ -148,7 +148,7 @@ For local validation, use `http://localhost:3000`. The report lists inbound link
 ## Audit findings to keep in view
 
 - The root canonical used to apply the homepage URL to every route. It has been removed and route canonicals are now set through page metadata.
-- The old XML sitemap had stale/demo routes, manually dated entries, and the `www` hostname. It has been replaced by a CMS-aware sitemap index at `/sitemap.xml` and public shards at `/sitemaps/{id}.xml`; published blog URLs are sharded without exceeding the 50,000-URL limit. The `www` redirect is permanent (Next.js serves 308); no public path segments were renamed.
+- The old XML sitemap had stale/demo routes and manually dated entries. It has been replaced by a CMS-aware sitemap index at `/sitemap.xml` and public shards at `/sitemaps/{id}.xml`; published blog URLs are sharded without exceeding the 50,000-URL limit. Vercel's primary-domain redirect selects the `www` host; the application does not redirect between hosts.
 - Existing routes use uppercase path segments (`/About`, `/Services`, `/Blog`). They are retained to avoid changing existing public URLs; do not lowercase these without a complete redirect and internal-link migration.
 - No multilingual content was found, so `hreflang` is not applicable.
 - Remote CMS images in blog views use ordinary `<img>` tags with intrinsic dimensions and lazy loading below the fold; review loading priority before switching to `next/image` (which needs a constrained remote-host policy).
