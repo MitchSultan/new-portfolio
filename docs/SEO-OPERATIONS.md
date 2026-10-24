@@ -36,7 +36,7 @@ Rendering modes and bundle sizes below are from the successful Next.js 15.5.23 p
 | `/admin/projects/create` | Static; client auth guard | No | No | Not crawl-discovered | 464 B / 172 kB |
 | `/admin/projects/[id]` | Dynamic; client auth guard | No | No | Not crawl-discovered | 702 B / 172 kB |
 | `/login` | Static client form | No | No | Not crawl-discovered | 1.51 / 161 kB |
-| `/api` | Static data-demo page | No | No | Not crawl-discovered | 486 B / 108 kB |
+| `/api` | Dynamic SSR; fetches current F1 driver data from OpenF1 | No | No | Not crawl-discovered | 486 B / 108 kB |
 | `/colorPalette` | Static client demo | No | No | 13 | 40.8 / 159 kB |
 | `/deadline` | Static client demo | No | No | Not crawl-discovered | 1.19 / 104 kB |
 | `/hero` | Static client demo | No | No | Not crawl-discovered | 22.2 / 158 kB |
@@ -153,7 +153,7 @@ For local validation, use `http://localhost:3000`. The report lists inbound link
 - No multilingual content was found, so `hreflang` is not applicable.
 - Remote CMS images in blog views use ordinary `<img>` tags with intrinsic dimensions and lazy loading below the fold; review loading priority before switching to `next/image` (which needs a constrained remote-host policy).
 - The blog listing, article body, and portfolio grid are server-rendered; browser interactions hydrate on top of the initial content.
-- The final `npm run build` passes compilation, lint/type validation, static generation, and trace collection. It logs a non-fatal `Drivers fetch failed: 401` while prerendering the noindex `/api` demo; repair that demo's upstream credentials/endpoint if it is meant to display live data.
+- The final `npm run build` passes compilation, lint/type validation, static generation, and trace collection. The noindex `/api` demo uses OpenF1's `session_key=latest` driver query and renders dynamically so build-time rendering does not depend on the live API.
 - The route bundles share 103 kB of first-load JavaScript. Public first-load sizes are 113–200 kB; the Blog and Playground are 193 kB and 175 kB, respectively. Removing the Blog's GSAP entrance effect reduced its first-load JS by 27 kB and avoids hiding server-rendered cards during hydration. The Playground's project modal now code-splits its GSAP animation and loads only on interaction, reducing first-load JS by 28 kB. The private Blog editor is largest at 312 kB. No Lighthouse/Core Web Vitals lab run was available, so confirm LCP, INP, and CLS on production field data rather than inferring them from bundle size.
 - Montserrat, Roboto, and PT Mono use `next/font` with `display: swap`, avoiding render-blocking third-party font CSS on public pages.
 - A Person/Organization and Service graph is used instead of LocalBusiness because the codebase has no public street address or verified local NAP. Do not add review or offer schema without matching visible evidence.

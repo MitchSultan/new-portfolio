@@ -1,52 +1,25 @@
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic';
+
 async function getDrivers() {
-  const currentYear = new Date().getFullYear();
-  
   try {
-    // Get drivers list
-    const driversResponse = await fetch('https://api.openf1.org/v1/drivers?year=2023');
+    const driversResponse = await fetch(
+      'https://api.openf1.org/v1/drivers?session_key=latest'
+    );
     if (!driversResponse.ok) {
       throw new Error(`Drivers fetch failed: ${driversResponse.status}`);
     }
     const drivers = await driversResponse.json();
 
-    // Get latest session key for driver images
-    const sessionsResponse = await fetch(
-      `https://api.openf1.org/v1/sessions?year=${currentYear}&order=date_desc&page=1`
-    );
-    if (!sessionsResponse.ok) {
-      throw new Error(`Sessions fetch failed: ${sessionsResponse.status}`);
+    if (!Array.isArray(drivers)) {
+      throw new Error('Drivers response was not a list.');
     }
-    const sessionsData = await sessionsResponse.json();
-    const [latestSession] = sessionsData || [];
 
-    // Add image URLs to drivers
-    const driversWithImages = await Promise.all(
-      drivers.map(async (driver) => {
-        try {
-          const imageResponse = await fetch(
-            `https://api.openf1.org/v1/images?driver_number=${driver.driver_number}&session_key=${latestSession?.session_key}`
-          );
-          if (!imageResponse.ok) {
-            throw new Error(`Image fetch failed for ${driver.driver_number}: ${imageResponse.status}`);
-          }
-          const [imageData] = await imageResponse.json();
-          
-          return {
-            ...driver,
-            image_url: imageData?.url || null,
-          };
-        } catch (error) {
-          return {
-            ...driver,
-            image_url: null,
-          };
-        }
-      })
-    );
-
-    return driversWithImages;
+    return drivers.map((driver) => ({
+      ...driver,
+      image_url: driver.headshot_url || null,
+    }));
   } catch (error) {
     console.error('Error fetching drivers:', error);
     return [];

@@ -3,6 +3,12 @@ const nextConfig = {
   trailingSlash: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.formula1.com",
+      },
+    ],
   },
   async redirects() {
     return [
