@@ -61,9 +61,9 @@ export default function Career() {
           <p className='py-4 text-sm text-neutral-500 md:col-span-3 md:py-6'>
             Career, 2023 – present
           </p>
-          <h1 className='pb-8 font-display text-4xl font-semibold leading-[1] tracking-tighter md:col-span-9 md:border-l md:border-neutral-300 md:py-6 md:pb-12 md:pl-8 md:text-6xl lg:text-7xl'>
+          <h2 className='pb-8 font-display text-4xl font-semibold leading-[1] tracking-tighter md:col-span-9 md:border-l md:border-neutral-300 md:py-6 md:pb-12 md:pl-8 md:text-6xl lg:text-7xl'>
             Career trajectory
-          </h1>
+          </h2>
         </div>
 
         {/* Row 2 — current role block + intro */}

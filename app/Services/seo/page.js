@@ -1,9 +1,18 @@
 import ServiceDetail from '../../components/ServiceDetail';
+import { pageMetadata } from '../../../lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'SEO Services in Nairobi, Kenya',
+  description:
+    'Technical and on-page SEO services to help Kenyan businesses improve search visibility, site quality and organic traffic.',
+  path: '/Services/seo',
+});
 
 export default function SeoPage() {
   return (
     <ServiceDetail
       title='SEO optimization'
+      slug='seo'
       intro='Climb the search rankings and get found. I implement strategic SEO practices to increase your visibility and drive organic traffic to your site.'
       features={[
         {

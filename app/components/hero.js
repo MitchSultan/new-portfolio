@@ -30,17 +30,40 @@ export default function Hero() {
     <section className='relative flex min-h-screen bg-white w-full flex-col  '>
       <div className='mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-4 md:px-8'>
         {/* Row 1 — masthead */}
-        <header className='grid grid-cols-2 border-b border-neutral-900 text-sm md:grid-cols-12'>
-          <p className='col-span-2 py-4 font-semibold md:col-span-3'>MadeByMitch</p>
-          <p className='border-neutral-300 py-4 pr-4 text-neutral-600 md:col-span-3 md:border-l md:pl-4'>
-            Web design and custom software
-          </p>
-          <p className='border-neutral-300 py-4 pl-4 text-neutral-600 md:col-span-3 md:border-l'>
-            Clients in Kenya, Australia and the US
-          </p>
-          <p className='col-span-2 border-neutral-300 pb-4 text-neutral-600 md:col-span-3 md:border-l md:py-4 md:pl-4'>
-            Based in Nairobi
-          </p>
+        <header className='border-b border-neutral-900 text-sm'>
+          <div className='masthead-viewport md:hidden'>
+            <div className='masthead-track'>
+              {[0, 1].map((copy) => (
+                <div
+                  key={copy}
+                  className='masthead-group'
+                  aria-hidden={copy === 1 ? 'true' : undefined}
+                >
+                  <p className='py-4 pr-8 text-neutral-600'>
+                    Web design and custom software
+                  </p>
+                  <p className='border-l border-neutral-300 py-4 pl-8 pr-8 text-neutral-600'>
+                    Clients in Kenya, Australia and the US
+                  </p>
+                  <p className='border-l border-neutral-300 py-4 pl-8 pr-8 text-neutral-600'>
+                    Based in Nairobi
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className='hidden grid-cols-12 md:grid'>
+            <p className='border-neutral-300 py-4 pr-4 text-neutral-600 md:col-span-3 md:border-l md:pl-4'>
+              Web design and custom software
+            </p>
+            <p className='border-neutral-300 py-4 pl-4 text-neutral-600 md:col-span-3 md:border-l'>
+              Clients in Kenya, Australia and the US
+            </p>
+            <p className='border-neutral-300 py-4 pl-4 text-neutral-600 md:col-span-3 md:border-l'>
+              Based in Nairobi
+            </p>
+          </div>
         </header>
 
         {/* Row 2 — main grid */}
@@ -63,17 +86,13 @@ export default function Hero() {
           <div className='order-1 flex flex-col md:order-2 md:col-span-9'>
             <div className='flex flex-1 items-end py-10 md:py-16 md:pl-8'>
               <h1 className='font-display text-5xl font-semibold leading-[0.95] tracking-tighter md:text-7xl lg:text-[7.5rem]'>
-                Agency-level quality{' '}
-                <span className='text-neutral-400'>
-                  with freelancer-level attention.
-                </span>
+                Building real-estate brands that sell online.
               </h1>
             </div>
 
             <div className='grid border-t border-neutral-900 md:grid-cols-9'>
               <p className='max-w-md py-6 text-lg leading-snug text-neutral-700 md:col-span-5 md:py-8 md:pl-8 md:text-xl'>
-                I build high-converting websites and custom software for growing
-                brands.
+                I’m Mitch, a Nairobi web developer who builds fast, search-optimised websites for real estate agents, developers and property managers across Kenya. Your listings get found on Google, buyers enquire by WhatsApp or form, and you get qualified leads.
               </p>
 
               <a
@@ -97,9 +116,9 @@ export default function Hero() {
       </div>
 
       {/* Row 3 — client marquee, ruled off from the grid */}
-      <div className='border-t border-neutral-900'>
+      {/* <div className='border-t border-neutral-900'>
         <LogoMarquee />
-      </div>
+      </div> */}
     </section>
   );
 }

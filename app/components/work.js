@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { supabase } from '../lib/supabase/server';
-import ProjectModal from './projectmodal';
+
+const ProjectModal = dynamic(() => import('./projectmodal'), { ssr: false });
 
 const asText = (value) =>
   Array.isArray(value) ? value.join(' ') : String(value ?? '');
 
-const Work = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Work = ({ initialProjects }) => {
+  const hasInitialProjects = Array.isArray(initialProjects);
+  const [projects, setProjects] = useState(initialProjects ?? []);
+  const [loading, setLoading] = useState(!hasInitialProjects);
   const [error, setError] = useState(false);
 
   const [query, setQuery] = useState('');
@@ -22,6 +25,8 @@ const Work = () => {
   const openerRef = useRef(null);
 
   useEffect(() => {
+    if (hasInitialProjects) return;
+
     const fetchProjects = async () => {
       try {
         const { data, error } = await supabase
@@ -42,7 +47,7 @@ const Work = () => {
     };
 
     fetchProjects();
-  }, []);
+  }, [hasInitialProjects]);
 
   const niches = useMemo(() => {
     const unique = [];
@@ -181,6 +186,7 @@ const Work = () => {
 
         {/* Project grid */}
         <div className='border-b border-neutral-900'>
+          <h2 className='sr-only'>Portfolio project examples</h2>
           {error ? (
             <p className='border-t border-neutral-900 px-4 py-16 text-lg md:px-8'>
               The projects couldn&apos;t be loaded. Refresh the page to try
@@ -239,7 +245,10 @@ const Work = () => {
                     <img
                       src={project.image}
                       alt={project.title}
+                      width='800'
+                      height='600'
                       loading='lazy'
+                      decoding='async'
                       className={`h-full w-full object-cover ${
                         selected?.project.id === project.id ? 'invisible' : ''
                       }`}

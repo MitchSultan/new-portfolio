@@ -1,13 +1,9 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-);
+import { createServerSupabaseClient } from '../../../lib/server-supabase';
 
 export async function GET(request, { params }) {
   try {
+    const supabase = createServerSupabaseClient({ serviceRole: false });
     const { id } = params;
 
     // Fetch the report's storage URL from the database

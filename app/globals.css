@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes masthead-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.masthead-viewport {
+  overflow: hidden;
+}
+
+.masthead-track {
+  display: flex;
+  width: max-content;
+  animation: masthead-scroll 24s linear infinite;
+}
+
+.masthead-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead-track {
+    display: block;
+    width: 100%;
+    animation: none;
+  }
+
+  .masthead-group {
+    flex-wrap: wrap;
+  }
+
+  .masthead-group[aria-hidden='true'] {
+    display: none;
+  }
+}
+
 @plugin "daisyui";
 
 @layer base {

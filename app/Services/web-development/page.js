@@ -1,9 +1,18 @@
 import ServiceDetail from '../../components/ServiceDetail';
+import { pageMetadata } from '../../../lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Web Development in Nairobi, Kenya',
+  description:
+    'Custom, responsive web development for businesses in Kenya, with a focus on performance, maintainability and qualified leads.',
+  path: '/Services/web-development',
+});
 
 export default function WebDevPage() {
   return (
     <ServiceDetail
       title='Web development'
+      slug='web-development'
       intro='Robust, scalable, and high-performance websites built with the latest technologies. I write clean, maintainable code that powers your business growth.'
       features={[
         {

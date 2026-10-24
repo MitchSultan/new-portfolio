@@ -1,17 +1,21 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { runPageSpeedAudit } from '../../../../../lib/pagespeed-audit';
+import { createServerSupabaseClient } from '../../../../../lib/server-supabase';
 
 export const maxDuration = 60; // Set timeout to 60 seconds
-
-const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST(request, { params }) {
   const { jobId } = await params;
   if (!jobId) {
     return NextResponse.json({ error: 'Job ID is required.' }, { status: 400 });
+  }
+
+  let supabase;
+  try {
+    supabase = createServerSupabaseClient();
+  } catch (error) {
+    console.error('PageSpeed Supabase configuration failed:', error);
+    return NextResponse.json({ error: 'PageSpeed storage is not configured.' }, { status: 500 });
   }
 
   // Fetch job

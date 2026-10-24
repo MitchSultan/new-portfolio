@@ -1,9 +1,18 @@
 import ServiceDetail from '../../components/ServiceDetail';
+import { pageMetadata } from '../../../lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Website and Marketing Content Creation',
+  description:
+    'Create clear website copy, landing pages, email sequences and social content that explain your offer and support customer action.',
+  path: '/Services/content-creation',
+});
 
 export default function ContentCreationPage() {
   return (
     <ServiceDetail
       title='Content creation'
+      slug='content-creation'
       intro="Compelling narratives that tell your brand's story. From website copy to social media posts, I create content that engages, inspires, and converts."
       features={[
         {

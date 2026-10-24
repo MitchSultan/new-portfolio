@@ -2,6 +2,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import Breadcrumbs from '../components/Breadcrumbs';
 import AuditHero from './components/AuditHero';
 import MarketInsights from './components/MarketInsights';
 import WhyFunnels from './components/WhyFunnels';
@@ -34,6 +35,7 @@ export default function WebAuditsPage() {
   return (
     <div className=" min-h-screen  overflow-x-hidden">
       <Navbar />
+      <Breadcrumbs items={[{ name: 'Website audit', href: '/Webaudits' }]} />
       {/* Hero with URL input */}
       <AuditHero onStartAudit={handleStartAudit} />
 

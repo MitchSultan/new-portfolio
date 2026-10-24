@@ -1,9 +1,18 @@
 import ServiceDetail from '../../components/ServiceDetail';
+import { pageMetadata } from '../../../lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Website Design for Businesses in Kenya',
+  description:
+    'User-focused website design, responsive layouts, visual identity and prototypes for businesses that need a clear online presence.',
+  path: '/Services/web-design',
+});
 
 export default function WebDesignPage() {
   return (
     <ServiceDetail
       title='Web design'
+      slug='web-design'
       intro='I craft visually stunning, user-centric designs that captivate your audience. From initial concept to final polish, I ensure every pixel serves a purpose.'
       features={[
         {

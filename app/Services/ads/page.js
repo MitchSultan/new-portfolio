@@ -1,9 +1,18 @@
 import ServiceDetail from '../../components/ServiceDetail';
+import { pageMetadata } from '../../../lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Digital Ads Management for Kenyan Businesses',
+  description:
+    'Plan and manage targeted Google and social media campaigns with conversion goals and transparent performance tracking.',
+  path: '/Services/ads',
+});
 
 export default function AdsPage() {
   return (
     <ServiceDetail
       title='Ads management'
+      slug='ads'
       intro='Targeted campaigns that convert. I manage your ad spend efficiently to ensure you get the best return on investment for your marketing budget.'
       features={[
         {

@@ -1,9 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { createServerSupabaseClient } from '../../../../lib/server-supabase';
 
 const VALID_STATUSES = ['pending', 'running', 'completed', 'failed'];
 
@@ -11,6 +7,14 @@ export async function GET(request, { params }) {
   const { jobId } = await params;
   if (!jobId) {
     return NextResponse.json({ error: 'Job ID is required.' }, { status: 400 });
+  }
+
+  let supabase;
+  try {
+    supabase = createServerSupabaseClient();
+  } catch (error) {
+    console.error('PageSpeed Supabase configuration failed:', error);
+    return NextResponse.json({ error: 'PageSpeed storage is not configured.' }, { status: 500 });
   }
 
   const { data: job, error } = await supabase
@@ -43,6 +47,14 @@ export async function PATCH(request, { params }) {
   const { jobId } = await params;
   if (!jobId) {
     return NextResponse.json({ error: 'Job ID is required.' }, { status: 400 });
+  }
+
+  let supabase;
+  try {
+    supabase = createServerSupabaseClient();
+  } catch (error) {
+    console.error('PageSpeed Supabase configuration failed:', error);
+    return NextResponse.json({ error: 'PageSpeed storage is not configured.' }, { status: 500 });
   }
 
   const body = await request.json();

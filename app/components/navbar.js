@@ -16,13 +16,14 @@ const navItems = [
     ],
   },
   { title: 'Mitch', href: '/About' },
+  { title: 'Blog', href: '/Blog' },
   {
     title: 'Services',
     href: '/Services',
     children: [
       { label: 'Web development', href: '/Services/web-development' },
       { label: 'Web design', href: '/Services/web-design' },
-      { label: 'Marketing', href: '/Services/marketing' },
+      { label: 'Content creation', href: '/Services/content-creation' },
       { label: 'SEO & audits', href: '/Services/seo' },
     ],
   },
@@ -55,7 +56,7 @@ const Navbar = () => {
         <div className='flex h-16 items-stretch justify-between lg:grid lg:h-20 lg:grid-cols-12'>
           {/* Logo — sits in the grid's side column */}
           <a
-            href='/#'
+            href='/'
             className={`flex items-center gap-3 pr-6 lg:col-span-3 ${linkFocus}`}
           >
             <Image

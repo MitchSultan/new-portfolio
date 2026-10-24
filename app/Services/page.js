@@ -1,6 +1,17 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import Breadcrumbs from '../components/Breadcrumbs';
+import JsonLd from '../components/JsonLd';
+import { pageMetadata } from '../../lib/seo';
+import { SITE_URL } from '../../lib/seo';
+
+export const metadata = pageMetadata({
+  title: 'Web Design, Development and SEO Services in Nairobi',
+  description:
+    'Explore web design, web development, SEO, ads management and content creation services for businesses in Kenya.',
+  path: '/Services',
+});
 
 const WHATSAPP = 'https://wa.me/254703666366';
 
@@ -48,7 +59,19 @@ const rowFocus =
 export default function ServicesPage() {
   return (
     <div className='flex min-h-screen flex-col bg-white text-neutral-900'>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': `${SITE_URL}/Services#webpage`,
+          url: `${SITE_URL}/Services`,
+          name: 'Web Design, Development and SEO Services in Nairobi',
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          inLanguage: 'en',
+        }}
+      />
       <Navbar />
+      <Breadcrumbs items={[{ name: 'Services', href: '/Services' }]} />
 
       <main className='flex-1'>
         <div className='mx-auto w-full max-w-[1440px] px-4 pb-16 pt-12 md:px-8 md:pt-16 lg:pb-[90px] lg:pt-20'>
@@ -99,7 +122,7 @@ export default function ServicesPage() {
                   </span>
 
                   <span className='flex items-end justify-between text-lg font-semibold md:col-span-3 md:border-l md:border-neutral-300 md:px-6 md:group-hover:border-neutral-700'>
-                    <span>Learn more</span>
+                    <span>Explore {service.title}</span>
                     <span aria-hidden className='md:pr-2'>
                       →
                     </span>

@@ -1,6 +1,10 @@
 import React from 'react';
 import Navbar from './navbar';
 import Footer from './footer';
+import Breadcrumbs from './Breadcrumbs';
+import JsonLd from './JsonLd';
+import RelatedContent from './RelatedContent';
+import { SITE_URL } from '../../lib/seo';
 
 const WHATSAPP = 'https://wa.me/254703666366';
 
@@ -19,13 +23,46 @@ export default function ServiceDetail({
   title,
   intro,
   features,
+  slug,
   toolsTitle,
   tools,
   cta,
 }) {
   return (
     <div className='flex min-h-screen flex-col bg-white text-neutral-900'>
+      <JsonLd
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            '@id': `${SITE_URL}/Services/${slug}#service`,
+            name: title,
+            description: intro,
+            serviceType: title,
+            provider: { '@id': `${SITE_URL}/#organization` },
+            areaServed: ['Nairobi', 'Kenya'],
+            url: `${SITE_URL}/Services/${slug}`,
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            '@id': `${SITE_URL}/Services/${slug}#webpage`,
+            url: `${SITE_URL}/Services/${slug}`,
+            name: `${title} | Made by Mitch`,
+            description: intro,
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            about: { '@id': `${SITE_URL}/Services/${slug}#service` },
+            inLanguage: 'en',
+          },
+        ]}
+      />
       <Navbar />
+      <Breadcrumbs
+        items={[
+          { name: 'Services', href: '/Services' },
+          { name: title, href: `/Services/${slug}` },
+        ]}
+      />
 
       <main className='flex-1'>
         <div className='mx-auto w-full max-w-[1440px] px-4 pb-16 pt-12 md:px-8 md:pt-16 lg:pb-[90px] lg:pt-20'>
@@ -116,6 +153,26 @@ export default function ServiceDetail({
               <span aria-hidden>→</span>
             </a>
           </div>
+
+          <RelatedContent
+            links={[
+              {
+                title: 'Web development',
+                href: '/Services/web-development',
+                description: 'Build a fast, responsive website for your business.',
+              },
+              {
+                title: 'Website SEO',
+                href: '/Services/seo',
+                description: 'Improve technical and on-page search visibility.',
+              },
+              {
+                title: 'Free website audit',
+                href: '/Webaudits',
+                description: 'Review performance, accessibility and SEO signals.',
+              },
+            ].filter((link) => link.href !== `/Services/${slug}`)}
+          />
         </div>
       </main>
 

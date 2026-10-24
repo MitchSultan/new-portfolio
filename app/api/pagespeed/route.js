@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { normalizeAuditUrl } from '../../../lib/pagespeed-audit';
-
-const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { createServerSupabaseClient } from '../../../lib/server-supabase';
 
 export async function POST(request) {
   try {
+    const supabase = createServerSupabaseClient();
     const body = await request.json();
     const url = body?.url;
 

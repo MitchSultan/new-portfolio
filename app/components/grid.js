@@ -42,6 +42,8 @@ export default function About() {
             <img
               src='/images/hor.webp'
               alt='Portrait of Mitch Sultan'
+              width='800'
+              height='1000'
               className='aspect-[4/5] w-full object-cover'
             />
           </div>

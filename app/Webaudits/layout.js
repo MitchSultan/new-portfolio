@@ -1,7 +1,15 @@
+import JsonLd from "../components/JsonLd";
+import { pageMetadata, SITE_URL } from "../../lib/seo";
+
 export const metadata = {
-  title: "Free Nairobi Website Audit — Digital Landscape Report 2026 | Made by Mitch",
+  ...pageMetadata({
+    title: "Free Website Audit for Businesses in Nairobi",
+    description:
+      "Run a free website audit to review Lighthouse performance, accessibility, best practices and SEO scores for your website.",
+    path: "/Webaudits",
+  }),
   description:
-    "Get a free, instant website audit and discover how Nairobi businesses turn visitors into customers. See your site's performance, mobile UX, SEO, and conversion scores in 30 seconds.",
+    "Run a free website audit to review Lighthouse performance, accessibility, best practices and SEO scores for your website.",
   keywords: [
     "Nairobi website audit",
     "Kenya web development",
@@ -11,13 +19,32 @@ export const metadata = {
     "SEO Kenya",
   ],
   openGraph: {
-    title: "Is Your Website Losing Customers in Nairobi's KES 800B+ Digital Economy?",
+    title: "Free Website Audit for Businesses in Nairobi",
     description:
-      "Free instant audit — check your site's performance, SEO, mobile UX, and conversion flow in 30 seconds.",
+      "Review your website's Lighthouse performance, accessibility, best practices and SEO scores.",
     type: "website",
+    url: `${SITE_URL}/Webaudits`,
+    images: [{ url: "/opengraph-image", alt: "Free website audit for businesses in Nairobi" }],
   },
 };
 
 export default function WebAuditsLayout({ children }) {
-  return children;
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `${SITE_URL}/Webaudits#webpage`,
+          url: `${SITE_URL}/Webaudits`,
+          name: "Free Website Audit for Businesses in Nairobi",
+          description:
+            "Run a free website audit to review Lighthouse performance, accessibility, best practices and SEO scores.",
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          inLanguage: "en",
+        }}
+      />
+      {children}
+    </>
+  );
 }

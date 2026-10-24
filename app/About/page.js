@@ -6,12 +6,14 @@ import Toolbox from '../components/toolbox';
 import Exper from '../components/exper';
 import Career from '../components/career';
 import Footer from '../components/footer';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 
 export default function About() {
   return (
     <>
 <Navbar/>
+<Breadcrumbs items={[{ name: 'About Mitch', href: '/About' }]} />
 <section id="my-story">
   <BentoGrid/>
 </section>

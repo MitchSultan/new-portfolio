@@ -1,7 +1,8 @@
 'use client';
 import React, { useState } from 'react';
+import JsonLd from '../../components/JsonLd';
 
-const faqs = [
+export const faqs = [
   {
     question: 'What does the website audit actually measure?',
     answer:
@@ -38,7 +39,21 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <section className='w-full bg-white text-neutral-900'>
+    <section id='faq' className='w-full bg-white text-neutral-900'>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
+        }}
+      />
       <div className='mx-auto w-full max-w-[1440px] px-4 py-16 md:px-8 lg:py-[90px]'>
         {/* Row 1 — headline */}
         <div className='grid border-t border-neutral-900 md:grid-cols-12'>

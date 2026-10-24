@@ -1,21 +1,9 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createServerSupabaseClient } from '../../../lib/server-supabase';
 import { google } from 'googleapis';
 import twilio from 'twilio';
 import puppeteer from 'puppeteer';
 import { generateHTMLTemplate } from './template';
-
-// Initialize Supabase Admin Client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-);
-
-// Initialize Twilio Client
-const twilioClient = twilio(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-);
 
 export async function POST(request) {
   try {
@@ -24,6 +12,12 @@ export async function POST(request) {
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    const supabase = createServerSupabaseClient();
+    const twilioClient = twilio(
+      process.env.TWILIO_ACCOUNT_SID,
+      process.env.TWILIO_AUTH_TOKEN
+    );
 
     // 2. Setup Google Auth
     let credentialsPayload = undefined;

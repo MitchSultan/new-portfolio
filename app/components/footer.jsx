@@ -19,20 +19,22 @@ const linkGroups = [
       { label: 'Web design', href: '/Services/web-design' },
       { label: 'SEO & audits', href: '/Services/seo' },
       { label: 'Google Ads', href: '/Services/ads' },
+      { label: 'Content creation', href: '/Services/content-creation' },
     ],
   },
   {
     title: 'Resources',
     links: [
       { label: 'Color palette', href: '/colorPalette' },
-      { label: 'Web collection', href: '#' },
+      { label: 'Project portfolio', href: '/playground' },
+      { label: 'Web development insights', href: '/Blog' },
     ],
   },
   {
     title: 'Helpful links',
     links: [
-      { label: 'FAQs', href: '#' },
-      { label: 'Support', href: '#' },
+      { label: 'Website audit FAQs', href: '/Webaudits#faq' },
+      { label: 'Contact Mitch', href: WHATSAPP },
       { label: 'Live chat', href: WHATSAPP, live: true },
     ],
   },
@@ -124,7 +126,12 @@ export default function Footer() {
         {/* Row 3 — colophon + social cells */}
         <div className='grid border-y border-neutral-900 md:grid-cols-12'>
           <p className='py-6 text-sm text-neutral-500 md:col-span-7 md:py-0 md:flex md:items-center'>
-            Copyright &copy; 2026. All rights reserved. Made by Mitch
+            <span>
+              Copyright &copy; {new Date().getFullYear()}. Made by Mitch · Nairobi, Kenya ·{' '}
+              <a className='underline underline-offset-4' href='tel:+254703666366'>
+                +254 703 666 366
+              </a>
+            </span>
           </p>
           <ul className='grid grid-cols-5 border-t border-neutral-900 md:col-span-5 md:border-t-0'>
             {socials.map((social) => (
