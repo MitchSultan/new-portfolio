@@ -249,7 +249,7 @@ const Work = ({ initialProjects }) => {
                       height='600'
                       loading='lazy'
                       decoding='async'
-                      className={`h-full w-full object-cover ${
+                      className={`h-full w-full object-contain ${
                         selected?.project.id === project.id ? 'invisible' : ''
                       }`}
                     />

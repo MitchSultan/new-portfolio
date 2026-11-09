@@ -5,9 +5,9 @@ export default function RelatedPosts({ posts, category }) {
   if (!posts?.length) return null;
 
   return (
-    <section className="mt-20 border-t border-gray-800 bg-gray-900/30 py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-10 text-center text-3xl font-bold text-white">
+    <section className="mt-20 border-t border-neutral-900 bg-white py-16 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+        <h2 className="mb-10 border-b border-neutral-300 pb-6 text-3xl font-semibold tracking-tight text-neutral-900">
           More from {category || "the blog"}
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -15,7 +15,7 @@ export default function RelatedPosts({ posts, category }) {
             <a
               href={`/Blog/${post.slug}`}
               key={post.id}
-              className="group block overflow-hidden rounded-2xl border border-gray-800 bg-[#0a0a0a] transition-all duration-300 hover:-translate-y-1 hover:border-[#00E5A0]/50"
+              className="group block overflow-hidden border-y border-neutral-300 transition-colors duration-300 hover:border-neutral-900"
             >
               <div className="relative h-40 overflow-hidden">
                 {post.cover_image_url ? (
@@ -29,11 +29,11 @@ export default function RelatedPosts({ posts, category }) {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="h-full w-full bg-gradient-to-br from-gray-800 to-gray-900" />
+                  <div className="h-full w-full bg-neutral-100" />
                 )}
               </div>
-              <div className="p-6">
-                <div className="mb-2 flex items-center gap-3 text-xs text-gray-500">
+              <div className="p-5">
+                <div className="mb-2 flex items-center gap-3 text-xs text-neutral-500">
                   {post.published_at && (
                     <span>{format(new Date(post.published_at), "MMM d, yyyy")}</span>
                   )}
@@ -43,7 +43,7 @@ export default function RelatedPosts({ posts, category }) {
                     </span>
                   )}
                 </div>
-                <h3 className="line-clamp-2 text-lg font-bold text-white transition-colors group-hover:text-[#00E5A0]">
+                <h3 className="line-clamp-2 text-lg font-semibold leading-tight text-neutral-900 transition-colors group-hover:text-neutral-600">
                   {post.title}
                 </h3>
               </div>

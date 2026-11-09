@@ -1,10 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import LogoMarquee from './logo-marquee';
 
 export default function Hero() {
   const timeRef = useRef(null);
+  const headlineRef = useRef(null);
 
   useEffect(() => {
     const formatter = new Intl.DateTimeFormat('en-GB', {
@@ -25,6 +27,37 @@ export default function Hero() {
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const words = headlineRef.current?.querySelectorAll('[data-hero-word]');
+    if (!words?.length) return;
+
+    const context = gsap.context(() => {
+      const targets = headlineRef.current.querySelectorAll('[data-hero-word-inner]');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.set(targets, { yPercent: 0 });
+        return;
+      }
+
+      gsap.fromTo(
+        targets,
+        { yPercent: 110 },
+        {
+          yPercent: 0,
+          duration: 0.9,
+          stagger: 0.07,
+          ease: 'power4.out',
+          delay: 0.15,
+        }
+      );
+    }, headlineRef);
+
+    return () => context.revert();
+  }, []);
+
+  const headline = 'Building real-estate brands that sell online.';
+  const headlineWords = headline.split(' ');
 
   return (
     <section className='relative flex min-h-screen bg-white w-full flex-col  '>
@@ -85,8 +118,27 @@ export default function Hero() {
           {/* Main column: headline + actions */}
           <div className='order-1 flex flex-col md:order-2 md:col-span-9'>
             <div className='flex flex-1 items-end py-10 md:py-16 md:pl-8'>
-              <h1 className='font-display text-5xl font-semibold leading-[0.95] tracking-tighter md:text-7xl lg:text-[7.5rem]'>
-                Building real-estate brands that sell online.
+              <h1
+                ref={headlineRef}
+                aria-label={headline}
+                data-scroll-reveal='load'
+                className='font-display text-5xl font-semibold leading-[0.95] tracking-tighter md:text-7xl lg:text-8xl'
+              >
+                <span aria-hidden='true'>
+                  {headlineWords.map((word, index) => (
+                    <Fragment key={`${word}-${index}`}>
+                      <span
+                        data-hero-word
+                        className='mb-[-0.12em] inline-block overflow-hidden pb-[0.12em]'
+                      >
+                        <span data-hero-word-inner className='inline-block'>
+                          {word}
+                        </span>
+                      </span>
+                      {index < headlineWords.length - 1 ? ' ' : null}
+                    </Fragment>
+                  ))}
+                </span>
               </h1>
             </div>
 

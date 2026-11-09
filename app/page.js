@@ -1,6 +1,6 @@
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
-import About from "./components/skill";
+// import About from "./components/skill";
 import NewTest from "./components/new-test";
 import Footer from "./components/footer";
 import HomeBelowFold from "./components/HomeBelowFold";
@@ -34,7 +34,7 @@ export default function Page() {
       />
       <Navbar />
       <Hero />
-      <About />
+      {/* <About /> */}
       <NewTest />
       <HomeBelowFold />
       <Footer />

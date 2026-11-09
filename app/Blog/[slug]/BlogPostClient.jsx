@@ -125,17 +125,17 @@ function BlogPostPage({ initialPost, initialRelatedPosts = [] }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-gray-800 border-t-[#00E5A0] rounded-full animate-spin"></div>
+      <div className="flex min-h-screen items-center justify-center bg-white">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-neutral-200 border-t-neutral-900"></div>
       </div>
     );
   }
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-white text-neutral-900">
         <h1 className="text-4xl font-bold mb-4">Post not found</h1>
-        <a href="/Blog" className="text-[#00E5A0] hover:underline flex items-center gap-2">
+        <a href="/Blog" className="flex items-center gap-2 underline underline-offset-4 hover:text-neutral-600">
           <ArrowLeft size={16} /> Back to Blog
         </a>
       </div>
@@ -146,9 +146,9 @@ function BlogPostPage({ initialPost, initialRelatedPosts = [] }) {
   const encodedTitle = encodeURIComponent(post.title);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-gray-100 font-sans flex flex-col selection:bg-[#00E5A0] selection:text-black">
+    <div className="flex min-h-screen flex-col bg-white font-sans text-neutral-900 selection:bg-orange-200 selection:text-neutral-900">
       {/* Reading Progress Bar */}
-      <div className="fixed top-0 left-0 h-1 bg-[#00E5A0] z-50 transition-all duration-150 ease-out" style={{ width: `${progress}%` }}></div>
+      <div className="fixed left-0 top-0 z-50 h-1 bg-blaze-orange transition-all duration-150 ease-out" style={{ width: `${progress}%` }}></div>
       
       <Navbar />
       <Breadcrumbs
@@ -158,38 +158,38 @@ function BlogPostPage({ initialPost, initialRelatedPosts = [] }) {
         ]}
       />
       
-      <main className="flex-grow pt-24 pb-20 w-full">
+      <main className="w-full flex-grow pb-20 pt-10">
         {/* Back Link */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mb-6">
-          <a href="/Blog" className="inline-flex items-center gap-2 text-gray-400 hover:text-[#00E5A0] transition-colors font-medium">
+        <div className="mx-auto mb-8 w-full max-w-[1440px] px-4 md:px-8">
+          <a href="/Blog" className="inline-flex items-center gap-2 font-medium text-neutral-600 transition-colors hover:text-neutral-900">
             <ArrowLeft size={18} /> Back to Blog
           </a>
         </div>
 
         {/* Hero Section */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <div className="flex items-center gap-3 mb-6 flex-wrap">
-            <span className="px-3 py-1 bg-[#00E5A0]/10 text-[#00E5A0] text-xs font-bold rounded-full border border-[#00E5A0]/20">
+        <div className="mx-auto mb-12 w-full max-w-[1440px] px-4 md:px-8">
+          <div className="mb-6 flex flex-wrap items-center gap-3 border-t border-neutral-900 pt-6">
+            <span className="bg-blaze-orange/10 px-3 py-1 text-xs font-semibold text-neutral-900">
               {post.category || "Uncategorized"}
             </span>
-            <span className="text-sm text-gray-500 flex items-center gap-1">
+            <span className="flex items-center gap-1 text-sm text-neutral-500">
               {post.published_at ? format(new Date(post.published_at), 'MMMM d, yyyy') : 'Draft'}
             </span>
-            <span className="text-sm text-gray-500">By Mitch Sultan</span>
-            <span className="text-sm text-gray-500 flex items-center gap-1 before:content-['•'] before:mr-3">
+            <span className="text-sm text-neutral-500">By Mitch Sultan</span>
+            <span className="flex items-center gap-1 text-sm text-neutral-500 before:mr-3 before:content-['•']">
               <Clock size={14} /> {post.reading_time_minutes || 5} min read
             </span>
-            <span className="text-sm text-gray-500 flex items-center gap-1 before:content-['•'] before:mr-3">
+            <span className="flex items-center gap-1 text-sm text-neutral-500 before:mr-3 before:content-['•']">
               <Eye size={14} /> {post.views_count || 0} views
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-8">
+          <h1 className="mb-8 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-tighter text-neutral-900 md:text-6xl lg:text-7xl">
             {post.title}
           </h1>
 
           {/* Cover Image */}
-          <div className="w-full h-[40vh] md:h-[60vh] rounded-3xl overflow-hidden relative border border-gray-800 shadow-2xl mb-12">
+          <div className="relative mb-12 h-[35vh] w-full overflow-hidden border-y border-neutral-300 md:h-[58vh]">
             {post.cover_image_url ? (
               <img 
                 src={post.cover_image_url} 
@@ -200,19 +200,19 @@ function BlogPostPage({ initialPost, initialRelatedPosts = [] }) {
                 className="absolute inset-0 w-full h-full object-cover"
               />
             ) : (
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-800 to-gray-900" />
+              <div className="absolute inset-0 h-full w-full bg-neutral-100" />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80"></div>
           </div>
 
           {/* Content & Sidebar Layout */}
-          <div className="flex flex-col lg:flex-row gap-12">
+          <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
             
             {/* Main Content */}
-            <article className="lg:w-3/4 prose prose-invert prose-emerald max-w-none prose-lg
-              prose-headings:font-bold prose-headings:tracking-tight 
-              prose-a:text-[#00E5A0] prose-a:no-underline hover:prose-a:underline
-              prose-img:rounded-2xl prose-img:border prose-img:border-gray-800"
+            <article className="max-w-[72ch] flex-1 text-neutral-800 prose prose-neutral prose-lg
+              prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-neutral-900
+              prose-a:text-neutral-900 prose-a:underline prose-a:decoration-blaze-orange prose-a:underline-offset-4 hover:prose-a:text-neutral-600
+              prose-strong:text-neutral-900 prose-blockquote:border-neutral-900 prose-blockquote:text-neutral-600
+              prose-img:border prose-img:border-neutral-200"
             >
               {hydrated ? (
                 <div
@@ -228,15 +228,15 @@ function BlogPostPage({ initialPost, initialRelatedPosts = [] }) {
             </article>
 
             {/* Sticky Sidebar */}
-            <aside className="lg:w-1/4">
+            <aside className="lg:w-64 lg:shrink-0">
               <div className="sticky top-32 space-y-8">
                 {/* Tags */}
                 {post.tags && post.tags.length > 0 && (
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Tags</h3>
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-neutral-500">Tags</h3>
                     <div className="flex flex-wrap gap-2">
                       {post.tags.map(tag => (
-                        <span key={tag} className="px-3 py-1 bg-gray-900 text-gray-300 text-xs rounded-full border border-gray-800">
+                        <span key={tag} className="border border-neutral-300 px-3 py-1 text-xs text-neutral-600">
                           #{tag}
                         </span>
                       ))}
@@ -246,28 +246,28 @@ function BlogPostPage({ initialPost, initialRelatedPosts = [] }) {
 
                 {/* Social Share */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 flex items-center gap-2">
+                  <h3 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-neutral-500">
                     <Share2 size={14} /> Share Article
                   </h3>
                   <div className="flex gap-3">
                     <a 
                       href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${shareUrl}`}
                       target="_blank" rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#1DA1F2] transition-colors border border-gray-800 hover:border-[#1DA1F2]"
+                      className="flex h-10 w-10 items-center justify-center border border-neutral-300 text-neutral-600 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
                     >
                       <Twitter size={18} />
                     </a>
                     <a 
                       href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${encodedTitle}`}
                       target="_blank" rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#0A66C2] transition-colors border border-gray-800 hover:border-[#0A66C2]"
+                      className="flex h-10 w-10 items-center justify-center border border-neutral-300 text-neutral-600 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
                     >
                       <Linkedin size={18} />
                     </a>
                     <a 
                       href={`https://wa.me/?text=${encodedTitle} - ${shareUrl}`}
                       target="_blank" rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#25D366] transition-colors border border-gray-800 hover:border-[#25D366]"
+                      className="flex h-10 w-10 items-center justify-center border border-neutral-300 text-neutral-600 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
                     >
                       <MessageCircle size={18} />
                     </a>
