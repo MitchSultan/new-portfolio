@@ -1,6 +1,8 @@
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 // import About from "./components/skill";
+import HeroSphere from "./components/herosphere";
+import SecurityCards from "./components/securitycards";
 import NewTest from "./components/new-test";
 import Footer from "./components/footer";
 import HomeBelowFold from "./components/HomeBelowFold";
@@ -34,9 +36,16 @@ export default function Page() {
       />
       <Navbar />
       <Hero />
+      
+      <HomeBelowFold />
       {/* <About /> */}
       <NewTest />
-      <HomeBelowFold />
+      {/* <HeroSphere
+        title="I build fast, search-optimised websites for real estate agents, developers and property managers in Kenya."
+        subtitle="Explore web development, design and SEO services."
+        scrollLength="300vh"
+      /> */}
+      {/* <SecurityCards /> */}
       <Footer />
     </div>
   );
